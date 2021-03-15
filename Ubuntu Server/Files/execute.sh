@@ -2,7 +2,7 @@
 clear
 echo "INSTALLING LAMP"
 echo "WHEN PHPMyAdmin ASKS 'apache2' or 'lighttpd', CHOOSE 'apache2'"
-sleep 5
+sleep 7
 sudo apt update
 sudo apt-get install lamp-server^
 sudo apt-get install phpmyadmin
