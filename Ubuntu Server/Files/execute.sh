@@ -19,7 +19,7 @@ sudo a2dissite
 sudo rm /etc/apache2/sites-available/000-default.conf
 sudo rm /etc/apache2/sites-available/default-ssl.conf
 
-sudo cp phpmyadmin.conf /etc/apache2/phpmyadmin.conf
+sudo cp phpmyadmin.conf /etc/apache2/sites-available/phpmyadmin.conf
 
 sudo apt install software-properties-common
 sudo add-apt-repository ppa:ondrej/php
