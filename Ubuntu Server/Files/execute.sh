@@ -1,6 +1,7 @@
 #!/bin/sh
 clear
 echo "INSTALLING LAMP"
+echo "WHEN PHPMyAdmin ASKS 'apache2' or 'lighttpd', CHOOSE 'apache2'"
 sleep 5
 sudo apt update
 sudo apt-get install lamp-server^
@@ -49,8 +50,6 @@ sudo apt install php7.4-mysql php7.4-mbstring php7.4-xml php7.4-gd php7.4-curl p
 sudo a2dismod php7.4
 sudo a2dismod mpm_prefork
 sudo a2enmod mpm_event proxy_fcgi setenvif
-
-sudo a2ensite
 
 sudo service apache2 restart
 
