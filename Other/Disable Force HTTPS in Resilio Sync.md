@@ -1,38 +1,22 @@
 # DISABLE FORCE HTTPS IN RESILIO SYNC
 
-In terminal:
+In terminal
+
+**NOTE:** Change `user` to the your user
+
 ```bash
-sudo nano /etc/resilio-sync/config.json
+sudo systemctl edit user@tty1.service
 ```
 
 <br>
 
-The file will be like this
-```json
-{
-    "storage_path" : "/var/lib/resilio-sync/",
-    "pid_file" : "/var/run/resilio-sync/sync.pid",
+I will create a new file. Paste this code inside.
 
-    "webui" :
-    {
-        "force_https": true,
-        "listen" : "127.0.0.1:8888"
-    }
-}
+**NOTE:** Change `user` to the your user
+
+```config
+[Service]
+ExecStart=
+ExecStart=-/sbin/agetty --noissue --autologin user %I $TERM
+Type=idle
 ```
-
-<br>
-
-Change the `"force_https"` parameter to **`false`**. Save (`CTRL+O`) and exit (`CTRL+X`)
-
-<br>
-
-Now, restart Resilio Sync
-```bash
-sudo service resilio-sync restart
-```
-
-<br>
-
-> **IMPORTANT**:<br>
-> If the address **localhost:8888** stops working, clear the browser cache and try to force it to access without *https*.
