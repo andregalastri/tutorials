@@ -1,17 +1,24 @@
 #!/bin/sh
-clear
-echo "INSTALLING LAMP"
-echo "WHEN PHPMyAdmin ASKS 'apache2' or 'lighttpd', CHOOSE 'apache2'"
-sleep 7
+for i in {7..0}
+do
+ clear
+ echo "INSTALLING LAMP"
+ echo "When PHPMyAdmin asks 'apache2' or 'lighttpd', choose 'apache2'"
+ echo "Also, allow to configure phpmyadmin user when asked"
+ echo $i && sleep 1
+done
 sudo apt update
 sudo apt-get install lamp-server^
 sudo apt-get install phpmyadmin
 sudo a2enmod rewrite
 
-clear
-echo "CONFIGURING MYSQL"
-echo "IF YOU ARE ASKED TO ENTER A PASSWORD, JUST PRESS ENTER"
-sleep 5
+for i in {5..0}
+do
+  clear
+  echo "CONFIGURING MYSQL"
+  echo "If you are asked to enter a password, just hit enter"
+  echo $i && sleep 1
+done
 sudo cp -rp "/var/run/mysqld" "/var/run/mysqld.bak"
 sudo service mysql stop
 sudo mv "/var/run/mysqld.bak" "/var/run/mysqld"
@@ -21,22 +28,27 @@ mysql -p -u root -e "USE mysql; FLUSH PRIVILEGES; ALTER USER 'root'@'localhost' 
 
 sudo service apache2 restart
 
-clear
-echo "DISABLING APACHE VIRTUAL HOSTS"
-echo "TYPE 000-default WHEN ASKED"
-sleep 5
+for i in {5..0}
+do
+  clear
+  echo "DISABLING APACHE VIRTUAL HOSTS"
+  echo $i && sleep 1
+done
 sudo cp apache2.conf /etc/apache2/apache2.conf
-sudo a2dissite
+sudo a2dissite 000-default
 
 sudo rm /etc/apache2/sites-available/000-default.conf
 sudo rm /etc/apache2/sites-available/default-ssl.conf
 
 sudo cp phpmyadmin.conf /etc/apache2/sites-available/phpmyadmin.conf
 
-clear
-echo "CONFIGURING MULTIPLE PHP VERSIONS"
-echo "Will install PHP 8.0 AND 7.4"
-sleep 5
+for i in {5..0}
+do
+  clear
+  echo "CONFIGURING MULTIPLE PHP VERSIONS"
+  echo "Will install PHP 8.0 AND 7.4"
+  echo $i && sleep 1
+done
 sudo apt install software-properties-common
 sudo add-apt-repository ppa:ondrej/php
 sudo apt update
@@ -53,9 +65,20 @@ sudo a2enmod mpm_event proxy_fcgi setenvif
 
 sudo service apache2 restart
 
-clear
-echo "INSTALLING COMPOSER"
-sleep 5
+for i in {5..0}
+do
+  clear
+  echo "INSTALLING AUTOMYSQLBACKUP"
+  echo $i && sleep 1
+done
+sudo apt-get install automysqlbackup
+
+for i in {5..0}
+do
+  clear
+  echo "INSTALLING COMPOSER"
+  echo $i && sleep 1
+done
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 HASH="$(wget -q -O - https://composer.github.io/installer.sig)"
 php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
