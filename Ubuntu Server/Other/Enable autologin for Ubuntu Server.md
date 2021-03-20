@@ -43,5 +43,7 @@ Then, you can access the file `/etc/systemd/system/getty@tty1.service.d/override
 
 Finally, mount the virtual HD back in the first VM and it will boot.
 
+<br>
+
 ### I informed the right user, but Ubuntu doesn't boot (black screen with blinking cursor)
 You probably made a typo when entering your username (happened to me). Do the steps from the answer above.
