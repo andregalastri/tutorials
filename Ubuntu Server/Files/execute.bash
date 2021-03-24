@@ -1,10 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 message(){
  i=$1
  while [ $i -gt -1 ]
  do
   clear
-  echo $2
+  echo -e $2
   echo ''
   echo $i && sleep 1
   i=$(( $i - 1 ))
