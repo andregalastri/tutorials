@@ -2,7 +2,7 @@
 Installing and configuring Gitea.
 
 ## DOWNLOAD
-* Execute the following command
+* Execute the following commands
   
   ```bash
   wget -O gitea https://dl.gitea.io/gitea/1.16.3/gitea-1.16.3-linux-amd64
@@ -39,7 +39,7 @@ Installing and configuring Gitea.
 3. Move the `gitea` binary to the proper folder
 
    ```bash
-   sudo cp gitea /usr/local/bin/gitea
+   sudo mv gitea /usr/local/bin/gitea
    ```
 
 ### Creating a service to run Gitea
@@ -82,45 +82,26 @@ Installing and configuring Gitea.
 
 <br>
 
-## CONFIGURING IT TO RUN IN A SERVER ENVIRONMENT
+## FIRST RUN
 
-### Running in an IP based URL
+1. Open your browser and access your localhost http://localhost:3000 or your server http://your_server_ip:3000
+1. Choose the following options:
+   ![image](https://user-images.githubusercontent.com/49572917/158070145-47a6f073-d479-4bbd-9b81-c1715be9fb32.png)
+   * I prefer to use SQLite as database because it is easier for backup
+   * Leave the default database path.<br><br>
+1. ![image](https://user-images.githubusercontent.com/49572917/158070177-285b5b7d-bfc0-45b6-8a95-cf51715fb36a.png)
+   * You can change the server name to a one that pleases you. You can leave it with the default value as well.
+   * Leave the repository path, LFS root, username, server domain, SSH port with its default values.
+   * If you are running Gitea on your localhost, leave it that way. However, if you are running it in a server and accessing it by an IP, change the http://localhost:3000 to http://your_server_ip:3000.
+   * Leave the log path with its default value.<br><br>
+1. Press **Install Gitea** button.
 
-Gitea is configured to run in http://localhost:3000 by default. This means that if you are running Gitea in your local machine, it will work fine, but what if you are running it in a server, accessing it by an IP, like http://192.168.0.100:3000?
+<br>
 
-To configure it, we need to open the `app.ini`, which is the configuration file of Gitea.
+## RUNNING IN A DOMAIN BASED URL USING APACHE'S VHOST PROXYS
+What if you want to access Gitea entering a domain or subdomain URL, like http://git.mydomain.com?
 
-1. Run the followin command:
-
-   ```bash
-   sudo nano /etc/gitea/app.ini
-   ```
-
-2. If it asks if you want to edit the file using ROOT, choose **Yes**
-3. Find this part of the code:
-   
-   ```ini
-   ROOT_URL         = http://localhost:3000/
-   ```
-
-4. Replace it to the IP of your server, as the following example:
-
-   ```ini
-   ROOT_URL         = http://192.168.0.100:3000/
-   ```
-
-5. Press **`CTRL + S`** to save and **`CTRL + X`** to close Nano.
-6. Restart the Gitea service
-
-   ```bash
-   sudo systemctl restart gitea
-   ```
-
-### Running in a domain based URL with Apache's Vhosts Proxys
-
-Gitea is configured to run in http://localhost:3000 by default. This means that if you are running Gitea in your local machine, it will work fine, but what if you are running it in a server, accessing it by a domain, like http://git.mydomain.com?
-
-To configure it, we need to open the `app.ini`, which is the configuration file of Gitea.
+We need to open the `app.ini`, which is the configuration file of Gitea.
 
 1. Run the following command:
 
@@ -149,7 +130,7 @@ To configure it, we need to open the `app.ini`, which is the configuration file 
    ```
 <br>
 
-**Creating a Vhost to redirect access to the domain**
+### Creating a Vhost to redirect access to the domain
 
 1. Enable the proxy modules from Apache
 
@@ -188,6 +169,8 @@ To configure it, we need to open the `app.ini`, which is the configuration file 
    sudo service apache2 restart
    ```
 
+### Adding the domain or subdomain in the `hosts` file
+
 1. Open your `hosts` file
 
    ```bash
@@ -202,68 +185,3 @@ To configure it, we need to open the `app.ini`, which is the configuration file 
    <br>
    
    > **IMPORTANT**: Change the `your_gitea_domain.com` part to the domain of yours.
-
-<br>
-
-# FIRST RUN
-
-1. Access your http://localhost:3000/ or [http://your_ip_here:3000/](http://your_ip_here:3000/) or http://your_gitea_domain.com
-
-
-
-
-
-
-
-**Notes:**
-
- - When installing `phpmyadmin`, it will ask to select which server would be used. Select **apache2**.
- - `phpmyadmin` installation will ask if you want to configure the *phpmyadmin* user. Select **yes** and type a password of your choice.
-
-<br>
-
-## CONFIGURING
-We need to define a MySQL *root* user password and give root permissions (with granted) to *phpmyadmin* user.
-Execute the following commands:
-
-    sudo cp -rp "/var/run/mysqld" "/var/run/mysqld.bak"
-    sudo service mysql stop
-    sudo mv "/var/run/mysqld.bak" "/var/run/mysqld"
-    sudo mysqld_safe --skip-grant-tables --skip-networking &
-
-Next we need to add a password to the root user and give root permission to the phpmyadmin user.
-
-<br>
-
-> **ATTENTION!**
-> BEFORE EXECUTE TO FOLLOWING COMMAND, EDIT IT CHANGING THE `###ROOT_PASSWORD_HERE###` ENTERING A PROPER AND STRONG PASSWORD!
-> 
-> **NOTE:** If MySQL asks for a password, just hit ENTER.
-
-    mysql -p -u root -e "USE mysql; FLUSH PRIVILEGES; ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '###ROOT_PASSWORD_HERE###'; FLUSH PRIVILEGES; GRANT ALL PRIVILEGES ON *.* TO 'phpmyadmin'@'localhost' WITH GRANT OPTION; FLUSH PRIVILEGES;"
-
-<br>
-
-After there commands, it is a good idea to reboot the VPS
-
-    sudo reboot
-
-<br><br>
-<div>
-    <table width="9000">
-        <tr>
-            <td width="9000">
-            </td>
-            <td width="50%" align="right">
-                <a href="https://github.com/andregalastri/tutorials/blob/main/Ubuntu%20Server/2.%20Configuring%20Apache%20Domains-Subdomains.md"><b>2. Configuring Apache Domains/Subdomains</b></a>
-            </td>
-        </tr>
-        <tr>
-            <td width="9000" colspan="2" align="center">
-                <a href="">
-                    <b>Return to the main list</b>
-                </a>
-            </td>
-        </tr>
-    </table>
-</div>
