@@ -75,30 +75,34 @@ Installing and configuring Gitea.
  3. Press **`CTRL + S`** to save and **`CTRL + X`** to close Nano.
  4. Run the Gitea as a service
  
- ```bash
- sudo systemctl enable gitea
- sudo systemctl start gitea
- ```
+    ```bash
+    sudo systemctl enable gitea
+    sudo systemctl start gitea
+    ```
 
 <br>
 
 ## FIRST RUN
 
 1. Open your browser and access your localhost http://localhost:3000 or your server http://your_server_ip:3000
-1. Choose the following options:
+1. In database settings:<br>
    ![image](https://user-images.githubusercontent.com/49572917/158070145-47a6f073-d479-4bbd-9b81-c1715be9fb32.png)
+   
    * I prefer to use SQLite as database because it is easier for backup
-   * Leave the default database path.<br><br>
-1. ![image](https://user-images.githubusercontent.com/49572917/158070177-285b5b7d-bfc0-45b6-8a95-cf51715fb36a.png)
+   * Leave the default database path.
+   
+1. In general settings:<br>
+   ![image](https://user-images.githubusercontent.com/49572917/158070177-285b5b7d-bfc0-45b6-8a95-cf51715fb36a.png)
    * You can change the server name to a one that pleases you. You can leave it with the default value as well.
    * Leave the repository path, LFS root, username, server domain, SSH port with its default values.
    * If you are running Gitea on your localhost, leave it that way. However, if you are running it in a server and accessing it by an IP, change the http://localhost:3000 to http://your_server_ip:3000.
-   * Leave the log path with its default value.<br><br>
-1. Press **Install Gitea** button.
+   * Leave the log path with its default value.
+   
+1. Press **Install Gitea** button and you are done!
 
 <br>
 
-## RUNNING IN A DOMAIN BASED URL USING APACHE'S VHOST PROXYS
+# RUNNING IN A DOMAIN BASED URL USING APACHE'S VHOST PROXYS
 What if you want to access Gitea entering a domain or subdomain URL, like http://git.mydomain.com?
 
 We need to open the `app.ini`, which is the configuration file of Gitea.
@@ -142,7 +146,7 @@ We need to open the `app.ini`, which is the configuration file of Gitea.
 3. Run the following command
 
    ```bash
-   sudo nano /etc/apache2/sives-available/gitea.conf
+   sudo nano /etc/apache2/sites-available/gitea.conf
    ```
 
 1. Copy and paste the content below
