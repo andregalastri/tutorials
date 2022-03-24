@@ -7,7 +7,7 @@ The codec is the **libxvid**.
 
 Example:
 ```bash
-ffmpeg -i "INPUT_FILE.mp4" -c:v libxvid -q:v 5 -acodec pcm_s16le -f mov "OUTPUT_FILE.mov"
+ffmpeg -i "INPUT_FILE.mp4" -c:v libxvid -q:v 0 -acodec pcm_s16le -f mov "OUTPUT_FILE.mov"
 ```
 
-**NOTE**: change the `-q:v` parameter to change the quality of the output file. The values can be between 1 (best quality) to 31 (worst quality).
+**NOTE**: change the `-q:v` parameter to change the quality of the output file. The values can be between 0 (best quality) to 31 (worst quality).
