@@ -1,11 +1,15 @@
-# ABOUT THE PANELS
+# POST-INSTALL TIPS
+<br>
+
+## ABOUT POLYBAR
 Archcraft uses a softawre called [Polybar](https://github.com/polybar/polybar) to draw its panels. You can customize it accessing `~/.config/openbox/polybar`
 
-# ABOUT POLYBAR
 * If you want to use some module in your panel, you need to check if it is defined in the *module.ini* file.
 * If you are changing an existent theme, run the *launch.sh* file to reload the bar and see the changes.
 
-# INSTALLING VIRTUALBOX
+<br>
+
+## INSTALLING VIRTUALBOX
 
 Got into some difficulties to install Virtualbox when using Archcraft, so, here are some instructions.
 
@@ -14,6 +18,7 @@ Got into some difficulties to install Virtualbox when using Archcraft, so, here 
    sudo pacman -Syu virtualbox virtualbox-guest-iso linux-headers
    ```
    It is needed to install `linux-headers` because, apparently, it isn't installed from default.
+   <br><br>
 2. Reboot the PC.
 
 
