@@ -23,6 +23,18 @@
    Choose [N]enhum when asked
 1. Reboot the PC
 
+<br>
+
+## DISABLE POWER SAVING SETTINGS
+1. Search for *Gerenciador de Energia*
+2. Define the options as the screens below
+   <br>
+   ![image](https://user-images.githubusercontent.com/49572917/183267488-6256ebc3-7a0e-4151-acbf-17675ab91604.png)
+   ![image](https://user-images.githubusercontent.com/49572917/183267495-d585639b-af00-4fdf-98eb-23c1158e3a91.png)
+   ![image](https://user-images.githubusercontent.com/49572917/183267498-f7ef4aee-51cf-4fbd-83e6-23c4609bd8c7.png)
+
+<br>
+
 ## ABOUT POLYBAR
 Archcraft uses a softawre called [Polybar](https://github.com/polybar/polybar) to draw its panels. You can customize it accessing `~/.config/openbox/polybar`
 
