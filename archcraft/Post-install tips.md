@@ -1,6 +1,21 @@
 # POST-INSTALL TIPS
 <br>
 
+## SOFTWARE INSTALLING
+
+1. Open terminal and run the commands below to install the following applications
+   * Google Chrome
+   * Visual Studio Code
+   * Samba
+   ```zsh
+   yay -S google-chrome visual-studio-code-bin samba
+   ```
+1. Download the default file `smb.conf` for Samba
+   ```zsh
+   curl -o smb.conf "https://git.samba.org/samba.git/?p=samba.git;a=blob_plain;f=examples/smb.conf.default;hb=HEAD"
+   sudo mv smb.conf /etc/samba/smb.conf
+   ```
+
 ## ABOUT POLYBAR
 Archcraft uses a softawre called [Polybar](https://github.com/polybar/polybar) to draw its panels. You can customize it accessing `~/.config/openbox/polybar`
 
