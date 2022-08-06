@@ -12,9 +12,16 @@
    ```
 1. Download the default file `smb.conf` for Samba
    ```zsh
-   curl -o smb.conf "https://git.samba.org/samba.git/?p=samba.git;a=blob_plain;f=examples/smb.conf.default;hb=HEAD"
+   
+   curl -o smb.conf "https://raw.githubusercontent.com/andregalastri/tutorials/main/archcraft/Files/smb.conf"
    sudo mv smb.conf /etc/samba/smb.conf
    ```
+1. Install Warsaw
+   ```zsh
+   yay -S warsaw-bin
+   ```
+   Choose [N]enhum when asked
+1. Reboot the PC
 
 ## ABOUT POLYBAR
 Archcraft uses a softawre called [Polybar](https://github.com/polybar/polybar) to draw its panels. You can customize it accessing `~/.config/openbox/polybar`
@@ -34,6 +41,6 @@ Got into some difficulties to install Virtualbox when using Archcraft, so, here 
    ```
    It is needed to install `linux-headers` because, apparently, it isn't installed from default.
    <br><br>
-2. Reboot the PC.
+1. Reboot the PC.
 
 
