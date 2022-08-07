@@ -3,19 +3,46 @@
 
 ## SOFTWARE INSTALLING
 
-1. Open terminal and run the commands below to install the following applications
+1. Installing softawares from main
+   * Fish
+   * Samba
+   * Thunderbird
+   ```zsh
+   sudo pacman -Syyu fish samba thunderbird-i18n-pt-br
+   ```
+1. Installing softawares from AUR
    * Google Chrome
    * Visual Studio Code
-   * Samba
+   * Telegram
    ```zsh
-   yay -S google-chrome visual-studio-code-bin samba
+   yay -S google-chrome visual-studio-code-bin telegram-desktop
    ```
+
+### Configure Telegram autostart
+1. Open the file
+   `~/.config/openbox/autostart`
+1. Add the following command at the end of the file
+   ```
+   ## Telegram
+   exec /usr/bin/telegram-desktop -workdir /home/andre/.local/share/TelegramDesktop/ -autostart &
+   ```
+1. Open Telegram and go to **Settings > Advanced**
+2. Enable all startup options as following
+   ![image](https://user-images.githubusercontent.com/49572917/183298790-4b1d85bd-26e2-4ad9-95ea-774c98a757f9.png)
+
+
+### Configure Samba
 1. Download the default file `smb.conf` for Samba
    ```zsh
-   
    curl -o smb.conf "https://raw.githubusercontent.com/andregalastri/tutorials/main/archcraft/Files/smb.conf"
    sudo mv smb.conf /etc/samba/smb.conf
    ```
+1. Enable Samba service
+   ```zsh
+   sudo systemctl enable smb
+   ```
+   
+### Install and configure Warsaw
 1. Install Warsaw
    ```zsh
    yay -S warsaw-bin
