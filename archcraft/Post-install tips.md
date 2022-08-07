@@ -9,9 +9,14 @@
    * Thunderbird
    * Virtualbox
    * Kernel headers
+   * Filezilla
    ```zsh
-   sudo pacman -Syyu fish samba thunderbird-i18n-pt-br virtualbox virtualbox-guest-iso linux-headers
+   sudo pacman -Syyu fish samba thunderbird-i18n-pt-br virtualbox virtualbox-guest-iso linux-headers filezilla gimp
    ```
+   <br>
+   
+   > **Note: While Virtualbox, choose the default options when asked**
+   <br>
 1. Installing softawares from AUR
    * Google Chrome
    * Visual Studio Code
@@ -23,6 +28,7 @@
    <br>
    
    > **Note: While installing Warsaw, choose `[N]enhum` when asked**
+   <br>
 1. Other softwares
    * FreeFileSync
      * Download: https://freefilesync.org/download.php
