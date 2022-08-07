@@ -7,16 +7,28 @@
    * Fish
    * Samba
    * Thunderbird
+   * Virtualbox
+   * Kernel headers
    ```zsh
-   sudo pacman -Syyu fish samba thunderbird-i18n-pt-br
+   sudo pacman -Syyu fish samba thunderbird-i18n-pt-br virtualbox virtualbox-guest-iso linux-headers
    ```
 1. Installing softawares from AUR
    * Google Chrome
    * Visual Studio Code
    * Telegram
+   * Warsaw
    ```zsh
-   yay -S google-chrome visual-studio-code-bin telegram-desktop
+   yay -S google-chrome visual-studio-code-bin telegram-desktop warsaw-bin
    ```
+   <br>
+   
+   > **Note: While installing Warsaw, choose `[N]enhum` when asked**
+1. Other softwares
+   * FreeFileSync
+     * Download: https://freefilesync.org/download.php
+     * Extract the file and run the `.run` script to install
+
+<br>
 
 ### Configure Telegram autostart
 1. Open the file
@@ -28,8 +40,10 @@
    ```
 1. Open Telegram and go to **Settings > Advanced**
 2. Enable all startup options as following
+   <br>
    ![image](https://user-images.githubusercontent.com/49572917/183298790-4b1d85bd-26e2-4ad9-95ea-774c98a757f9.png)
 
+<br>
 
 ### Configure Samba
 1. Download the default file `smb.conf` for Samba
@@ -41,14 +55,6 @@
    ```zsh
    sudo systemctl enable smb
    ```
-   
-### Install and configure Warsaw
-1. Install Warsaw
-   ```zsh
-   yay -S warsaw-bin
-   ```
-   Choose [N]enhum when asked
-1. Reboot the PC
 
 <br>
 
@@ -67,19 +73,3 @@ Archcraft uses a softawre called [Polybar](https://github.com/polybar/polybar) t
 
 * If you want to use some module in your panel, you need to check if it is defined in the *module.ini* file.
 * If you are changing an existent theme, run the *launch.sh* file to reload the bar and see the changes.
-
-<br>
-
-## INSTALLING VIRTUALBOX
-
-Got into some difficulties to install Virtualbox when using Archcraft, so, here are some instructions.
-
-1. Open terminal and install Virtualbox
-   ```zsh
-   sudo pacman -Syu virtualbox virtualbox-guest-iso linux-headers
-   ```
-   It is needed to install `linux-headers` because, apparently, it isn't installed from default.
-   <br><br>
-1. Reboot the PC.
-
-
