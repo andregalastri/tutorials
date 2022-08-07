@@ -10,8 +10,10 @@
    * Virtualbox
    * Kernel headers
    * Filezilla
+   * GIMP
+   * Gnome Disks
    ```zsh
-   sudo pacman -Syyu fish samba thunderbird-i18n-pt-br virtualbox virtualbox-guest-iso linux-headers filezilla gimp
+   sudo pacman -Syyu fish samba thunderbird-i18n-pt-br virtualbox virtualbox-guest-iso linux-headers filezilla gimp gnome-disk-utility
    ```
    <br>
    
