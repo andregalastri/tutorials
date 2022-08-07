@@ -9,3 +9,9 @@ gsettings set net.launchpad.plank.dock.settings:/net/launchpad/plank/docks/dock1
 ```
 
 <br>
+
+## FREE FILE SYNC NOT RESPONDING
+
+Move the window and see if there is an *About* window under that. That window prevents you from interacting with the program.
+
+<br>
