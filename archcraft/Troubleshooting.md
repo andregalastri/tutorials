@@ -37,10 +37,10 @@ The only way I found to make it less annoying is by removing the shadow from the
 * Locate the array `shadow-exclude`
 * Add these keys and values to the array:
   ```
-  "window_type = 'menu'",
-  "window_type = 'dropdown_menu'",
-  "window_type = 'popup_menu'",
-  "window_type = 'tooltip'",
+  "class_g = 'firefox' && window_type = 'menu'",
+  "class_g = 'firefox' && window_type = 'dropdown_menu'",
+  "class_g = 'firefox' && window_type = 'popup_menu'",
+  "class_g = 'firefox' && window_type = 'tooltip'",
   ```
 * Save and close.
 
