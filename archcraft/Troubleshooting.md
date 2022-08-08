@@ -22,3 +22,29 @@ Run the following command in terminal
 ```zsh
 sudo pacman -S noto-fonts-cjk noto-fonts-emoji noto-fonts
 ```
+
+<br>
+
+## WORKAROUND FOR WEIRD SHADOW AT MENUS
+
+Some shadows are shown glitchy and weird, like in Firefox or VLC, like this:
+<br>
+![image](https://user-images.githubusercontent.com/49572917/183482988-21409a4d-938e-4790-9377-b0e33c9af5c2.png)
+
+The only way I found to make it less annoying is by removing the shadow from these types of menus.
+
+* Open the file `~/.config/picom.conf`
+* Locate the array `shadow-exclude`
+* Add these keys and values to the array:
+  ```
+  "window_type = 'menu'",
+  "window_type = 'dropdown_menu'",
+  "window_type = 'popup_menu'",
+  "window_type = 'tooltip'",
+  ```
+* Save and close.
+
+**Result**
+<br>
+![image](https://user-images.githubusercontent.com/49572917/183483652-9884a0a7-68e2-4933-a42c-78532c287257.png)
+
