@@ -6,6 +6,7 @@
 ```zsh
   sudo pacman -Sy archlinux-keyring
   sudo pacman -Syyu
+  sudo reboot
 ```
 
 <br>
