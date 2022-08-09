@@ -34,7 +34,7 @@
    ```
    <br>
    
-   > **Note: While installing Virtualbox, choose the default options when asked**
+   > **Note: During the installation, choose the default options when asked**
    <br>
 1. Installing softawares from AUR
    * Google Chrome
