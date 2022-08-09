@@ -28,13 +28,18 @@
    * Noto Fonts for missing characters
    * Flameshot
    * Inkscape
+   * Krita
    * Libreoffice
    ```zsh
-   sudo pacman -Syyu fish samba thunderbird-i18n-pt-br virtualbox virtualbox-guest-iso linux-headers filezilla gimp gnome-disk-utility vlc qalculate-gtk adobe-source-code-pro-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts flameshot inkscape libreoffice-fresh
+   sudo pacman -Syyu fish samba gnome-disk-utility qalculate-gtk
+   sudo pacman -S virtualbox virtualbox-guest-iso linux-headers 
+   sudo pacman -S thunderbird-i18n-pt-br vlc filezilla flameshot inkscape gimp krita libreoffice-fresh
+   sudo pacman -S adobe-source-code-pro-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts
    ```
    <br>
    
-   > **Note: During the installation, choose the default options when asked**
+   > **Note: During the installation, choose the default options when asked**<br>
+   > If an unexpected error occurs, run the command again and you will be fine.
    <br>
 1. Installing softawares from AUR
    * Google Chrome
@@ -42,16 +47,18 @@
    * Telegram
    * Warsaw
    ```zsh
-   yay -S google-chrome visual-studio-code-bin telegram-desktop warsaw-bin
+   yay -Syyu google-chrome visual-studio-code-bin telegram-desktop warsaw-bin
    ```
    <br>
    
-   > **Note: While installing Warsaw, choose `[N]enhum` when asked**
+   > **Note: While installing Warsaw, choose `[N]enhum/[N]one` when asked**
    <br>
 1. Other softwares
    * FreeFileSync
      * Download: https://freefilesync.org/download.php
      * Extract the file and run the `.run` script to install
+
+**Reboot**
 
 <br>
 
