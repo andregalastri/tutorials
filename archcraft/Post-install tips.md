@@ -21,12 +21,19 @@
    * Filezilla
    * GIMP
    * Gnome Disks
+   * VLC
+   * Qalculate
+   * Source Code Pro Fonts
+   * Noto Fonts for missing characters
+   * Flameshot
+   * Inkscape
+   * Libreoffice
    ```zsh
-   sudo pacman -Syyu fish samba thunderbird-i18n-pt-br virtualbox virtualbox-guest-iso linux-headers filezilla gimp gnome-disk-utility
+   sudo pacman -Syyu fish samba thunderbird-i18n-pt-br virtualbox virtualbox-guest-iso linux-headers filezilla gimp gnome-disk-utility vlc qalculate-gtk adobe-source-code-pro-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts flameshot inkscape libreoffice-fresh
    ```
    <br>
    
-   > **Note: While Virtualbox, choose the default options when asked**
+   > **Note: While installing Virtualbox, choose the default options when asked**
    <br>
 1. Installing softawares from AUR
    * Google Chrome
@@ -47,13 +54,17 @@
 
 <br>
 
-### Configure Telegram autostart
+### Configure autostart
 1. Open the file
    `~/.config/openbox/autostart`
 1. Add the following command at the end of the file
    ```
    ## Telegram
    exec /usr/bin/telegram-desktop -workdir /home/andre/.local/share/TelegramDesktop/ -autostart &
+   
+   ## Virtualbox
+   exec vboxmanage startvm "Ubuntu Server 20.04" --type=headless &
+   find . -maxdepth 1 -name "*VBoxHeadless*" -delete &
    ```
 1. Open Telegram and go to **Settings > Advanced**
 2. Enable all startup options as following
