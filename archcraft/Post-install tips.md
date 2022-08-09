@@ -1,6 +1,15 @@
 # POST-INSTALL TIPS
 <br>
 
+## UPDATING
+
+```zsh
+  sudo pacman -S archlinux-keyring
+  sudo pacman -Syyu
+```
+
+<br>
+
 ## SOFTWARE INSTALLING
 
 1. Installing softawares from main
