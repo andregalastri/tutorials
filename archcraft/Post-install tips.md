@@ -14,6 +14,7 @@
 ## UPDATING
 
 ```zsh
+  sudo pacman-key --populate archlinux
   sudo pacman -Sy archlinux-keyring
   sudo pacman -Syyu
   sudo reboot
