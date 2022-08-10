@@ -39,6 +39,20 @@ sudo pacman -Sy archlinux-keyring
 
 <br>
 
+
+## DISCORD HAS AN UPDATE THAT ISN'T AVAILABLE IN THE REPOSITORY
+
+* Trick the application by editing the `build_info.json` file. Run:
+  ```zsh
+  sudo nano /opt/discord/resources/build_info.json
+  ```
+* Change the version to the most recent
+* Save, close and reopen Discord
+
+> **NOTE:** When an update are available, this file will also be updated, so don't worry.
+
+<br>
+
 ## REMOVING PLANK ICON FROM DOCK
 
 Run the following command in terminal
