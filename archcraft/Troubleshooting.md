@@ -30,7 +30,7 @@ Move the window and see if there is an *About* window under that. That window pr
 
 <br>
 
-## MISSING JAPANESE FONTS
+## MISSING SOME CHARACTERS
 
 Run the following command in terminal
 ```zsh
