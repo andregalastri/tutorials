@@ -1,6 +1,20 @@
 # TROUBLESHOOTING
 <br>
 
+## INVALID OR CORRUPTED PACKAGE (PGP SIGNATURE)
+
+Run the following command in terminal
+```zsh
+sudo pacman-key --populate archlinux
+```
+
+If it doesn't enough, run the following command
+```zsh
+sudo pacman -Sy archlinux-keyring
+```
+
+<br>
+
 ## REMOVING PLANK ICON FROM DOCK
 
 Run the following command in terminal
