@@ -15,6 +15,30 @@ sudo pacman -Sy archlinux-keyring
 
 <br>
 
+## ACTIVATING NUMLOCK ON BOOTUP
+
+* Open the file `~/.config/xfce4/xfconf/xfce-perchannel-xml/keyboards.xml`
+* Add the following properties to the `keyboars` channel
+  ```xml
+  <property name="Numlock" type="bool" value="true"/>
+  <property name="RestoreNumlock" type="bool" value="true"/>
+  ```
+  
+  **Like this**
+  ```xml
+  <?xml version="1.0" encoding="UTF-8"?>
+
+  <channel name="keyboards" version="1.0">
+    <property name="Default" type="empty">
+      <property name="Numlock" type="bool" value="true"/>
+      <property name="RestoreNumlock" type="bool" value="true"/>
+    </property>
+  </channel>
+  ```
+* Save and close and reboot.
+
+<br>
+
 ## REMOVING PLANK ICON FROM DOCK
 
 Run the following command in terminal
@@ -46,6 +70,11 @@ Some shadows are shown glitchy and weird, like in Firefox or VLC, like this:
 ![image](https://user-images.githubusercontent.com/49572917/183482988-21409a4d-938e-4790-9377-b0e33c9af5c2.png)
 
 The only way I found to make it less annoying is by removing the shadow from these types of menus.
+
+* Open Kvantum
+* Choose to disable composite effects
+  ![image](https://user-images.githubusercontent.com/49572917/183791230-1a71118c-363b-4840-a275-917484b045c9.png)
+<br>
 
 * Open the file `~/.config/picom.conf`
 * Locate the array `shadow-exclude`
