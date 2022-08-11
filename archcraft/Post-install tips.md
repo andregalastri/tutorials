@@ -42,8 +42,9 @@
    * Krita
    * Libreoffice
    * Discord
+   * File Roller
    ```zsh
-   sudo pacman -Syyu fish samba gnome-disk-utility qalculate-gtk
+   sudo pacman -Syyu fish samba file-roller gnome-disk-utility qalculate-gtk
    sudo pacman -S virtualbox virtualbox-guest-iso linux-headers 
    sudo pacman -S thunderbird-i18n-pt-br discord vlc filezilla flameshot inkscape gimp krita libreoffice-fresh
    sudo pacman -S adobe-source-code-pro-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts
