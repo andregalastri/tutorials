@@ -39,6 +39,13 @@ sudo pacman -Sy archlinux-keyring
 
 <br>
 
+## FLICKERING ISSUES
+
+* Edit the file `~/.config/picom.conf`
+* Search for `use-damage` and set it to `false`
+* Save and close. No need  to reboot or logout/login
+
+<br>
 
 ## DISCORD HAS AN UPDATE THAT ISN'T AVAILABLE IN THE REPOSITORY
 
