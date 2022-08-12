@@ -71,9 +71,20 @@
      * Download: https://freefilesync.org/download.php
      * Extract the file and run the `.run` script to install
 
-**Reboot**
 
 <br>
+
+## SOFTWARE REMOVING
+
+1. Removing some applications
+   * Xarchiver
+   * Timeshift
+   ```zsh
+   sudo pacman -R xarchiver timeshift
+   ```
+<br>
+
+## CONFIGURING
 
 ### Configure autostart
 1. Open the file
