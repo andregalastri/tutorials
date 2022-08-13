@@ -50,10 +50,10 @@ sudo pacman -Sy archlinux-keyring
 ## MOUSE CURSOR THEMES NOT PERSISTING
 
 * Delete this file `~/.icons/default/index.theme`
-* Open **LxAppearance** and choose the theme you want and click on **__Apply__**.
-  **Note:** You can open LXAppearance running `lxappearance` in the terminal
-* Now open **XFCE Settings Manager**
-  **Note:** You can open XFCE Settings Manager running `xfce4-settings-manager` in the terminal
+* Open **LxAppearance** and choose the theme you want and click on **__Apply__**.<br>
+  > **Note:** You can open LXAppearance running `lxappearance` in the terminal
+* Now open **XFCE Settings Manager**<br>
+  > **Note:** You can open XFCE Settings Manager running `xfce4-settings-manager` in the terminal
 * There, select **Mouse and touchpad**
 * Select the *Theme* tab and choose the same theme you selected in the LxAppearance.
 * Close everything and reboot.
