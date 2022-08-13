@@ -44,16 +44,21 @@
    * Discord
    * File Roller
    * Gnome Keyring
+   * Tint2
    ```zsh
-   sudo pacman -S fish
-   sudo pacman -S samba
+   sudo pacman -S linux-headers
+   sudo pacman -S gnome-keyring
+   sudo pacman -S adobe-source-code-pro-fonts
+   sudo pacman -S noto-fonts-cjk
+   sudo pacman -S noto-fonts-emoji
+   sudo pacman -S noto-fonts
    sudo pacman -S file-roller
+   sudo pacman -S samba
+   sudo pacman -S fish
    sudo pacman -S gnome-disk-utility
    sudo pacman -S qalculate-gtk
-   sudo pacman -S gnome-keyring
    sudo pacman -S virtualbox
    sudo pacman -S virtualbox-guest-iso
-   sudo pacman -S linux-headers 
    sudo pacman -S thunderbird-i18n-pt-br
    sudo pacman -S discord
    sudo pacman -S vlc
@@ -63,10 +68,7 @@
    sudo pacman -S gimp
    sudo pacman -S krita
    sudo pacman -S libreoffice-fresh
-   sudo pacman -S adobe-source-code-pro-fonts
-   sudo pacman -S noto-fonts-cjk
-   sudo pacman -S noto-fonts-emoji
-   sudo pacman -S noto-fonts
+   sudo pacman -S tint2
    ```
    <br>
    
