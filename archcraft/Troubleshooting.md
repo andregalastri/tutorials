@@ -60,6 +60,7 @@ sudo pacman -S gnome-keyring
 ```
 <br>
 * Try sync again
+  > **NOTE: If it asks for to create a password, leave it in blank and confirm.**
 
 <br>
 
