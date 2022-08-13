@@ -47,6 +47,22 @@ sudo pacman -Sy archlinux-keyring
 
 <br>
 
+
+## VSCODE SYNC RETURNING ERROR
+
+After login on Github with VSCode to sync settings, VSCode returns the following error
+
+> Writing login information to the keychain failed with error 'GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.secrets was not provided by any .service files'.
+
+* Install Gnome Keyring:
+```zsh
+sudo pacman -S gnome-keyring 
+```
+<br>
+* Try sync again
+
+<br>
+
 ## MOUSE CURSOR THEMES NOT PERSISTING
 
 * Delete this file `~/.icons/default/index.theme`
