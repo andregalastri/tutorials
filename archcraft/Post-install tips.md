@@ -45,10 +45,28 @@
    * File Roller
    * Gnome Keyring
    ```zsh
-   sudo pacman -Syyu fish samba file-roller gnome-disk-utility qalculate-gtk gnome-keyring
-   sudo pacman -S virtualbox virtualbox-guest-iso linux-headers 
-   sudo pacman -S thunderbird-i18n-pt-br discord vlc filezilla flameshot inkscape gimp krita libreoffice-fresh
-   sudo pacman -S adobe-source-code-pro-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts
+   sudo pacman -S fish
+   sudo pacman -S samba
+   sudo pacman -S file-roller
+   sudo pacman -S gnome-disk-utility
+   sudo pacman -S qalculate-gtk
+   sudo pacman -S gnome-keyring
+   sudo pacman -S virtualbox
+   sudo pacman -S virtualbox-guest-iso
+   sudo pacman -S linux-headers 
+   sudo pacman -S thunderbird-i18n-pt-br
+   sudo pacman -S discord
+   sudo pacman -S vlc
+   sudo pacman -S filezilla
+   sudo pacman -S flameshot
+   sudo pacman -S inkscape
+   sudo pacman -S gimp
+   sudo pacman -S krita
+   sudo pacman -S libreoffice-fresh
+   sudo pacman -S adobe-source-code-pro-fonts
+   sudo pacman -S noto-fonts-cjk
+   sudo pacman -S noto-fonts-emoji
+   sudo pacman -S noto-fonts
    ```
    <br>
    
@@ -61,7 +79,10 @@
    * Telegram
    * Warsaw
    ```zsh
-   yay -Syyu google-chrome visual-studio-code-bin telegram-desktop warsaw-bin
+   yay -S google-chrome
+   yay -S visual-studio-code-bin
+   yay -S telegram-desktop
+   yay -S warsaw-bin
    ```
    <br>
    
