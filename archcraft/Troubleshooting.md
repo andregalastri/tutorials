@@ -55,10 +55,10 @@ After login on Github with VSCode to sync settings, VSCode returns the following
 > Writing login information to the keychain failed with error 'GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.secrets was not provided by any .service files'.
 
 * Install Gnome Keyring:
-```zsh
-sudo pacman -S gnome-keyring 
-```
-<br>
+  ```zsh
+  sudo pacman -S gnome-keyring 
+  ```
+  
 * Try sync again
   > **NOTE: If it asks for to create a password, leave it in blank and confirm.**
 
@@ -135,6 +135,9 @@ The only way I found to make it less annoying is by removing the shadow from the
   "class_g = 'firefox' && window_type = 'dropdown_menu'",
   "class_g = 'firefox' && window_type = 'popup_menu'",
   "class_g = 'firefox' && window_type = 'tooltip'",
+  "class_g = 'xdg-desktop-portal-gnome' && window_type = 'menu'",
+  "class_g = 'baobab' && window_type = 'menu'",
+  "_NET_WM_WINDOW_TYPE:a *= '_KDE_NET_WM_WINDOW_TYPE_OVERRIDE'",
   ```
 * Save and close.
 
