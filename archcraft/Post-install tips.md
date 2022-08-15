@@ -107,8 +107,9 @@
 1. Removing some applications
    * Xarchiver
    * Timeshift
+   * Plank
    ```zsh
-   sudo pacman -R xarchiver timeshift
+   sudo pacman -R xarchiver timeshift plank
    ```
 <br>
 
