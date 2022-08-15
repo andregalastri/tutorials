@@ -46,7 +46,7 @@
    * Gnome Keyring
    * Tint2
    * Wget
-   * YT_DLP (Youtube Downloader)
+   * Yt-Dlp (Youtube Downloader)
    ```zsh
    sudo pacman -S linux-headers
    sudo pacman -S gnome-keyring
@@ -84,11 +84,13 @@
    * Visual Studio Code
    * Telegram
    * Warsaw
+   * FreeFileSync
    ```zsh
    yay -S google-chrome
    yay -S visual-studio-code-bin
    yay -S telegram-desktop
    yay -S warsaw-bin
+   yay -S freefilesync-bin
    ```
    <br>
    
