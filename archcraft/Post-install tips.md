@@ -45,6 +45,8 @@
    * File Roller
    * Gnome Keyring
    * Tint2
+   * Wget
+   * YT_DLP (Youtube Downloader)
    ```zsh
    sudo pacman -S linux-headers
    sudo pacman -S gnome-keyring
@@ -69,6 +71,8 @@
    sudo pacman -S krita
    sudo pacman -S libreoffice-fresh
    sudo pacman -S tint2
+   sudo pacman -S wget
+   sudo pacman -S yt-dlp
    ```
    <br>
    
