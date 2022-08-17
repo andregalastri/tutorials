@@ -166,6 +166,17 @@ The only way I found to make it less annoying is by removing the shadow from the
 
 <br>
 
+## PERMISSION DENIED FOR SHARED FOLDERS ON VIRTUAL BOX
+
+On the guestRun the following command on the guest
+```bash
+sudo usermod -aG vboxsf $USER
+```
+
+Reboot
+
+<br>
+
 ## REMOVING ALL ARCHCRAFT REPOSITORY AND PACKAGES (DANGEROUS)
 <br>
 
@@ -182,4 +193,5 @@ Then, open the following file and remove Archcraft repository from there.
 ```bash
 sudo nano /etc/pacman.conf
 ```
+
 
