@@ -36,8 +36,7 @@
    * Gnome Disks
    * VLC
    * Qalculate
-   * Source Code Pro Fonts
-   * Noto Fonts for missing characters
+   * Fonts: Source Code Pro, Noto Fonts for missing characters
    * Flameshot
    * Inkscape
    * Krita
@@ -75,7 +74,7 @@
    sudo pacman -S tint2
    sudo pacman -S wget
    sudo pacman -S yt-dlp
-   sudo pacman -S gnome-font-viewer
+   sudo pacman -S gnome-font-viewer   
    ```
    <br>
    
@@ -88,12 +87,14 @@
    * Telegram
    * Warsaw
    * FreeFileSync
+   * Fonts: Century Gothic
    ```bash
    yay -S google-chrome
    yay -S visual-studio-code-bin
    yay -S telegram-desktop
    yay -S warsaw-bin
    yay -S freefilesync-bin
+   yay -S ttf-century-gothic
    ```
    <br>
    
