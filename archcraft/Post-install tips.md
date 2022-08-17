@@ -47,6 +47,7 @@
    * Gnome Keyring
    * Tint2
    * Wget
+   * Gnome Font Viewer
    * Yt-Dlp (Youtube Downloader)
    ```bash
    sudo pacman -S linux-headers
@@ -74,6 +75,7 @@
    sudo pacman -S tint2
    sudo pacman -S wget
    sudo pacman -S yt-dlp
+   sudo pacman -S gnome-font-viewer
    ```
    <br>
    
