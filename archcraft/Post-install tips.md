@@ -95,11 +95,6 @@
    <br>
    
    > **Note: While installing Warsaw, choose `[N]enhum/[N]one` when asked**
-   <br>
-1. Other softwares
-   * FreeFileSync
-     * Download: https://freefilesync.org/download.php
-     * Extract the file and run the `.run` script to install
 
 
 <br>
@@ -110,8 +105,11 @@
    * Xarchiver
    * Timeshift
    * Plank
+   * Vim
+   * Zsh
    ```zsh
-   sudo pacman -R xarchiver timeshift plank
+   fish
+   sudo pacman -R xarchiver timeshift plank vim zsh archcraft-omz archcraft-vim
    ```
 <br>
 
