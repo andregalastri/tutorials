@@ -2,7 +2,7 @@
 <br>
 
 ## BLACK SCREEN WITH ONLY THE CURSOR SHOWING UP
-You probably uninstalled `zsh`.
+You probably uninstalled **zsh** and you need to reinstall it.
 
 *  Turn on your computer. At the GRUB screen, choose *Advanced options for Archcraft*
    ![image](https://user-images.githubusercontent.com/49572917/185158203-9d7ce680-8e81-4687-b659-248a609c4907.png)
