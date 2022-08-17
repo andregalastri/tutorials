@@ -106,11 +106,10 @@
    * Timeshift
    * Plank
    * Vim
-   * Zsh
    * Meld
    ```bash
    fish
-   sudo pacman -R xarchiver timeshift plank vim zsh archcraft-omz archcraft-vim meld
+   sudo pacman -R xarchiver timeshift plank vim archcraft-vim meld
    ```
 <br>
 
