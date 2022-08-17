@@ -145,3 +145,22 @@ The only way I found to make it less annoying is by removing the shadow from the
 <br>
 ![image](https://user-images.githubusercontent.com/49572917/183483652-9884a0a7-68e2-4933-a42c-78532c287257.png)
 
+<br>
+
+## REMOVING ALL ARCHCRAFT REPOSITORY AND PACKAGES (DANGEROUS)
+<br>
+
+> **ATTENTION: Don't do this if you don't know what you are doing.**
+
+<br>
+
+Run the following command in terminal
+```bash
+sudo pacman -R $(pacman -Q | grep -E '^archcraft' | awk '{print $1}')
+```
+
+Then, open the following file and remove Archcraft repository from there.
+```bash
+sudo nano /etc/pacman.conf
+```
+
