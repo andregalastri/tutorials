@@ -1,6 +1,25 @@
 # TROUBLESHOOTING
 <br>
 
+## BLACK SCREEN WITH ONLY THE CURSOR SHOWING UP
+You probably uninstalled `zsh`.
+
+*  Turn on your computer. At the GRUB screen, choose *Advanced options for Archcraft*
+   ![image](https://user-images.githubusercontent.com/49572917/185158203-9d7ce680-8e81-4687-b659-248a609c4907.png)
+   <br>
+*  Then, select the option that shows the text *recovery mode*
+*  Inform your root password
+*  Run the command `dhclient` to connect to the internet
+*  Reinstall zsh
+   ```
+   sudo pacman -S zsh
+   ```
+*  Reboot the computer using `reboot` command
+*  It should work normally now.
+
+
+<br>
+
 ## INVALID OR CORRUPTED PACKAGE (PGP SIGNATURE)
 
 Run the following command in terminal
