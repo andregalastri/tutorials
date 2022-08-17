@@ -13,7 +13,7 @@
 
 ## UPDATING
 
-```zsh
+```bash
   sudo pacman-key --populate archlinux
   sudo pacman -Sy archlinux-keyring
   sudo pacman -Syyu
@@ -47,7 +47,7 @@
    * Tint2
    * Wget
    * Yt-Dlp (Youtube Downloader)
-   ```zsh
+   ```bash
    sudo pacman -S linux-headers
    sudo pacman -S gnome-keyring
    sudo pacman -S adobe-source-code-pro-fonts
@@ -85,7 +85,7 @@
    * Telegram
    * Warsaw
    * FreeFileSync
-   ```zsh
+   ```bash
    yay -S google-chrome
    yay -S visual-studio-code-bin
    yay -S telegram-desktop
@@ -107,9 +107,10 @@
    * Plank
    * Vim
    * Zsh
-   ```zsh
+   * Meld
+   ```bash
    fish
-   sudo pacman -R xarchiver timeshift plank vim zsh archcraft-omz archcraft-vim
+   sudo pacman -R xarchiver timeshift plank vim zsh archcraft-omz archcraft-vim meld
    ```
 <br>
 
@@ -136,16 +137,16 @@
 
 ### Configure Samba
 1. Download the default file `smb.conf` for Samba
-   ```zsh
+   ```bash
    curl -o smb.conf "https://raw.githubusercontent.com/andregalastri/tutorials/main/archcraft/Files/smb.conf"
    sudo mv smb.conf /etc/samba/smb.conf
    ```
 1. Add an user to Samba. You will need to define a password (the password can be different from the real user your adding).
-   ```zsh
+   ```bash
    sudo smbpasswd -a <your-user>
    ```
 1. Enable Samba service
-   ```zsh
+   ```bash
    sudo systemctl enable smb nmb
    sudo systemctl start smb nmb
    ```
