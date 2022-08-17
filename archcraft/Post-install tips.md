@@ -95,6 +95,7 @@
    yay -S warsaw-bin
    yay -S freefilesync-bin
    yay -S ttf-century-gothic
+   fc-cache -f -v
    ```
    <br>
    
