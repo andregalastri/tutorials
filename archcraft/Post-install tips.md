@@ -1,4 +1,5 @@
-# POST-INSTALL TIPS
+# PERSONAL POST INSTALL
+> **This is for personal use**
 <br>
 
 ## DISABLE POWER SAVING SETTINGS
