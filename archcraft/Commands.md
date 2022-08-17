@@ -5,7 +5,7 @@ Here are some commands that differs from APT and Ubuntu-based distros.
 
 ## UPDATE REPOSITORIES AND UPGRADE
 
-```zsh
+```bash
 sudo pacman -Syyu
 ```
 
@@ -14,7 +14,7 @@ sudo pacman -Syyu
 
 ## CLEAR PACMAN CACHE
 
-```zsh
+```bash
 sudo pacman -Scc
 ```
 
@@ -23,7 +23,7 @@ sudo pacman -Scc
 ## CHECK THE MIME TYPE
 
 Run the following command in terminal
-```zsh
+```bash
 xdg-mime query filetype <file-path>
 ```
 
