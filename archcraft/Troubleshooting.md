@@ -168,7 +168,7 @@ The only way I found to make it less annoying is by removing the shadow from the
 
 ## PERMISSION DENIED FOR SHARED FOLDERS ON VIRTUAL BOX
 
-On the guestRun the following command on the guest
+On the guest side, run the following command
 ```bash
 sudo usermod -aG vboxsf $USER
 ```
