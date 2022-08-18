@@ -47,3 +47,35 @@
   ```bash
   sudo systemctl enable sddm.service
   ```
+* Reboot
+
+## SOFTWARE INSTALLATION
+* Logon using your passworkd
+* Right click on any part of the blackscreen
+* Select `Terminals > Xfce-Terminal`
+  ![image](https://user-images.githubusercontent.com/49572917/185463816-7ade56c8-f40c-4e12-9f03-2271c53553b6.png)
+* Install GIT
+  ```bash
+  sudo pacman -S git
+  ```
+* Install Wget
+  ```bash
+  sudo pacman -S wget
+  ```
+* Installing Paru (AUR Helper)
+  ```bash
+  sudo pacman -S --needed base-devel
+  git clone https://aur.archlinux.org/paru.git
+  cd paru
+  makepkg -si
+  cd ~
+  rm -rf paru
+  ```
+* Installing window decoration themes
+  ```bash
+  sudo pacman -S arc-gtk-theme
+  ```
+* Installing icon themes
+  ```bash
+  sudo pacman -S arc-gtk-theme
+  ```
