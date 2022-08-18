@@ -177,10 +177,28 @@ Reboot
 
 <br>
 
+## REMOVING ALACRITTY
+<br>
+
+> **ATTENTION: Some submenus from Openbox may not work properly**
+
+<br>
+
+Run the following command in terminal
+```bash
+sudo mkdir -p /usr/share/archcraft_bak
+sudo cp -rfp /usr/share/archcraft/* /usr/share/archcraft_bak
+sudo pacman -R alacritty archcraft-bspwm archcraft-openbox
+sudo cp -rfp /usr/share/archcraft_bak/* /usr/share/archcraft
+sudo rm -rf /usr/share/archcraft_bak
+```
+
+<br>
+
 ## REMOVING ALL ARCHCRAFT REPOSITORY AND PACKAGES (DANGEROUS)
 <br>
 
-> **ATTENTION: Don't do this if you don't know what you are doing.**
+> **ATTENTION: It will break your system. Only do this if you understand what you are doing.**
 
 <br>
 
@@ -193,5 +211,6 @@ Then, open the following file and remove Archcraft repository from there.
 ```bash
 sudo nano /etc/pacman.conf
 ```
+
 
 
