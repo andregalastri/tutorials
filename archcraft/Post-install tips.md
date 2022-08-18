@@ -47,6 +47,7 @@
    * Tint2
    * Wget
    * Gnome Font Viewer
+   * Gedit
    * Yt-Dlp (Youtube Downloader)
    ```bash
    sudo pacman -S linux-headers
@@ -74,7 +75,8 @@
    sudo pacman -S tint2
    sudo pacman -S wget
    sudo pacman -S yt-dlp
-   sudo pacman -S gnome-font-viewer   
+   sudo pacman -S gnome-font-viewer
+   sudo pacman -S gedit
    ```
    <br>
    
@@ -112,9 +114,12 @@
    * Plank
    * Vim
    * Meld
+   * Archcraft Tips
+   * Archcraft Help
+   * Geany
    ```bash
    fish
-   sudo pacman -R xarchiver timeshift plank vim archcraft-vim meld
+   sudo pacman -R xarchiver timeshift plank vim archcraft-vim meld geany geany-plugins archcraft-about archcraft-help
    ```
 <br>
 
