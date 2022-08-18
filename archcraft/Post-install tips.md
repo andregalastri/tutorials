@@ -117,9 +117,10 @@
    * Archcraft Tips
    * Archcraft Help
    * Geany
+   * MPlayer
    ```bash
    fish
-   sudo pacman -R xarchiver timeshift plank vim archcraft-vim meld geany geany-plugins archcraft-about archcraft-help
+   sudo pacman -R xarchiver timeshift plank vim archcraft-vim meld geany geany-plugins archcraft-about archcraft-help mplayer
    ```
 <br>
 
