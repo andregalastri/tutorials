@@ -11,7 +11,7 @@ You probably uninstalled **zsh** and you need to reinstall it.
 *  Inform your root password
 *  Run the command `dhclient` to connect to the internet
 *  Reinstall zsh
-   ```
+   ```bash
    sudo pacman -S zsh
    ```
 *  Reboot the computer using `reboot` command
@@ -23,12 +23,12 @@ You probably uninstalled **zsh** and you need to reinstall it.
 ## INVALID OR CORRUPTED PACKAGE (PGP SIGNATURE)
 
 Run the following command in terminal
-```zsh
+```bash
 sudo pacman-key --populate archlinux
 ```
 
 If it doesn't enough, run the following command
-```zsh
+```bash
 sudo pacman -Sy archlinux-keyring
 ```
 
@@ -74,7 +74,7 @@ After login on Github with VSCode to sync settings, VSCode returns the following
 > Writing login information to the keychain failed with error 'GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.secrets was not provided by any .service files'.
 
 * Install Gnome Keyring:
-  ```zsh
+  ```bash
   sudo pacman -S gnome-keyring 
   ```
   
@@ -99,7 +99,7 @@ After login on Github with VSCode to sync settings, VSCode returns the following
 ## DISCORD HAS AN UPDATE THAT ISN'T AVAILABLE IN THE REPOSITORY
 
 * Trick the application by editing the `build_info.json` file. Run:
-  ```zsh
+  ```bash
   sudo nano /opt/discord/resources/build_info.json
   ```
 * Change the version to the most recent
@@ -112,7 +112,7 @@ After login on Github with VSCode to sync settings, VSCode returns the following
 ## REMOVING PLANK ICON FROM DOCK
 
 Run the following command in terminal
-```zsh
+```bash
 gsettings set net.launchpad.plank.dock.settings:/net/launchpad/plank/docks/dock1/ show-dock-item false
 ```
 
@@ -127,7 +127,7 @@ Move the window and see if there is an *About* window under that. That window pr
 ## MISSING SOME CHARACTERS
 
 Run the following command in terminal
-```zsh
+```bash
 sudo pacman -S noto-fonts-cjk noto-fonts-emoji noto-fonts
 ```
 
