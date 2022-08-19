@@ -63,6 +63,7 @@
   sudo pacman -S wget
   ```
 * Installing Paru (AUR Helper)
+It takes a long time to compile and install...
   ```bash
   sudo pacman -S --needed base-devel
   git clone https://aur.archlinux.org/paru.git
@@ -77,5 +78,9 @@
   ```
 * Installing icon themes
   ```bash
-  sudo pacman -S arc-gtk-theme
+  paru -S luna-icon-theme-git
+  ```
+* Installing mouse cursor themes
+  ```bash
+  paru -S fluent-cursor-theme-git
   ```
