@@ -12,6 +12,15 @@
 
 <br>
 
+## PREPARE
+* Installing XORG
+  ```bash
+  sudo pacman-key --init
+  sudo pacman-key --populate
+  sudo pacman -Sy archlinux-keyring
+  sudo pacman -S fish wget git
+  ```
+
 ## INSTALLING OPENBOX
 * Installing XORG
   ```bash
@@ -54,23 +63,25 @@
 * Right click on any part of the blackscreen
 * Select `Terminals > Xfce-Terminal`
   ![image](https://user-images.githubusercontent.com/49572917/185463816-7ade56c8-f40c-4e12-9f03-2271c53553b6.png)
-* Install GIT
-  ```bash
-  sudo pacman -S git
-  ```
-* Install Wget
-  ```bash
-  sudo pacman -S wget
-  ```
-* Installing Paru (AUR Helper)
-It takes a long time to compile and install...
-  ```bash
-  sudo pacman -S --needed base-devel
-  git clone https://aur.archlinux.org/paru.git
-  cd paru
-  makepkg -si
-  cd ~
-  rm -rf paru
+
+* Choose between **Yay** or **Paru**
+  * Yay (AUR Helper)
+    It takes a long time to compile and install...
+    ```bash
+    sudo pacman -S --needed base-devel
+    git clone https://aur.archlinux.org/paru.git
+    cd paru
+    makepkg -si
+    cd ~
+    ```
+  * Installing Paru (AUR Helper)
+    It takes a long time to compile and install...
+    ```bash
+    pacman -S --needed git base-devel
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
+    cd ~
   ```
 * Installing window decoration themes
   ```bash
@@ -78,9 +89,9 @@ It takes a long time to compile and install...
   ```
 * Installing icon themes
   ```bash
-  paru -S luna-icon-theme-git
+  yay -S luna-icon-theme-git
   ```
 * Installing mouse cursor themes
   ```bash
-  paru -S fluent-cursor-theme-git
+  yay -S fluent-cursor-theme-git
   ```
