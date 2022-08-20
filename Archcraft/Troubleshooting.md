@@ -22,13 +22,9 @@ You probably uninstalled **zsh** and you need to reinstall it.
 
 ## INVALID OR CORRUPTED PACKAGE (PGP SIGNATURE)
 
-Run the following command in terminal
+Run the following commands in terminal
 ```bash
 sudo pacman-key --populate archlinux
-```
-
-If it doesn't enough, run the following command
-```bash
 sudo pacman -Sy archlinux-keyring
 ```
 
