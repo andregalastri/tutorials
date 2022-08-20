@@ -172,9 +172,7 @@ The only way I found to make it less annoying is by removing the shadow from the
 * Open Kvantum
 * Choose Application themes
 * Choose the KvFlat theme and write `obs` in the field<br>
-  ![image](https://user-images.githubusercontent.com/49572917/185744665-e1c12d52-b440-40b3-a819-f6960648848d.png)
-  <br>
-
+  ![image](https://user-images.githubusercontent.com/49572917/185744665-e1c12d52-b440-40b3-a819-f6960648848d.png)<br><br>
 * Click save, close and then reopen OBS.
 
 <br>
