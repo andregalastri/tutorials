@@ -1,0 +1,53 @@
+# Estudo sobre o Openbox
+
+## Sobre os arquivos de configuração
+* Logo após a instalação, copiar os arquivos para a pasta do usuário
+  ```
+  cp -r /etc/xdg/openbox/menu.xml /home/andre/.config/openbox/
+
+  ```
+
+## Sobre os temas
+* Precisam ser feitos para openbox também. Não adianta baixar temas para GTK,
+  tem que ter a versão para Openbox.
+* GTK2 não detecta temas localizados em `~/.local/share/themes`, apenas em
+  `~/.themes` ou `/usr/share/themes`
+* Temas não funcionam na hora, programas precisam ser fechados e reabertos para
+  funcionar. É possível aplicar instantâneamente, mas atraves de comandos adicionais.
+
+## Aplicar temas
+* GTK 2
+    * Criar um arquivo `~/.gtkrc-2.0` e incluir o seguinte
+    ```
+    gtk-theme-name="nome-do-tema"
+    ```
+* GTK 3
+    * Criar um arquivo `~/.config/gtk-3.0/settings.ini` e incluir o seguinte
+        ```
+        [Settings]
+        gtk-theme-name=nome-do-tema
+        ```
+* Decorações do Openbox
+    * No arquivo `~/.config/openbox/rc.xml` e incluir o seguinte
+        ```
+        <theme>
+            <name>nome-do-tema</name>
+        </theme>
+        ```
+
+> Ainda não encontrei um jeito de fazer as alterações automaticamente em QT.
+
+---
+
+## Aplicando instantaneamente
+* Usar o programa `xsettingsd` para aplicações GTK3
+    * Criar um arquivo em `~/.config/xsettingsd/xsettingsd.conf` e incluir o
+      seguinte:
+        ```
+        Net/ThemeName "nome-do-tema"
+        ```
+    * Executar `xsettingsd` para aplicar o tema
+
+* Usar o comando `openbox --restart` para aplicar alterações nas decorações
+
+> Ainda não encontrei um jeito de fazer as alterações automaticamente em GTK2 e QT.

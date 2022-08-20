@@ -156,6 +156,7 @@ The only way I found to make it less annoying is by removing the shadow from the
   "class_g = 'firefox' && window_type = 'tooltip'",
   "class_g = 'xdg-desktop-portal-gnome' && window_type = 'menu'",
   "class_g = 'baobab' && window_type = 'menu'",
+  "class_g = 'gnome-font-viewer' && window_type = 'menu'",
   "_NET_WM_WINDOW_TYPE:a *= '_KDE_NET_WM_WINDOW_TYPE_OVERRIDE'",
   ```
 * Save and close.
@@ -166,6 +167,19 @@ The only way I found to make it less annoying is by removing the shadow from the
 
 <br>
 
+## OBS WITH WRONG OR WEIRD THEME
+
+* Open Kvantum
+* Choose Application themes
+* Choose the KvFlat theme and write `obs` in the field
+  <br> 
+  ![image](https://user-images.githubusercontent.com/49572917/185744665-e1c12d52-b440-40b3-a819-f6960648848d.png)
+  <br>
+
+* Click save, close and then reopen OBS.
+
+<br>
+
 ## PERMISSION DENIED FOR SHARED FOLDERS ON VIRTUAL BOX
 
 On the guest side, run the following command
@@ -173,14 +187,14 @@ On the guest side, run the following command
 sudo usermod -aG vboxsf $USER
 ```
 
-Reboot
+Reboot the guest side
 
 <br>
 
 ## REMOVING ALACRITTY
 <br>
 
-> **ATTENTION: Some submenus from Openbox may not work properly**
+> **ATTENTION: Some submenus or items from Openbox may not work properly**
 
 <br>
 
@@ -189,6 +203,22 @@ Run the following command in terminal
 sudo mkdir -p /usr/share/archcraft_bak
 sudo cp -rfp /usr/share/archcraft/* /usr/share/archcraft_bak
 sudo pacman -R alacritty archcraft-bspwm archcraft-openbox
+sudo cp -rfp /usr/share/archcraft_bak/* /usr/share/archcraft
+sudo rm -rf /usr/share/archcraft_bak
+```
+
+## REMOVING GEANY
+<br>
+
+> **ATTENTION: Some submenus or items from Openbox may not work properly**
+
+<br>
+
+Run the following command in terminal
+```bash
+sudo mkdir -p /usr/share/archcraft_bak
+sudo cp -rfp /usr/share/archcraft/* /usr/share/archcraft_bak
+sudo pacman -R geany geany-plugins archcraft-bspwm archcraft-openbox
 sudo cp -rfp /usr/share/archcraft_bak/* /usr/share/archcraft
 sudo rm -rf /usr/share/archcraft_bak
 ```

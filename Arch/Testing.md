@@ -38,7 +38,11 @@
   ```bash
   sudo pacman -S xfce4-terminal
   ```
-* Installing a file manager
+* Installing a terminal file manager
+  ```bash
+  sudo pacman -S ranger
+  ```
+* Installing a GUI file manager
   ```bash
   sudo pacman -S thunar
   ```
@@ -66,6 +70,14 @@
 
 * Choose between **Yay** or **Paru**
   * Yay (AUR Helper)
+    ```bash
+    pacman -S --needed git base-devel
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
+    cd ~
+    ```
+  * Paru (AUR Helper)
     It takes a long time to compile and install...
     ```bash
     sudo pacman -S --needed base-devel
@@ -74,15 +86,6 @@
     makepkg -si
     cd ~
     ```
-  * Installing Paru (AUR Helper)
-    It takes a long time to compile and install...
-    ```bash
-    pacman -S --needed git base-devel
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-    makepkg -si
-    cd ~
-  ```
 * Installing window decoration themes
   ```bash
   sudo pacman -S arc-gtk-theme

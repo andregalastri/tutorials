@@ -12,6 +12,7 @@ sudo pacman -S \
     xfce4-terminal \
     thunar \
     nano \
+    ranger \
     virtualbox-guest-iso \
     virtualbox-guest-utils \
     git \
