@@ -206,6 +206,8 @@ sudo cp -rfp /usr/share/archcraft_bak/* /usr/share/archcraft
 sudo rm -rf /usr/share/archcraft_bak
 ```
 
+<br>
+
 ## REMOVING GEANY
 <br>
 
