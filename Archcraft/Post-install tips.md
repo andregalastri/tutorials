@@ -75,8 +75,8 @@
    sudo pacman -S tint2
    sudo pacman -S wget
    sudo pacman -S yt-dlp
-   sudo pacman -S gnome-font-viewer
    sudo pacman -S gedit
+   sudo pacman -S gnome-font-viewer
    ```
    <br>
    
@@ -103,7 +103,6 @@
    
    > **Note: While installing Warsaw, choose `[N]enhum/[N]one` when asked**
 
-
 <br>
 
 ## SOFTWARE REMOVING
@@ -114,14 +113,79 @@
    * Plank
    * Vim
    * Meld
-   * Archcraft Tips
-   * Archcraft Help
    * Geany
    * MPlayer
+   * Mpd
+   * All Archcraft repositories (keeps the files)
    ```bash
-   fish
-   sudo pacman -R xarchiver timeshift plank vim archcraft-vim meld geany geany-plugins archcraft-about archcraft-help mplayer
+   sudo mkdir -p /usr/share/archcraft_bak
+   sudo mkdir -p /usr/share/backgrounds_bak
+   sudo mkdir -p /usr/share/fonts_bak
+   sudo mkdir -p /usr/share/icons_bak
+   sudo mkdir -p /usr/share/themes_bak
+   sudo mkdir -p /etc/grub.d_bak
+   sudo mkdir -p /usr/share/sddm/themes_bak
+
+   sudo cp -rfp  /usr/share/archcraft/* /usr/share/archcraft_bak
+   sudo cp -rfp  /usr/share/backgrounds/* /usr/share/backgrounds_bak
+   sudo cp -rfp  /usr/share/fonts/* /usr/share/fonts_bak
+   sudo cp -rfp  /usr/share/icons/* /usr/share/icons_bak
+   sudo cp -rfp  /usr/share/themes/* /usr/share/themes_bak
+   sudo cp -rfp  /etc/grub.d/* /etc/grub.d_bak
+   sudo cp -rfp  /usr/share/sddm/themes/* /usr/share/sddm/themes_bak
+
+   sudo pacman -R $(pacman -Q | grep -E '^archcraft' | awk '{print $1}')
+
+   sudo mkdir -p /usr/share/archcraft
+   sudo mkdir -p /usr/share/backgrounds
+   sudo mkdir -p /usr/share/fonts
+   sudo mkdir -p /usr/share/icons
+   sudo mkdir -p /usr/share/themes
+   sudo mkdir -p /etc/grub.d
+   sudo mkdir -p /usr/share/sddm/themes
+
+   sudo cp -rfp  /usr/share/archcraft_bak/* /usr/share/archcraft
+   sudo cp -rfp  /usr/share/backgrounds_bak/* /usr/share/backgrounds
+   sudo cp -rfp  /usr/share/fonts_bak/* /usr/share/fonts
+   sudo cp -rfp  /usr/share/icons_bak/* /usr/share/icons
+   sudo cp -rfp  /usr/share/themes_bak/* /usr/share/themes
+   sudo cp -rfp  /etc/grub.d_bak/* /etc/grub.d
+   sudo cp -rfp  /usr/share/sddm/themes_bak/* /usr/share/sddm/themes
+
+   sudo rm -rf /usr/share/archcraft_bak
+   sudo rm -rf /usr/share/backgrounds_bak
+   sudo rm -rf /usr/share/fonts_bak
+   sudo rm -rf /usr/share/icons_bak
+   sudo rm -rf /usr/share/themes_bak
+   sudo rm -rf /etc/grub.d_bak
+   sudo rm -rf /usr/share/sddm/themes_bak
+
+   sudo pacman -R xarchiver alacritty geany geany-plugins timeshift plank vim meld mplayer mpd
    ```
+
+1. Then, open the following file and remove Archcraft repository from there.
+   ```bash
+   sudo nano /etc/pacman.conf
+   ```
+
+### Remove ZSH
+   1. Define `bash` as the default shell. Run:
+      ```bash
+      chsh
+      ```
+   1. Type your password and inform `/bin/bash`
+   1. Run
+      ```bash
+      sudo chsh
+      ```
+   1. Type the root password and inform `/bin/bash`
+   1. Run
+      ```bash
+      sudo pacman -R zsh
+      rm -rf ~/.oh-my-zsh
+      sudo rm -rf /home/root/.oh-my-zsh
+   ```
+
 <br>
 
 ## CONFIGURING
