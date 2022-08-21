@@ -28,3 +28,12 @@ xdg-mime query filetype <file-path>
 ```
 
 <br>
+
+## UPDATE GRUB
+
+Run the following command in terminal
+```bash
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+<br>

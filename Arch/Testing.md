@@ -18,7 +18,6 @@
   sudo pacman-key --init
   sudo pacman-key --populate
   sudo pacman -Sy archlinux-keyring
-  sudo pacman -S fish wget git
   ```
 
 ## INSTALLING OPENBOX
@@ -44,9 +43,13 @@
   ```
 * Installing a GUI file manager
   ```bash
-  sudo pacman -S thunar
+  sudo pacman -S thunar gvfs
   ```
-* Installing a terminal editor
+* Installing a GUI text editor
+  ```bash
+  sudo pacman -S mousepad
+  ```
+* Installing a terminal text editor
   ```bash
   sudo pacman -S nano
   ```
@@ -71,7 +74,7 @@
 * Choose between **Yay** or **Paru**
   * Yay (AUR Helper)
     ```bash
-    pacman -S --needed git base-devel
+    sudo pacman -S --needed git base-devel
     git clone https://aur.archlinux.org/yay.git
     cd yay
     makepkg -si

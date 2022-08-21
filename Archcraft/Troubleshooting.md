@@ -220,16 +220,56 @@ sudo rm -rf /usr/share/archcraft_bak
 
 <br>
 
-## REMOVING ALL ARCHCRAFT REPOSITORY AND PACKAGES (DANGEROUS)
+## REMOVING ALL ARCHCRAFT REPOSITORIES (DANGEROUS)
 <br>
 
-> **ATTENTION: It will break your system. Only do this if you understand what you are doing.**
+> **ATTENTION: It may break your system. Only do this if you understand the risks of doing so.**
 
 <br>
 
 Run the following command in terminal
 ```bash
+sudo mkdir -p /usr/share/archcraft_bak
+sudo mkdir -p /usr/share/backgrounds_bak
+sudo mkdir -p /usr/share/fonts_bak
+sudo mkdir -p /usr/share/icons_bak
+sudo mkdir -p /usr/share/themes_bak
+sudo mkdir -p /etc/grub.d_bak
+sudo mkdir -p /usr/share/sddm/themes_bak
+
+sudo cp -rfp  /usr/share/archcraft/* /usr/share/archcraft_bak
+sudo cp -rfp  /usr/share/backgrounds/* /usr/share/backgrounds_bak
+sudo cp -rfp  /usr/share/fonts/* /usr/share/fonts_bak
+sudo cp -rfp  /usr/share/icons/* /usr/share/icons_bak
+sudo cp -rfp  /usr/share/themes/* /usr/share/themes_bak
+sudo cp -rfp  /etc/grub.d/* /etc/grub.d_bak
+sudo cp -rfp  /usr/share/sddm/themes/* /usr/share/sddm/themes_bak
+
 sudo pacman -R $(pacman -Q | grep -E '^archcraft' | awk '{print $1}')
+
+sudo mkdir -p /usr/share/archcraft
+sudo mkdir -p /usr/share/backgrounds
+sudo mkdir -p /usr/share/fonts
+sudo mkdir -p /usr/share/icons
+sudo mkdir -p /usr/share/themes
+sudo mkdir -p /etc/grub.d
+sudo mkdir -p /usr/share/sddm/themes
+
+sudo cp -rfp  /usr/share/archcraft_bak/* /usr/share/archcraft
+sudo cp -rfp  /usr/share/backgrounds_bak/* /usr/share/backgrounds
+sudo cp -rfp  /usr/share/fonts_bak/* /usr/share/fonts
+sudo cp -rfp  /usr/share/icons_bak/* /usr/share/icons
+sudo cp -rfp  /usr/share/themes_bak/* /usr/share/themes
+sudo cp -rfp  /etc/grub.d_bak/* /etc/grub.d
+sudo cp -rfp  /usr/share/sddm/themes_bak/* /usr/share/sddm/themes
+
+sudo rm -rf /usr/share/archcraft_bak
+sudo rm -rf /usr/share/backgrounds_bak
+sudo rm -rf /usr/share/fonts_bak
+sudo rm -rf /usr/share/icons_bak
+sudo rm -rf /usr/share/themes_bak
+sudo rm -rf /etc/grub.d_bak
+sudo rm -rf /usr/share/sddm/themes_bak
 ```
 
 Then, open the following file and remove Archcraft repository from there.
