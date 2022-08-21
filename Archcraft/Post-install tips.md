@@ -47,7 +47,7 @@
    * Tint2
    * Wget
    * Gnome Font Viewer
-   * Gedit
+   * Mousepad
    * Yt-Dlp (Youtube Downloader)
    ```bash
    sudo pacman -S linux-headers
@@ -75,7 +75,7 @@
    sudo pacman -S tint2
    sudo pacman -S wget
    sudo pacman -S yt-dlp
-   sudo pacman -S gedit
+   sudo pacman -S mousepad
    sudo pacman -S gnome-font-viewer
    ```
    <br>
