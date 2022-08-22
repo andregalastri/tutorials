@@ -116,6 +116,7 @@
    * Geany
    * MPlayer
    * Mpd
+   * Maim
    * All Archcraft repositories (keeps the files)
    ```bash
    sudo mkdir -p /usr/share/archcraft_bak
@@ -160,7 +161,7 @@
    sudo rm -rf /etc/grub.d_bak
    sudo rm -rf /usr/share/sddm/themes_bak
 
-   sudo pacman -R xarchiver alacritty geany geany-plugins timeshift plank vim meld mplayer mpd
+   sudo pacman -R xarchiver alacritty maim geany geany-plugins timeshift plank vim meld mplayer mpd
    ```
 
 1. Then, open the following file and remove Archcraft repository from there.

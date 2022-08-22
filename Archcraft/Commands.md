@@ -37,3 +37,14 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 <br>
+
+
+## RUN APPLICATION AS ROOT (OR OTHER USER) USING POLKIT DIALOG TO ASK FOR PASSWORD
+
+Run the following command in terminal
+```bash
+pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY <application-name>
+```
+
+<br>
+
