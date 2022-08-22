@@ -169,7 +169,7 @@
    sudo nano /etc/pacman.conf
    ```
 
-### Remove ZSH
+### Removing ZSH
    1. Define `bash` as the default shell. Run:
       ```bash
       chsh
