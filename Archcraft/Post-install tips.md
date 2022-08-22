@@ -185,7 +185,7 @@
       sudo pacman -R zsh
       rm -rf ~/.oh-my-zsh
       sudo rm -rf /home/root/.oh-my-zsh
-   ```
+      ```
 
 <br>
 
