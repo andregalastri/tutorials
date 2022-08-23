@@ -31,4 +31,4 @@ cd ~
 
 sudo systemctl enable sddm.service
 mkdir -p ~/.config/openbox/
-cp -r /etc/xdg/openbox/* ~/.config/openbox/
+cp -rf /etc/xdg/openbox/* ~/.config/openbox/
