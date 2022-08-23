@@ -80,24 +80,3 @@
     makepkg -si
     cd ~
     ```
-  * Paru (AUR Helper)
-    It takes a long time to compile and install...
-    ```bash
-    sudo pacman -S --needed base-devel
-    git clone https://aur.archlinux.org/paru.git
-    cd paru
-    makepkg -si
-    cd ~
-    ```
-* Installing window decoration themes
-  ```bash
-  sudo pacman -S arc-gtk-theme
-  ```
-* Installing icon themes
-  ```bash
-  yay -S luna-icon-theme-git
-  ```
-* Installing mouse cursor themes
-  ```bash
-  yay -S fluent-cursor-theme-git
-  ```
