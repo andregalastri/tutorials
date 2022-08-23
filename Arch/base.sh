@@ -17,7 +17,7 @@ echo "|||||||||||||||||  DONE  |||||||||||||||||||"
 sleep 3
 echo "Installing applications"
 sleep 3
-(echo "2";echo "S") | sudo pacman -S--needed xorg-server sddm openbox xfce4-terminal ranger thunar thunar-archive-plugin gvfs mousepad nano virtualbox-guest-iso virtualbox-guest-utils nitrogen polybar rofi git fish xarchiver
+(echo "S";echo "2") | sudo pacman -S--needed xorg-server sddm openbox xfce4-terminal ranger thunar thunar-archive-plugin gvfs mousepad nano virtualbox-guest-iso virtualbox-guest-utils nitrogen polybar rofi git fish xarchiver
 (echo "S") | sudo pacman -S --needed linux-headers gnome-keyring adobe-source-code-pro-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts samba gnome-disk-utility galculator virtualbox thunderbird-i18n-pt-br discord vlc filezilla flameshot inkscape gimp krita libreoffice-fresh-pt-br tint2 yt-dlp gtk2fontsel
 echo "|||||||||||||||||  DONE  |||||||||||||||||||"
 sleep 3
