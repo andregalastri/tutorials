@@ -1,1 +1,1 @@
-echo "S" | sudo pacman -S xorg-server sddm openbox xfce4-terminal ranger thunar gvfs mousepad nano virtualbox-guest-iso virtualbox-guest-utils nitrogen polybar rofi git go
+echo ("2 S") | sudo pacman -S xorg-server sddm openbox xfce4-terminal ranger thunar gvfs mousepad nano virtualbox-guest-iso virtualbox-guest-utils nitrogen polybar rofi git go
