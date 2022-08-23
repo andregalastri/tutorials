@@ -26,5 +26,6 @@ sleep 3
 echo "S" | sudo pacman -S --needed git base-devel
 git clone https://aur.archlinux.org/yay.git
 cd yay
+echo "S" | makepkg
 echo "S" | makepkg -si
 cd ~
