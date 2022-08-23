@@ -61,3 +61,16 @@ rm -rf ~/.config/yay/config.json
 ```
 <br>
 
+## MOUNT VIA TERMINAL
+
+Check which device you want to mount
+```bash
+blkid
+```
+
+Mount it
+```bash
+mount /dev/<id> /mnt
+```
+<br>
+
