@@ -43,7 +43,8 @@ sudo pacman-key --populate
 (echo "S")              | sudo pacman -S --needed base-devel
 git clone https://aur.archlinux.org/yay.git
 cd yay
-(echo "S"; echo "S")    | makepkg -si
+(echo "S")              | makepkg
+(echo "S")              | makepkg -si
 (echo "S")              | sudo pacman -R go
 yay --save --answerdiff None --answerclean None --removemake
 cd ~
