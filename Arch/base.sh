@@ -1,5 +1,7 @@
 #!/bin/sh
 
+sudo sed -i "s/#ParallelDownloads = /ParallelDownloads = /g" /etc/pacman.conf
+
 sudo pacman-key --init
 sudo pacman-key --populate
 (echo "S")              | sudo pacman -Sy archlinux-keyring
@@ -7,8 +9,8 @@ sudo pacman-key --populate
 (echo "S")              | sudo pacman -Syyu
 
 (echo "2"; echo "S")    | sudo pacman -S --needed sddm
-(echo "1"; echo "S")    | sudo pacman -S --needed virtualbox
 (echo "S")              | sudo pacman -S --needed xorg-server \
+                                                  linux-headers \
                                                   openbox \
                                                   xfce4-terminal \
                                                   ranger \
@@ -24,7 +26,6 @@ sudo pacman-key --populate
                                                   git \
                                                   fish \
                                                   xarchiver \
-                                                  linux-headers \
                                                   gnome-keyring \
                                                   adobe-source-code-pro-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts \
                                                   gnome-disk-utility \
@@ -39,6 +40,7 @@ sudo pacman-key --populate
                                                   libreoffice-fresh-pt-br \
                                                   tint2 \
                                                   yt-dlp
+(echo "1"; echo "S")    | sudo pacman -S --needed virtualbox
 
 (echo "S")              | sudo pacman -S --needed base-devel
 git clone https://aur.archlinux.org/yay.git
