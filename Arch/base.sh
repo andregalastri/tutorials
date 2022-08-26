@@ -48,7 +48,7 @@ sudo pacman-key --populate
                                                   arandr \
                                                   lxinput-gtk3 \
                                                   lxappearance lxappearance-obconf \
-                                                #   arc-gtk-theme \
+                                                  arc-gtk-theme \
                                                   kvantum \
                                                   qt5ct \
                                                   nm-connection-editor \
