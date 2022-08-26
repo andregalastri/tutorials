@@ -62,6 +62,23 @@ sudo pacman -Sy archlinux-keyring
 
 <br>
 
+## PASSWORD FEEDBACK WHEN SUDO
+
+* Run `sudo EDITOR=nano visudo`
+* Search for a `Defaults` without a `#` in front of it.
+  > If there is no `Defaults` uncommented, just add a new line and type `Defaults`
+* Add a new value `pwfeedback` in front of it. It may look something like this
+  ```config
+  Defaults env_reset, pwfeedback
+  ```
+  Or
+  ```config
+  Defaults pwfeedback
+  ```
+* Save and close.
+
+<br>
+
 
 ## VSCODE SYNC RETURNING ERROR
 

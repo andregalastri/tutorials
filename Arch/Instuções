@@ -3,17 +3,23 @@
 ## Sobre os arquivos de configuração
 * Logo após a instalação, copiar os arquivos para a pasta do usuário
   ```
-  cp -r /etc/xdg/openbox/menu.xml /home/andre/.config/openbox/
-
+  mkdir -p ~/.config/openbox
+  cp -r /etc/xdg/openbox/* ~/.config/openbox/
   ```
 
 ## Sobre os temas
-* Precisam ser feitos para openbox também. Não adianta baixar temas para GTK,
-  tem que ter a versão para Openbox.
-* GTK2 não detecta temas localizados em `~/.local/share/themes`, apenas em
-  `~/.themes` ou `/usr/share/themes`
-* Temas não funcionam na hora, programas precisam ser fechados e reabertos para
-  funcionar. É possível aplicar instantâneamente, mas atraves de comandos adicionais.
+* Precisam ser feitos para openbox também. Não adianta baixar temas para GTK, tem que ter a versão para Openbox.
+* GTK2 não detecta temas localizados em `~/.local/share/themes`, apenas em `~/.themes` ou `/usr/share/themes`. Por isso é melhor deixar em `/usr/share/themes`.
+* Temas não funcionam na hora, programas precisam ser fechados e reabertos para funcionar. É possível aplicar instantâneamente, mas atraves de comandos adicionais.
+
+
+## Picom
+* Não detecta as bordas das janelas, deixando elas *pra fora* da janela quando se aplica cantos arredondados
+
+## LXappearance
+* Toda vez aplica hinting RGB nas fontes ao abrir o programa. Por isso que as fontes ficam feias ao usar o programa.
+* O programa `lxappearance` junto com `lxappearance-obconf` permite ajustar as bordas das janelas diretamente por ele (sem precisar do `obconf`). O problema é que esse programa é em GTK2, ou seja, a preview dele muitas vezes não coincide com o programas GTK3.
+  > Existe um programa chamado `lxappearance-gtk3`, mas o plugin `lxappearance-gtk3-obconf` está bugado.
 
 ## Aplicar temas
 * GTK 2
@@ -23,10 +29,18 @@
     ```
 * GTK 3
     * Criar um arquivo `~/.config/gtk-3.0/settings.ini` e incluir o seguinte
-        ```
-        [Settings]
-        gtk-theme-name=nome-do-tema
-        ```
+      ```
+      [Settings]
+      gtk-theme-name=nome-do-tema
+      ```
+* QT
+    * O programa `kvantummanager` permite aplicar temas em aplicações QT por aplicação.
+      > Os arquivos de configuração ficam em `~/.config/Kvantum`.
+    * O programa `qt5ct` permite alterar as fontes
+      > O arquivo de configuração fica em `~/.config/qt5ct/qt5ct.conf`
+* libadwaita
+    * Reconhece temas GTK4 ao iniciar com `GTK_THEME=<tema> <aplicação>`
+    * Ao iniciar o computador com uma variável de ambiente `GTK_THEME` definida, abre as aplicações normalmente.
 * Decorações do Openbox
     * No arquivo `~/.config/openbox/rc.xml` e incluir o seguinte
         ```
@@ -41,11 +55,10 @@
 
 ## Aplicando instantaneamente
 * Usar o programa `xsettingsd` para aplicações GTK3
-    * Criar um arquivo em `~/.config/xsettingsd/xsettingsd.conf` e incluir o
-      seguinte:
-        ```
-        Net/ThemeName "nome-do-tema"
-        ```
+    * Criar um arquivo em `~/.config/xsettingsd/xsettingsd.conf` e incluir o seguinte:
+      ```
+      Net/ThemeName "nome-do-tema"
+      ```
     * Executar `xsettingsd` para aplicar o tema
 
 * Usar o comando `openbox --restart` para aplicar alterações nas decorações
