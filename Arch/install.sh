@@ -313,16 +313,14 @@ sleep 2
     
     echo "[Openbox] Downloading autostart configuration."
     sleep 1
-    curl "https://raw.githubusercontent.com/andregalastri/tutorials/main/Arch/Files/autostart" -o autostart
-    mv autostart ~/.config/openbox/autostart
+    curl "https://raw.githubusercontent.com/andregalastri/tutorials/main/Arch/Files/autostart" -o ~/.config/openbox/autostart
 
     echo "[Picom] Copying default config files."
     sleep 1
     cp -rf /etc/xdg/picom.conf ~/.config/picom.conf
 
     echo "[Samba] Downloading configuration file."
-    curl "https://raw.githubusercontent.com/andregalastri/tutorials/main/Arch/Files/smb.conf" -o smb.conf
-    sudo mv smb.conf /etc/samba/smb.conf
+    sudo curl "https://raw.githubusercontent.com/andregalastri/tutorials/main/Arch/Files/smb.conf" -o /etc/samba/smb.conf
 
     echo "[Samba] Setting up a default netbios name."
     sudo sed -i "s/netbios name = <add-name-here>/netbios name = $HOSTNAME/g" /etc/samba/smb.conf
@@ -361,6 +359,13 @@ sleep 2
     echo "Installing Flat-Remix Icon Themes"
     sleep 1
     sudo tar -xzf flat-remix-icons.tar.gz -C /usr/share/icons/
+
+    echo "Cleaning things up"
+    sleep 1
+    rm -rf arc-openbox.tar.gz
+    rm -rf fluent-cursors.tar.gz
+    rm -rf flat-remix-icons.tar.gz
+
 echo " "
 echo ">> DONE!"
 echo " "

@@ -5,8 +5,6 @@
   ```
 * Teria que ter um endereço de internet menor, pra facilitar
 
-source <(curl -s https://ainad.net/install)
-
 # Estudo sobre o Openbox
 
 ## Sobre os arquivos de configuração
