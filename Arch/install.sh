@@ -251,8 +251,7 @@ sleep 2
     # The main fork of Compton. It is an window compositor, to allow render shadows, transparency, blur and round corner on windows and panels. I tried some forks, but they seem buggy.
     packages+=("picom")
 
-
-    (echo "S") | sudo pacman -S --needed "${packages[*]}"
+    (echo "S") | sudo pacman -S --needed ${packages[*]}
 echo " "
 echo ">> DONE!"
 echo " "
@@ -265,9 +264,8 @@ sleep 2
     (echo "S") | sudo pacman -S --needed base-devel
     git clone https://aur.archlinux.org/yay.git
     cd yay
-    (echo "S") | makepkg -s
+    (echo "S") | makepkg -s --clean
     (echo "S") | makepkg -i
-    (echo "S") | makepkg --clean
     (echo "S") | sudo pacman -R go
     yay --save --answerdiff None --answerclean None --removemake
     cd ~
@@ -296,7 +294,7 @@ sleep 2
     # More fonts from AUR.
     packages+=("ttf-roboto-mono ttf-roboto")
 
-    (echo "S") | yay -S --needed "${packages[*]}"
+    (echo "S") | yay -S --needed ${packages[*]}
 echo " "
 echo ">> DONE!"
 echo " "
@@ -354,15 +352,15 @@ sleep 2
 
     echo "Installing Arc Theme for Openbox"
     sleep 1
-    tar -xzf arc-openbox.tar.gz -C /usr/share/themes/
+    sudo tar -xzf arc-openbox.tar.gz -C /usr/share/themes/
 
     echo "Installing Fluent Mouse Cursor Themes"
     sleep 1
-    tar -xzf fluent-cursors.tar.gz -C /usr/share/icons/
+    sudo tar -xzf fluent-cursors.tar.gz -C /usr/share/icons/
 
     echo "Installing Flat-Remix Icon Themes"
     sleep 1
-    tar -xzf flat-remix-icons.tar.gz -C /usr/share/icons/
+    sudo tar -xzf flat-remix-icons.tar.gz -C /usr/share/icons/
 echo " "
 echo ">> DONE!"
 echo " "
