@@ -1,3 +1,12 @@
+# Script de instalação
+* O jeito mais rápido de baixar e rodar o script de instalação é o seguinte:
+  ```
+  source <(curl -s https://raw.githubusercontent.com/andregalastri/tutorials/main/Arch/install.sh)
+  ```
+* Teria que ter um endereço de internet menor, pra facilitar
+
+source <(curl -s https://ainad.net/install)
+
 # Estudo sobre o Openbox
 
 ## Sobre os arquivos de configuração

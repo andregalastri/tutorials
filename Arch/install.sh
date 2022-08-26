@@ -86,7 +86,7 @@ sleep 2
     # - Nautilus - Good, but is visually inconsistent with the other applications
     # - Thunar - No built-in search and have lots of inconsistent design in its own dialogs. Kinda liked thought.
     # - PCManFM - Very lightweight, but the "Open With" is shown right in the main context menu, making it poluted. Also, I didn't like that it shades the column that is sorting the files.
-    packages+=("nemo")
+    packages+=("nemo cinnamon-translations")
 
     # XARCHIVER
     # Allows to manage compressed files and to compress files.
@@ -365,6 +365,16 @@ echo " "
 echo ">> DONE!"
 echo " "
 sleep 1
+
+echo ">> AUTOLOGIN CONFIGURATION"
+echo "Enabling autologin, so, you don't need to enter your username and password on startup."
+sleep 2
+    sudo mkdir -p /etc/sddm.conf.d/
+    sudo curl "https://raw.githubusercontent.com/andregalastri/tutorials/main/Arch/Files/autologin.conf" -o /etc/sddm.conf.d/autologin.conf
+    sudo sed -i "s/User=<user-name>/User=$USER/g" /etc/sddm.conf.d/autologin.conf
+echo " "
+echo ">> DONE!"
+echo " "
 
 echo ">> ENABLING SERVICES"
 echo "Enabling services to run at startup."
