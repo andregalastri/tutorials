@@ -16,35 +16,18 @@ sudo pacman-key --populate
                                                   ranger \
                                                   thunar thunar-volman thunar-archive-plugin \
                                                   gvfs \
-                                                #   gvfs gvfs-nfs gvfs-mtp gvfs-gphoto2 gvfs-google gvfs-goa gvfs-afc ntfs-3g \
                                                   samba \
-                                                #   cifs-utils gvfs-smb \
                                                   mousepad nano \
-                                                #   galculator \
-                                                #   gtk2fontsel \
                                                   virtualbox-guest-iso virtualbox-guest-utils \
                                                   nitrogen \
-                                                #   polybar \
-                                                #   rofi \
                                                   git \
                                                   fish \
                                                   xarchiver \
-                                                #   gnome-keyring \
                                                   adobe-source-code-pro-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts \
                                                   gnome-disk-utility \
-                                                #   thunderbird-i18n-pt-br \
-                                                #   discord \
                                                   vlc \
-                                                #   filezilla \
-                                                #   flameshot \
-                                                #   inkscape \
                                                   gimp \
-                                                #   krita \
-                                                #   libreoffice-fresh-pt-br \
-                                                #   tint2 \
-                                                #   yt-dlp \
                                                   mate-polkit \
-                                                #   gparted \
                                                   arandr \
                                                   lxinput-gtk3 \
                                                   lxappearance lxappearance-obconf \
