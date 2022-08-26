@@ -18,7 +18,7 @@ echo "Initiates, populates and installs keying to resolve issues with PGP key va
 sleep 2
     sudo pacman-key --init
     sudo pacman-key --populate
-    (echo "S") | sudo pacman -Sy --no-confirm archlinux-keyring
+    (echo "S") | sudo pacman -Sy archlinux-keyring
 echo " "
 echo ">> DONE!"
 echo " "
@@ -27,7 +27,7 @@ sleep 1
 echo ">> UPDATING THE WHOLE SYSTEM"
 echo "Just updates all installed packages."
 sleep 1
-    (echo "S") | sudo pacman -Syyu --no-confirm
+    (echo "S") | sudo pacman -Syyu
 echo " "
 echo ">> DONE!"
 echo " "
@@ -36,7 +36,7 @@ sleep 1
 echo ">> INSTALLING SDDM"
 echo "Installs the login manager SDDM and a theme. SDDM allows to create better visuals for login, that is why I'm using it. It also have wondeful themes made by the community."
 sleep 2
-    (echo "2"; echo "S") | sudo pacman -S --no-confirm --needed sddm
+    (echo "2"; echo "S") | sudo pacman -S --needed sddm
 echo " "
 echo ">> DONE!"
 echo " "
@@ -252,7 +252,7 @@ sleep 2
     packages+=("picom")
 
 
-    (echo "S") | sudo pacman -S --no-confirm --needed "${packages[*]}"
+    (echo "S") | sudo pacman -S --needed "${packages[*]}"
 echo " "
 echo ">> DONE!"
 echo " "
@@ -296,7 +296,7 @@ sleep 2
     # More fonts from AUR.
     packages+=("ttf-roboto-mono ttf-roboto")
 
-    (echo "S") | yay -S --no-confirm --needed "${packages[*]}"
+    (echo "S") | yay -S --needed "${packages[*]}"
 echo " "
 echo ">> DONE!"
 echo " "
