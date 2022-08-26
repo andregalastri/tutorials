@@ -14,20 +14,35 @@ sudo pacman-key --populate
                                                   openbox \
                                                   xfce4-terminal \
                                                   ranger \
-                                                  thunar thunar-volman thunar-archive-plugin \
-                                                  gvfs \
-                                                  samba \
+                                                  dunst \
+                                                  thunar thunar-volman thunar-archive-plugin gvfs gvfs-nfs gvfs-mtp gvfs-gphoto2 gvfs-google gvfs-goa gvfs-afc ntfs-3g \
+                                                  samba gvfs-smb cifs-utils \
                                                   mousepad nano \
+                                                #   galculator \
+                                                #   gtk2fontsel \
                                                   virtualbox-guest-iso virtualbox-guest-utils \
                                                   nitrogen \
+                                                #   polybar \
+                                                #   rofi \
                                                   git \
                                                   fish \
                                                   xarchiver \
+                                                #   gnome-keyring \
                                                   adobe-source-code-pro-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts \
                                                   gnome-disk-utility \
+                                                #   thunderbird-i18n-pt-br \
+                                                #   discord \
                                                   vlc \
+                                                #   filezilla \
+                                                #   flameshot \
+                                                #   inkscape \
                                                   gimp \
+                                                #   krita \
+                                                #   libreoffice-fresh-pt-br \
+                                                #   tint2 \
+                                                #   yt-dlp \
                                                   mate-polkit \
+                                                #   gparted \
                                                   arandr \
                                                   lxinput-gtk3 \
                                                   lxappearance lxappearance-obconf \
@@ -35,7 +50,9 @@ sudo pacman-key --populate
                                                   kvantum \
                                                   qt5ct \
                                                   nm-connection-editor \
-                                                  gpicview
+                                                  gpicview \
+                                                  picom \
+                                                  pavucontrol
 
 # (echo "1"; echo "S")    | sudo pacman -S --needed virtualbox
 
@@ -69,9 +86,10 @@ curl "https://raw.githubusercontent.com/andregalastri/tutorials/main/Arch/Files/
 curl "https://raw.githubusercontent.com/andregalastri/tutorials/main/Arch/Files/fluent-cursors.tar.gz" -o fluent-cursors.tar.gz
 curl "https://raw.githubusercontent.com/andregalastri/tutorials/main/Arch/Files/flat-remix-icons.tar.gz" -o flat-remix-icons.tar.gz
 
-sudo xarchiver arc-openbox.tar.gz --extract-to="/usr/share/themes/"
-sudo xarchiver fluent-cursors.tar.gz --extract-to="/usr/share/icons/"
-sudo xarchiver flat-remix-icons.tar.gz --extract-to="/usr/share/icons/"
+
+tar -xzf arc-openbox.tar.gz -C /usr/share/themes/
+tar -xzf fluent-cursors.tar.gz -C /usr/share/icons/
+tar -xzf flat-remix-icons.tar.gz -C /usr/share/icons/
 
 
 echo "QT_QPA_PLATFORMTHEME=qt5ct" | sudo tee -a /etc/environment
