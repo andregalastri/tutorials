@@ -328,6 +328,10 @@ sleep 2
     echo "[Environment] Setting up variables."
     echo "QT_QPA_PLATFORMTHEME=qt5ct" | sudo tee -a /etc/environment
     echo "GTK_THEME=Arc-Lighter" | sudo tee -a /etc/environment
+
+    echo "[Dconf] Setting XFCE Terminal as default terminal emulator for Nemo."
+    gsettings set org.cinnamon.desktop.default-applications.terminal exec xfce4-terminal
+
 echo " "
 echo ">> DONE!"
 echo " "
