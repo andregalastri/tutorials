@@ -5,6 +5,41 @@
   ```
 * Teria que ter um endereço de internet menor, pra facilitar
 
+<br>
+
+# Shell Script
+* Muito cuidado com manipulação de strings que contenham espaços (whitespaces). Quando for utilizá-las para exibir um texto, ou aplica em um nome de arquivo, por exemplo, utilize sempre aspas duplas, pois o shell script irá detectar o espaço como um segundo comando ou uma quebra de linha.
+  Exemplo:
+  ```
+  texto="Meu texto"
+  notify-send $texto
+  ```
+  Resulta em<br>
+  `Meu`<br>
+  `texto`
+  
+  ```
+  texto="Meu texto"
+  notify-send "$texto"
+  ```
+  Resulta em<br>
+  `Meu texto`
+
+<br>
+
+# Nemo
+## Definindo emblema por linha de comando
+```
+gio set -t stringv <caminho da pasta/arquivo> metadata::emblems <emblema>
+```
+
+<br>
+
+# VIRTUALBOX
+* Iniciar o Xorg sem os pacotes `virtualbox-guest-iso` e `virtualbox-guest-utils` instalados fará com que a inicialização quebre caso o host esteja com a aceleração 3D ativa.
+
+<br>
+
 # Estudo sobre o Openbox
 
 ## Sobre os arquivos de configuração
@@ -14,19 +49,27 @@
   cp -r /etc/xdg/openbox/* ~/.config/openbox/
   ```
 
+<br>
+
 ## Sobre os temas
 * Precisam ser feitos para openbox também. Não adianta baixar temas para GTK, tem que ter a versão para Openbox.
 * GTK2 não detecta temas localizados em `~/.local/share/themes`, apenas em `~/.themes` ou `/usr/share/themes`. Por isso é melhor deixar em `/usr/share/themes`.
 * Temas não funcionam na hora, programas precisam ser fechados e reabertos para funcionar. É possível aplicar instantâneamente, mas atraves de comandos adicionais.
 
+<br>
 
 ## Picom
 * Não detecta as bordas das janelas, deixando elas *pra fora* da janela quando se aplica cantos arredondados
+* Programas em libadwaita possuem uma borda transparente de 1px entre a janela e a sombra
+
+<br>
 
 ## LXappearance
 * Toda vez aplica hinting RGB nas fontes ao abrir o programa. Por isso que as fontes ficam feias ao usar o programa.
 * O programa `lxappearance` junto com `lxappearance-obconf` permite ajustar as bordas das janelas diretamente por ele (sem precisar do `obconf`). O problema é que esse programa é em GTK2, ou seja, a preview dele muitas vezes não coincide com o programas GTK3.
   > Existe um programa chamado `lxappearance-gtk3`, mas o plugin `lxappearance-gtk3-obconf` está bugado.
+
+<br>
 
 ## Aplicar temas
 * GTK 2
@@ -58,9 +101,9 @@
 
 > Ainda não encontrei um jeito de fazer as alterações automaticamente em QT.
 
----
+<br>
 
-## Aplicando instantaneamente
+## Aplicando temas instantaneamente
 * Usar o programa `xsettingsd` para aplicações GTK3
     * Criar um arquivo em `~/.config/xsettingsd/xsettingsd.conf` e incluir o seguinte:
       ```
