@@ -27,10 +27,109 @@
 
 <br>
 
+## SED
+* Substituir caracteres ou palavras uma única vez
+  ```bash
+  # Comando: sed "s/<busca>/<substituto>/"
+
+  echo "Meu texto" | sed "s/e/a/"
+  # Resultado: Mau texto
+
+  echo "Meu texto" | sed "s/texto/comando/"
+  # Resultado: Meu comando
+  ```
+  <br>
+
+* Substituir caracteres ou palavras uma única vez começando a busca de trás pra frente
+  ```bash
+  # Comando: sed "s/\(.*\)<busca>/\1<substituto>/"
+
+  echo "Meu texto" | sed "s/\(.*\)e/\1a/"
+  # Resultado: Meu taxto
+  ```
+  <br>
+
+* Substituir caracteres ou palavras uma única vez, mas na Xª ocorrência
+  ```bash
+  # Comando: sed "s/<busca>/<substituto>/<ocorrência>"
+
+  echo "Pato Gato Rato" | sed "s/to/ta/2"
+  # Resultado: Pato Gata Rato
+  ```
+  <br>
+
+* Substituir caracteres ou palavras em todas as ocorrências
+  ```bash
+  # Comando: sed "s/<busca>/<substituto>/g"
+
+  echo "Meu texto" | sed "s/e/a/g"
+  # Resultado: Mau taxto
+  ```
+
+* Substituir caracteres ou palavras em todas as ocorrências, mas somente à partir da na Xª ocorrência
+  ```bash
+  # Comando: sed "s/<busca>/<substituto>/g<ocorrência>"
+
+  echo "Pato Gato Rato" | sed "s/to/ta/g2"
+  # Resultado: Pato Gata Rata
+  ```
+  <br>
+
+* Substituir caracteres ou palavras ignorando se estão em maiúsculas ou minúsculas
+  ```bash
+  # Comando: sed "s/<busca>/<substituto>/i"
+
+  echo "MEU texto" | sed "s/e/a/i"
+  # Resultado: MaU texto
+  ```
+
+<br>
+
 # Nemo
 ## Definindo emblema por linha de comando
 ```
 gio set -t stringv <caminho da pasta/arquivo> metadata::emblems <emblema>
+```
+
+## Removendo opção Delete e deixando apenas a Mover para Lixeira
+* É necessário desabilitar a opção de deletar permanentemente alterando via Dconf (não é possível alterar via preferências):
+  ```
+  gsettings set org.nemo.preferences enable-delete false
+  ```
+* O problema é que isso desabilita também o atalho **Shift + Delete** para excluir permanentemente.
+  * Pra dar um jeito nisso, é necessário fazer um outro atalho no Openbox (**Control + Shift + Delete**, por exemplo)
+    ```
+    <keybind key="C-S-Delete">
+      <action name="Execute">
+        <command>permanently-delete.sh</command>
+      </action>
+    </keybind>
+    ```
+  * Este atalho roda o script **permanently-delete.sh**, cujo conteúdo deve fazer uma troca rápida entre ativar e desativar a configuração `gsettings set org.nemo.preferences enable-delete` e automaticamente executar o atalho **Shift + Delete** via linha de comando com o `xdotool`
+    ```sh
+    #!/bin/sh
+
+    gsettings set org.nemo.preferences enable-delete true
+    sleep 0.2
+    xdotool keyup Control
+    xdotool keyup Delete
+    xdotool keydown Shift+Delete
+    sleep 0.2
+    gsettings set org.nemo.preferences enable-delete false
+    xdotool keyup Delete
+    xdotool keyup Shift
+    ```
+
+<br>
+
+# Programas que usam DCONF
+Ocorrem erros ao abrir programas que utilizam DCONF como ROOT, algo a ver com o endereço DBUS. Pra resolver o problema, é preciso lançar o dbus-launch junto com a aplicação.
+
+Exemplo:
+```sh
+sudo dbus-launch <aplicação>
+# ou
+pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY dbus-launch <aplicação>
 ```
 
 <br>
@@ -60,7 +159,8 @@ gio set -t stringv <caminho da pasta/arquivo> metadata::emblems <emblema>
 
 ## Picom
 * Não detecta as bordas das janelas, deixando elas *pra fora* da janela quando se aplica cantos arredondados
-* Programas em libadwaita possuem uma borda transparente de 1px entre a janela e a sombra
+* ~~Programas em libadwaita possuem uma borda transparente de 1px entre a janela e a sombra~~
+  > Não é um problema do Picom. O problema está no tema GTK4 que coloca uma margem de 1px na janela, o que causa o problema.
 
 <br>
 

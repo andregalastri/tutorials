@@ -4,6 +4,7 @@ echo "########################################"
 echo "#             Auto Script              #"
 echo "########################################"
 
+
 echo ">> ENABLING PARALLEL DOWNLOADS"
 echo "All it does is uncomment the ParallelDownloads parameter from pacman.conf."
 sleep 1
@@ -12,6 +13,7 @@ echo " "
 echo ">> DONE!"
 echo " "
 sleep 1
+
 
 echo ">> PREPARING PACMAN-KEY"
 echo "Initiates, populates and installs keying to resolve issues with PGP key validations while using Pacman."
@@ -24,6 +26,7 @@ echo ">> DONE!"
 echo " "
 sleep 1
 
+
 echo ">> UPDATING THE WHOLE SYSTEM"
 echo "Just updates all installed packages."
 sleep 1
@@ -32,6 +35,7 @@ echo " "
 echo ">> DONE!"
 echo " "
 sleep 1
+
 
 echo ">> INSTALLING SDDM"
 echo "Installs the login manager SDDM and a theme. SDDM allows to create better visuals for login, that is why I'm using it. It also have wondeful themes made by the community."
@@ -42,6 +46,7 @@ echo ">> DONE!"
 echo " "
 sleep 1
 
+
 echo ">> INSTALLING APPLICATIONS"
 echo "Installs everything that is needed to make this computer really useful."
 sleep 2
@@ -49,7 +54,7 @@ sleep 2
 
     # XORG
     # Install Xorg Server, to be able to draw an UI
-    packages+=("xorg-server")
+    packages+=("xorg-server xorg-xev")
     
     # LINUX KERNEL HEADERS
     # The headers act as an interface between internal kernel components and also between userspace and the kernel. Packages like sys-libs/glibc depend on the kernel headers. Source: https://wiki.gentoo.org/wiki/Linux-headers. It is also needed by Virtualbox if you are using it, so, I thing that there are other applications that uses it.
@@ -58,6 +63,10 @@ sleep 2
     # OPENBOX
     # A solid and lightweight window manager. This thing communicates with Xorg to draw windows and its contents on screen.
     packages+=("openbox")
+    
+    # XDOTOOL
+    # Command line application to automate things like keyboard shortcut execution and other stuff.
+    packages+=("xdotool")
     
     # XFCE TERMINAL
     # A good terminal emulator that is easy to configure and gives good amount of personalization settings
@@ -88,9 +97,10 @@ sleep 2
     # - PCManFM - Very lightweight, but the "Open With" is shown right in the main context menu, making it poluted. Also, I didn't like that it shades the column that is sorting the files.
     packages+=("nemo cinnamon-translations")
 
-    # XARCHIVER
+    # ENGRAMPA
     # Allows to manage compressed files and to compress files.
-    packages+=("xarchiver")
+    # I tried Xarchiver, but I didn't like how it works, seems a bit buggy.
+    packages+=("engrampa")
 
     # MATE POLKIT
     # Needed when running any application or command that requires to executed in ROOT. I tried all the others, but the Mate one has the better visuals.
@@ -202,6 +212,10 @@ sleep 2
     # I tried Ristretto and Gpicview, but they don't have integration with Nitrogen and they have the default behavior of going to the next/previous images of the folder when mouse scroll and I don't like that. I like that when I scroll the mouse, the image zoom-in/zoom-out.
     packages+=("viewnior")
 
+    # XREADER
+    # Good document viewer (PDF). Has annotations out of the box.
+    packages+=("xreader")
+
     # LIBREOFFICE
     # Office suite. I tested Open Office and it looks better than Libre Office, but this last one have softawares like Drawing, with I like because allows to create diagrams. I also think that it has better compatibility with Microsoft Office files, but I didn't test it enough. It also needs to check the user's locale to install the right language pack.
     # Also, this installs the fresh version because I want the least features on it. Still version is more stable in theory.
@@ -277,6 +291,7 @@ echo ">> DONE!"
 echo " "
 sleep 1
 
+
 echo ">> INSTALLING ADDITIONAL APPLICATIONS"
 echo "Installs more applications from AUR."
 sleep 2
@@ -287,25 +302,43 @@ sleep 2
     packages+=("rar")
 
     # GOOGLE CHROME
-    # Way what you want, but I like Google Chrome because it is compatible with everything and has the best Adblocks around the internet. As a user, I like that some things just work. I also tried some minimal browsers. The only one I really enjoyed was Qutebrowser, but it lacks a functional Adblock.
+    # Say what you want, but I like Google Chrome because it is compatible with everything and has the best Adblocks around the internet. As a user, I like that some things just work. I also tried some minimal browsers. The only one I really enjoyed was Qutebrowser, but it lacks a functional Adblock.
     packages+=("google-chrome")
+
+    # VISUAL STUDIO CODE
+    # Code editor that I use for programming.
+    #packages+=("visual-studio-code-bin")
+
+    # TELEGRAM
+    # Desktop version of Telegram messenger
+    #packages+=("telegram-desktop")
+
+    # WARSAW
+    # Needed if you access Internet Banking websites
+    #packages+=("warsaw-bin")
+
+    # FREE FILE SYNC
+    # Application that I use to syncronize my files with my external hard drive. Good to create backups.
+    #packages+=("freefilesync-bin")
 
     # FONTS
     # More fonts from AUR.
-    packages+=("ttf-roboto-mono ttf-roboto")
+    packages+=("ttf-roboto-mono ttf-roboto ttf-century-gothic")
 
     (echo "S") | yay -S --needed ${packages[*]}
+    fc-cache -f -v
 echo " "
 echo ">> DONE!"
 echo " "
 sleep 1
+
 
 echo ">> SETTING UP SOME DEFAULT CONFIGURATIONS"
 echo "Just some copy/paste for default config of the Openbox and Picom"
 sleep 2
     echo "[Openbox] Creating ~/.config/openbox/ folder."
     sleep 1
-    mkdir -p ~/.config/openbox/
+    mkdir -p ~/.config/openbox/scripts
 
     echo "[Openbox] Copying default config files."
     sleep 1
@@ -320,29 +353,64 @@ sleep 2
     cp -rf /etc/xdg/picom.conf ~/.config/picom.conf
 
     echo "[Samba] Downloading configuration file."
+    sleep 1
     sudo curl "https://raw.githubusercontent.com/andregalastri/tutorials/main/Arch/Files/smb.conf" -o /etc/samba/smb.conf
 
     echo "[Samba] Setting up a default netbios name."
+    sleep 1
     sudo sed -i "s/netbios name = <add-name-here>/netbios name = $HOSTNAME/g" /etc/samba/smb.conf
 
     echo "[Environment] Setting up variables."
+    sleep 1
     echo "QT_QPA_PLATFORMTHEME=qt5ct" | sudo tee -a /etc/environment
     echo "GTK_THEME=Arc-Lighter" | sudo tee -a /etc/environment
 
     echo "[Dconf] Setting XFCE Terminal as default terminal emulator for Nemo."
+    sleep 1
     gsettings set org.cinnamon.desktop.default-applications.terminal exec xfce4-terminal
 
+    echo "[Dconf] Disabling delete permanently from Nemo to hide it from context menu."
+    sleep 1
+    gsettings set org.nemo.preferences enable-delete false
+    curl "https://raw.githubusercontent.com/andregalastri/tutorials/main/Arch/Files/delete-permanently.sh" -o ~/.config/openbox/scripts/delete-permanently.sh
+    chmod +x ~/.config/openbox/scripts/delete-permanently.sh
+
+    echo "[Dconf] Settings default Nemo preferences."
+    sleep 1
+    gsettings set org.nemo.preferences confirm-move-to-trash true
+    gsettings set org.nemo.preferences default-folder-viewer list-view
+    gsettings set org.nemo.preferences enable-delete false
+    gsettings set org.nemo.preferences inherit-folder-viewer false
+    gsettings set org.nemo.preferences size-prefixes 'base-10'
+    gsettings set org.nemo.preferences show-location-entry true
+    gsettings set org.nemo.preferences show-show-thumbnails-toolbar false
+    gsettings set org.nemo.preferences thumbnail-limit 104857600
+
+    echo "[Mousepad] Configuring keyboard shortcuts."
+    sleep 1
+    curl "https://raw.githubusercontent.com/andregalastri/tutorials/main/Arch/Files/accels.scm" -o ~/.config/Mousepad/accels.scm
+
+    echo "[Nemo Actions] Configuring Nemo Actions."
+    sleep 1
+    curl "https://raw.githubusercontent.com/andregalastri/tutorials/main/Arch/Files/local-share-nemo-actions.tar.gz" -o local-share-nemo-actions.tar.gz
+    curl "https://raw.githubusercontent.com/andregalastri/tutorials/main/Arch/Files/nemo-actions-root.tar.gz" -o nemo-actions-root.tar.gz
+    tar -xzf local-share-nemo-actions.tar.gz -C ~/.local/share/nemo/actions
+    sudo tar -xzf nemo-actions-root.tar.gz -C /usr/share/nemo/actions
+
+    echo "[Picom] Configuration file."
+    curl "https://raw.githubusercontent.com/andregalastri/tutorials/main/Arch/Files/picom.conf" -o ~/.config/picom.conf
 echo " "
 echo ">> DONE!"
 echo " "
 sleep 1
 
+
 echo ">> SETTING UP THEMES"
 echo "Downloading and installing themes"
 sleep 2
-    echo "[Theme] Downloading Arc Theme for Openbox."
+    echo "[Theme] Downloading Arc Theme."
     sleep 1
-    curl "https://raw.githubusercontent.com/andregalastri/tutorials/main/Arch/Files/arc-openbox.tar.gz" -o arc-openbox.tar.gz
+    curl "https://raw.githubusercontent.com/andregalastri/tutorials/main/Arch/Files/arc-theme.tar.gz" -o arc-theme.tar.gz
 
     echo "[Theme] Downloading Fluent Mouse Cursor Themes."
     sleep 1
@@ -352,9 +420,9 @@ sleep 2
     sleep 1
     curl "https://raw.githubusercontent.com/andregalastri/tutorials/main/Arch/Files/flat-remix-icons.tar.gz" -o flat-remix-icons.tar.gz
 
-    echo "Installing Arc Theme for Openbox"
+    echo "Installing Arc Theme"
     sleep 1
-    sudo tar -xzf arc-openbox.tar.gz -C /usr/share/themes/
+    sudo tar -xzf arc-theme.tar.gz -C /usr/share/themes/
 
     echo "Installing Fluent Mouse Cursor Themes"
     sleep 1
@@ -366,14 +434,14 @@ sleep 2
 
     echo "Cleaning things up"
     sleep 1
-    rm -rf arc-openbox.tar.gz
+    rm -rf arc-theme.tar.gz
     rm -rf fluent-cursors.tar.gz
     rm -rf flat-remix-icons.tar.gz
-
 echo " "
 echo ">> DONE!"
 echo " "
 sleep 1
+
 
 echo ">> AUTOLOGIN CONFIGURATION"
 echo "Enabling autologin, so, you don't need to enter your username and password on startup."
@@ -384,6 +452,7 @@ sleep 2
 echo " "
 echo ">> DONE!"
 echo " "
+
 
 echo ">> ENABLING SERVICES"
 echo "Enabling services to run at startup."
