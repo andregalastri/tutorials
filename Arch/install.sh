@@ -11,7 +11,7 @@ function Done() {
 };
 
 function RunYay() {
-    (echo "y") | LANG=C yay --noprovides --answerdiff None --answerclean All --mflags --noconfirm --needed -S ${packages[*]};
+    LANG=C yay --noprovides --answerdiff None --answerclean All --mflags --noconfirm --needed -S ${packages[*]};
     fc-cache -f -v;
     packages=("");
 }
@@ -137,11 +137,11 @@ packages+=("gvfs gvfs-nfs gvfs-mtp gvfs-gphoto2 gvfs-google gvfs-goa gvfs-afc nt
 
 # GNOME DISKS
 # I didn't find any other application that do the things Gnome Disks does. Unfortunately, its visuals are inconsistent with the rest of the other applications, but, oh boy!
-packages+=("gnome-disk-utility");
+# packages+=("gnome-disk-utility");
 
 # GPARTED
 # Good application to manage partitions. Gnome Disks doesn't have many options regarding this. I think that Gnome Disks is better for benchmark, change the mount and dismount configuration of drives and other stuff, but what regards partition manage and formatting, I think that Gparted is better.
-packages+=("gparted");
+# packages+=("gparted");
 
 # SAMBA
 # Allows sharing directories to the network and also access to shares from Windows systems.
@@ -178,11 +178,11 @@ packages+=("pacman-contrib");
 
 # GNOME KEYRING
 # Required by some programs, like VS Code, when connecting to a remote server via SSH.
-packages+=("gnome-keyring");
+# packages+=("gnome-keyring");
 
 # GTK2FONTSEL
 # Software to browse installed fonts. It is pretty simple and lightweight. I also tried gnome-font-viewer, but it uses libadwaita which breaks the design consistency.
-packages+=("gtk2fontsel");
+# packages+=("gtk2fontsel");
 
 # DUNST
 # A simple and customizable notification daemon.
@@ -198,15 +198,15 @@ packages+=("rofi dmenu");
 
 # THUNDERBIRD
 # An email client to receive emails. I liked it. It is installing the PT-BR version, so I need to create an script that detects the user locale to select the right package.
-packages+=("thunderbird-i18n-pt-br");
+# packages+=("thunderbird-i18n-pt-br");
 
 # DISCORD
 # Comunitcation software used for gamers. It is like Slack or Teamspeak.
-packages+=("discord");
+# packages+=("discord");
 
 # VLC
 # The best video player, there is no other like this.
-packages+=("vlc");
+# packages+=("vlc");
 
 # FILEZILLA
 # A FTP client to connect to FTP servers.
@@ -218,15 +218,15 @@ packages+=("flameshot");
 
 # INKSCAPE
 # Good vector based image editor. Allows to edit SVGs and other stuff. It is like CorelDRAW and Illustrator, but simpler.
-packages+=("inkscape");
+# packages+=("inkscape");
 
 # GIMP
 # Image manipulator, like Photoshop.
-packages+=("gimp");
+# packages+=("gimp");
 
 # KRITA
 # Good software for drawing. It can act like an image manipulator, but has less features than Gimp regarding this aspect.
-packages+=("krita");
+# packages+=("krita");
 
 # VIEWNIOR
 # Simple image viewer with native integration with Nitrogen and good user experience.
@@ -240,7 +240,7 @@ packages+=("xreader");
 # LIBREOFFICE
 # Office suite. I tested Open Office and it looks better than Libre Office, but this last one have softawares like Drawing, with I like because allows to create diagrams. I also think that it has better compatibility with Microsoft Office files, but I didn't test it enough. It also needs to check the user's locale to install the right language pack.
 # Also, this installs the fresh version because I want the least features on it. Still version is more stable in theory.
-packages+=("libreoffice-fresh-pt-br");
+# packages+=("libreoffice-fresh-pt-br");
 
 # TINT2
 # Like Polybar, creates panels, but not text based. I installed it to use as a dock. I tried Plank, but I find that Tint2 has more configuration options.
@@ -248,7 +248,7 @@ packages+=("libreoffice-fresh-pt-br");
 
 # YT-DLP
 # A command line Youtube Video Downloader. I like it a lot and works better than the original.
-packages+=("yt-dlp");
+# packages+=("yt-dlp");
 
 # ARANDR
 # GUI application to manage screen displays.
@@ -303,6 +303,9 @@ packages+=("qt5-graphicaleffects qt5-quickcontrols2");
 # SDDM allows to create better visuals for login, that is why I'm using it. It also have wondeful themes made by the community.
 packages+=("sddm");
 
+echo ${packages[*]};
+read;
+
 RunYay;
 
 # -----------------------------------------------
@@ -319,7 +322,7 @@ packages+=("google-chrome");
 
 # VISUAL STUDIO CODE
 # Code editor that I use for programming.
-packages+=("visual-studio-code-bin");
+# packages+=("visual-studio-code-bin");
 
 # TELEGRAM
 # Desktop version of Telegram messenger
@@ -327,11 +330,11 @@ packages+=("telegram-desktop-bin");
 
 # WARSAW
 # Needed if you access Internet Banking websites
-packages+=("warsaw-bin");
+# packages+=("warsaw-bin");
 
 # FREE FILE SYNC
 # Application that I use to syncronize my files with my external hard drive. Good to create backups.
-packages+=("freefilesync-bin");
+# packages+=("freefilesync-bin");
 
 # PARCELLITE CLIPBOARD MANAGER
 # Without a clipboard manager, you copy/paste isn't persistent.
@@ -345,6 +348,8 @@ packages+=("networkmanager-dmenu-git");
 # More fonts from AUR.
 packages+=("ttf-roboto-mono ttf-roboto ttf-century-gothic nerd-fonts-noto");
 
+echo ${packages[*]};
+read;
 RunYay;
 
 Done;
