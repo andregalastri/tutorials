@@ -318,7 +318,7 @@ packages+=("google-chrome");
 
 # TELEGRAM
 # Desktop version of Telegram messenger
-packages+=("telegram-desktop-bin");
+# packages+=("telegram-desktop-bin");
 
 # WARSAW
 # Needed if you access Internet Banking websites
