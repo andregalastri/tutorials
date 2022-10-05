@@ -46,15 +46,6 @@ Done;
 
 #---------------
 
-Command "INSTALLING SDDM
-Installs the login manager SDDM and a theme. ";
-
-(echo "2"; echo "y") | LANG=C sudo pacman -S --needed sddm;
-
-Done;
-
-#---------------
-
 Command "INSTALLING YAY
 Yay is a helper to install applications and packages that are in the AUR (the user repository of Arch Linux). You can use it like pacman, but the range of the applications and packages available are bigger. Requires some sense about intalling obscure stuff, but seems to be safe in general.";
 
