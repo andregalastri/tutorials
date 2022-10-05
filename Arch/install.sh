@@ -10,6 +10,11 @@ function Done() {
     sleep 1;
 };
 
+function RunYay() {
+    (echo "y") | LANG=C yay --noprovides --answerdiff None --answerclean All --mflags --noconfirm --needed -S ${packages[*]};
+    fc-cache -f -v;
+    packages=("");
+}
 
 echo "########################################";
 echo "#            Ainad Install             #";
@@ -184,8 +189,8 @@ packages+=("gtk2fontsel");
 packages+=("dunst");
 
 # POLYBAR
-# Allows to create simple and customizable text based panels.
-packages+=("polybar");
+# Allows to create simple and customizable text based panels. The package 'dbus-python' is a dependency for 'polybar-now-playing' module.
+packages+=("polybar dbus-python");
 
 # ROFI & DMENU
 # Allows to create customizable applets, menus and other stuff. Seems to be very customizable.
@@ -298,6 +303,8 @@ packages+=("qt5-graphicaleffects qt5-quickcontrols2");
 # SDDM allows to create better visuals for login, that is why I'm using it. It also have wondeful themes made by the community.
 packages+=("sddm");
 
+RunYay;
+
 # -----------------------------------------------
 # APPLICATIONS FROM AUR
 # -----------------------------------------------
@@ -338,8 +345,7 @@ packages+=("networkmanager-dmenu-git");
 # More fonts from AUR.
 packages+=("ttf-roboto-mono ttf-roboto ttf-century-gothic nerd-fonts-noto");
 
-(echo "y") | LANG=C yay --noprovides --answerdiff None --answerclean All --mflags --noconfirm --needed -S ${packages[*]};
-fc-cache -f -v;
+RunYay;
 
 Done;
 
@@ -357,10 +363,15 @@ tar -xzf "ainad.tar.gz" -C "$HOME/ainad";
 echo "[Config] Copying files to their respective folders.";
 sleep 1;
 cp -a "$HOME/ainad/home/user/." "$HOME/";
-sudo mkdir -p "/usr/share/ainad/home-config-defaults";
-cp -a "$HOME/ainad/home/user/." "/usr/share/ainad/home-config-defaults/";
+sudo mkdir -p "/usr/share/ainad/home-defaults";
+sudo cp -a "$HOME/ainad/home/user/." "/usr/share/ainad/home-defaults/";
 sudo cp -a "$HOME/ainad/etc/." "/etc/";
 sudo cp -a "$HOME/ainad/usr/." "/usr/";
+
+echo "[Config] Configuring NetworkManager Dmenu.";
+sleep 1;
+sudo "$HOME/ainad/networkmanager_dmenu_languages.sh";
+sudo ln -s "/usr/share/ainad/rofi/widgets/networkmanager-dmenu" "$HOME/.config/networkmanager-dmenu";
 
 echo "[Samba] Setting up a default netbios name.";
 sleep 1;
@@ -382,6 +393,8 @@ gsettings set org.nemo.preferences size-prefixes 'base-10';
 gsettings set org.nemo.preferences show-location-entry true;
 gsettings set org.nemo.preferences show-show-thumbnails-toolbar false;
 gsettings set org.nemo.preferences thumbnail-limit 15728640;
+gsettings set org.nemo.preferences show-compact-view-icon-toolbar false;
+gsettings set org.nemo.preferences show-edit-icon-toolbar true;
 
 Done;
 
