@@ -12,11 +12,14 @@ function Done() {
 
 function RunYay() {
     sleep 1;
-    yay -Syy;
-    (echo "y") | LANG=C yay --noprovides --answerdiff None --answerclean All --mflags --noconfirm --needed -S ${packages[*]};
+    yay -Syy | tee -a "$ainadLog";
+    (echo "y") | LANG=C yay --noprovides --answerdiff None --answerclean All --mflags --noconfirm --needed -S ${packages[*]} | tee -a "$ainadLog";
     fc-cache -f -v;
     packages=("");
 }
+$date=$(date "+%Y-%m-%d-%H-%M-%S");
+ainadLog="$HOME/ainad-install-$date.txt";
+touch $ainadLog;
 
 echo "########################################";
 echo "#            Ainad Install             #";
