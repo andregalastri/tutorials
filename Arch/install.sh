@@ -3,41 +3,11 @@
 function Command() {
     echo -en ">> $1\n\n";
     sleep 1;
-        eval "$3"
+};
+
+function Done() {
     echo -en "\n\n>> DONE!\n";
     sleep 1;
-};
-
-function ReplaceFromFile() {
-    if [[ "$1" = "sudo" ]]; then
-        sudo sed -i "s/$3/$4/" $2;
-    else
-        sed -i "s/$2/$3/" $1;
-    fi;
-};
-
-function ReplaceFromString() {
-    if [[ "$1" = "sudo" ]]; then
-        sudo echo "$4" | sed "s/$2/$3/";
-    else
-        echo "$3" | sed "s/$1/$2/";
-    fi;
-};
-
-function ReplaceAllFromFile() {
-    if [[ "$1" = "sudo" ]]; then
-        sudo sed -i "s/$3/$4/g" $2;
-    else
-        sed -i "s/$2/$3/g" $1;
-    fi;
-};
-
-function ReplaceAllFromString() {
-    if [[ "$1" = "sudo" ]]; then
-        sudo echo "$4" | sed "s/$2/$3/g";
-    else
-        echo "$3" | sed "s/$1/$2/g";
-    fi;
 };
 
 
@@ -48,41 +18,45 @@ echo "########################################";
 #---------------
 
 Command "ENABLING PARALLEL DOWNLOADS
-All it does is uncomment the ParallelDownloads parameter from pacman.conf." '
+All it does is uncomment the ParallelDownloads parameter from pacman.conf.";
 
-ReplaceFromFile '/etc/pacman.conf' '#ParallelDownloads = ' 'ParallelDownloads = ';
-';
+sudo sed -i "s/#ParallelDownloads = /ParallelDownloads = /" "/etc/pacman.conf";
+
+Done;
 
 #---------------
 
 Command "PREPARING PACMAN-KEY
-Initiates, populates and installs keying to resolve issues with PGP key validations while using Pacman." '
+Initiates, populates and installs keying to resolve issues with PGP key validations while using Pacman.";
 
 sudo pacman-key --init;
 sudo pacman-key --populate;
 (echo "y") | LANG=C sudo pacman -Sy --needed archlinux-keyring;
-';
+
+Done;
 
 #---------------
 
 Command "UPDATING THE WHOLE SYSTEM
-Updates all installed packages." '
+Updates all installed packages.";
 
 (echo "y") | LANG=C sudo pacman -Syyu;
-';
+
+Done;
 
 #---------------
 
 Command "INSTALLING SDDM
-Installs the login manager SDDM and a theme. SDDM allows to create better visuals for login, that is why I'm using it. It also have wondeful themes made by the community." '
+Installs the login manager SDDM and a theme. SDDM allows to create better visuals for login, that is why I'm using it. It also have wondeful themes made by the community.";
 
 (echo "2"; echo "y") | LANG=C sudo pacman -S --needed sddm;
-';
+
+Done;
 
 #---------------
 
 Command "INSTALLING YAY
-Yay is a helper to install applications and packages that are in the AUR (the user repository of Arch Linux). You can use it like pacman, but the range of the applications and packages available are bigger. Requires some sense about intalling obscure stuff, but seems to be safe in general." '
+Yay is a helper to install applications and packages that are in the AUR (the user repository of Arch Linux). You can use it like pacman, but the range of the applications and packages available are bigger. Requires some sense about intalling obscure stuff, but seems to be safe in general.";
 
 (echo "y") | LANG=C sudo pacman -S --needed base-devel;
 git clone https://aur.archlinux.org/yay.git;
@@ -95,9 +69,13 @@ cd "$HOME";
 rm -rf "$HOME/.cache";
 rm -rf "$HOME/.git";
 rm -rf "$HOME/yay";
-';
+
+Done;
 
 #---------------
+
+Command "INSTALLING APPLICATIONS
+Installs everything that is needed to make this computer really useful.";
 
 # XORG
 # Install Xorg Server, to be able to draw an UI
@@ -368,17 +346,15 @@ packages+=("networkmanager-dmenu-git")
 # More fonts from AUR.
 packages+=("ttf-roboto-mono ttf-roboto ttf-century-gothic nerd-fonts-noto")
 
-Command "INSTALLING APPLICATIONS
-Installs everything that is needed to make this computer really useful." '
-
 (echo "y") | LANG=C yay --noprovides --answerdiff None --answerclean All --mflags --noconfirm --needed -S ${packages[*]};
 fc-cache -f -v;
-';
+
+Done;
 
 #---------------
 
 Command "SETTING UP SOME DEFAULT CONFIGURATIONS
-Just some copy/paste for default config of the Openbox and Picom." '
+Just some copy/paste for default config of the Openbox and Picom.";
 
 echo "[Config] Downloading configuration files.";
 sleep 1;
@@ -396,7 +372,7 @@ sudo cp "$HOME/ainad/usr/*" "/usr";
 
 echo "[Samba] Setting up a default netbios name.";
 sleep 1;
-ReplaceFromFile "sudo" "/etc/samba/smb.conf" "netbios name = <user-name>" "netbios name = $HOSTNAME";
+sudo sed -i "s/netbios name = <user-name>/netbios name = $HOSTNAME/" "/etc/samba/smb.conf";
 
 echo "[Dconf] Setting XFCE Terminal as default terminal emulator for Nemo.";
 sleep 1;
@@ -414,19 +390,22 @@ gsettings set org.nemo.preferences size-prefixes 'base-10';
 gsettings set org.nemo.preferences show-location-entry true;
 gsettings set org.nemo.preferences show-show-thumbnails-toolbar false;
 gsettings set org.nemo.preferences thumbnail-limit 15728640;
-';
+
+Done;
 
 #---------------
 
 Command "ENABLING SERVICES
-Enabling services to run at startup." '
+Enabling services to run at startup.";
 
 sudo systemctl enable sddm smb nmb avahi-daemon NetworkManager systemd-homed
-';
+
+Done;
 
 #---------------
 
-echo -en "\n\n>> END OF THE SCRIPT.\nEverything was intalled. Just run 'reboot' to restart the computer and voilá!\n\n\n"
+Command "END OF THE SCRIPT
+Everything was intalled. Just run 'reboot' to restart the computer and voilá!";
 
 
 # echo ">> INSTALLING ADDITIONAL APPLICATIONS"
