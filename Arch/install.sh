@@ -55,16 +55,20 @@ Command "INSTALLING YAY
 Yay is a helper to install applications and packages that are in the AUR (the user repository of Arch Linux). You can use it like pacman, but the range of the applications and packages available are bigger. Requires some sense about intalling obscure stuff, but seems to be safe in general.";
 
 (echo "1"; echo "y") | LANG=C sudo pacman -S --needed base-devel git;
+
 git clone https://aur.archlinux.org/yay.git;
 cd yay;
 (echo "y") | LANG=C makepkg -s --clean;
 (echo "y") | LANG=C makepkg -i;
 (echo "y") | LANG=C sudo pacman -R go;
+
 yay --save --answerdiff None --answerclean None --removemake;
+
 cd "$HOME";
 rm -rf "$HOME/.cache";
 rm -rf "$HOME/.git";
 rm -rf "$HOME/yay";
+yay -Syy;
 
 Done;
 
@@ -302,11 +306,6 @@ packages+=("qt5-graphicaleffects qt5-quickcontrols2");
 # SDDM
 # SDDM allows to create better visuals for login, that is why I'm using it. It also have wondeful themes made by the community.
 packages+=("sddm");
-
-echo ${packages[*]};
-read;
-
-RunYay;
 
 # -----------------------------------------------
 # APPLICATIONS FROM AUR
