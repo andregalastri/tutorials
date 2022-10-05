@@ -11,6 +11,7 @@ function Done() {
 };
 
 function RunYay() {
+    sleep 1;
     yay -Syy;
     (echo "y") | LANG=C yay --noprovides --answerdiff None --answerclean All --mflags --noconfirm --needed -S ${packages[*]};
     fc-cache -f -v;
@@ -311,9 +312,18 @@ packages+=("qt5-graphicaleffects qt5-quickcontrols2");
 packages+=("sddm");
 
 RunYay;
-# -----------------------------------------------
-# APPLICATIONS FROM AUR
-# -----------------------------------------------
+
+#---------------
+
+Command "ENABLING SERVICES
+Enabling services to run at startup.";
+
+sudo systemctl enable sddm smb nmb avahi-daemon NetworkManager systemd-homed;
+
+Done;
+
+Command "INSTALLING APPLICATIONS FROM AUR
+Installs everything that is needed to make this computer really useful.";
 
 # RAR
 # Allows you to extract and compress RAR files. It automatically integrates with Xarchive.
@@ -404,15 +414,14 @@ gsettings set org.nemo.preferences show-edit-icon-toolbar true;
 gsettings set org.nemo.preferences.menu-config selection-menu-open-as-root false;
 gsettings set org.nemo.preferences.menu-config background-menu-open-as-root false;
 
-Done;
-
-#---------------
-
-Command "ENABLING SERVICES
-Enabling services to run at startup.";
-
-sudo systemctl enable sddm smb nmb avahi-daemon NetworkManager systemd-homed;
-
+echo "[Dconf] Settings default Mousepad preferences.";
+sleep 1;
+gsettings set org.xfce.mousepad.preferences.view color-scheme 'classic';
+gsettings set org.xfce.mousepad.preferences.view font-name 'Roboto Mono 10';
+gsettings set org.xfce.mousepad.preferences.view insert-spaces true;
+gsettings set org.xfce.mousepad.preferences.view show-line-numbers true;
+gsettings set org.xfce.mousepad.preferences.view tab-width 4;
+gsettings set org.xfce.mousepad.preferences.view use-default-monospace-font false;
 Done;
 
 #---------------
