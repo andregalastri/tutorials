@@ -55,6 +55,7 @@ git clone https://aur.archlinux.org/yay.git;
 cd yay;
 (echo "y") | LANG=C makepkg -s --clean;
 (echo "y") | LANG=C makepkg -i;
+(echo "y") | LANG=C sudo pacman -R go;
 (echo "y") | LANG=C yay -Syyu;
 
 yay --save --answerdiff None --answerclean None --removemake;
@@ -302,17 +303,49 @@ packages+=("qt5-graphicaleffects qt5-quickcontrols2");
 # SDDM allows to create better visuals for login, that is why I'm using it. It also have wondeful themes made by the community.
 packages+=("sddm");
 
+# -----------------------------------------------
+# APPLICATIONS FROM AUR
+# -----------------------------------------------
+
+# RAR
+# Allows you to extract and compress RAR files. It automatically integrates with Xarchive.
+packages+=("rar");
+
+# GOOGLE CHROME
+# Say what you want, but I like Google Chrome because it is compatible with everything and has the best Adblocks around the internet. As a user, I like that some things just work. I also tried some minimal browsers. The only one I really enjoyed was Qutebrowser, but it lacks a functional Adblock.
+packages+=("google-chrome");
+
+# VISUAL STUDIO CODE
+# Code editor that I use for programming.
+# packages+=("visual-studio-code-bin");
+
+# TELEGRAM
+# Desktop version of Telegram messenger
+packages+=("telegram-desktop-bin");
+
+# WARSAW
+# Needed if you access Internet Banking websites
+# packages+=("warsaw-bin");
+
+# FREE FILE SYNC
+# Application that I use to syncronize my files with my external hard drive. Good to create backups.
+# packages+=("freefilesync-bin");
+
+# PARCELLITE CLIPBOARD MANAGER
+# Without a clipboard manager, you copy/paste isn't persistent.
+packages+=("parcellite");
+
+# DMENU FOR NETWORK MANAGER
+# Allows launch Network Manager with Dmenu
+packages+=("networkmanager-dmenu-git");
+
+# FONTS
+# More fonts from AUR.
+packages+=("ttf-roboto-mono ttf-roboto ttf-century-gothic nerd-fonts-noto");
+
+(echo "y") | LANG=C yay -Syyu;
 (echo "y") | LANG=C yay --noprovides --answerdiff None --answerclean All --mflags --noconfirm --needed -S ${packages[*]};
 fc-cache -f -v;
-
-Done;
-
-#---------------
-
-Command "ENABLING SERVICES
-Enabling services to run at startup.";
-
-sudo systemctl enable sddm smb nmb avahi-daemon NetworkManager systemd-homed;
 
 Done;
 
@@ -377,11 +410,63 @@ Done;
 
 #---------------
 
-Command "END OF THE SCRIPT
-Everything was intalled. Just run 'reboot' to restart the computer and voilá!";
+Command "ENABLING SERVICES
+Enabling services to run at startup.";
+
+sudo systemctl enable sddm smb nmb avahi-daemon NetworkManager systemd-homed;
+
+Done;
 
 #---------------
 
-# curl -s "https://raw.githubusercontent.com/andregalastri/tutorials/main/Arch/install-aur.sh" -o "$HOME/install-aur.sh";
-# chmod +x "$HOME/install-aur.sh";
-# "$HOME/install-aur.sh";
+Command "END OF THE SCRIPT
+Everything was intalled. Just run 'reboot' to restart the computer and voilá!";
+
+
+# echo ">> INSTALLING ADDITIONAL APPLICATIONS"
+# echo "Installs more applications from AUR."
+# sleep 2
+#     packages=(" ")
+
+#     # RAR
+#     # Allows you to extract and compress RAR files. It automatically integrates with Xarchive.
+#     packages+=("rar")
+
+#     # GOOGLE CHROME
+#     # Say what you want, but I like Google Chrome because it is compatible with everything and has the best Adblocks around the internet. As a user, I like that some things just work. I also tried some minimal browsers. The only one I really enjoyed was Qutebrowser, but it lacks a functional Adblock.
+#     packages+=("google-chrome")
+
+#     # VISUAL STUDIO CODE
+#     # Code editor that I use for programming.
+#     packages+=("visual-studio-code-bin")
+
+#     # TELEGRAM
+#     # Desktop version of Telegram messenger
+#     packages+=("telegram-desktop")
+
+#     # WARSAW
+#     # Needed if you access Internet Banking websites
+#     packages+=("warsaw-bin")
+
+#     # FREE FILE SYNC
+#     # Application that I use to syncronize my files with my external hard drive. Good to create backups.
+#     packages+=("freefilesync-bin")
+
+#     # PARCELLITE CLIPBOARD MANAGER
+#     # Without a clipboard manager, you copy/paste isn't persistent.
+#     packages+=("parcellite")
+
+#     # DMENU FOR NETWORK MANAGER
+#     # Allows launch Network Manager with Dmenu
+#     packages+=("networkmanager-dmenu-git")
+
+#     # FONTS
+#     # More fonts from AUR.
+#     packages+=("ttf-roboto-mono ttf-roboto ttf-century-gothic nerd-fonts-noto")
+
+#     (echo "y") | LANG=C yay -S --needed ${packages[*]}
+#     fc-cache -f -v
+# echo " "
+# echo ">> DONE!"
+# echo " "
+# sleep 1
