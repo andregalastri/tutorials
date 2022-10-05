@@ -58,7 +58,7 @@ Done;
 Command "INSTALLING YAY
 Yay is a helper to install applications and packages that are in the AUR (the user repository of Arch Linux). You can use it like pacman, but the range of the applications and packages available are bigger. Requires some sense about intalling obscure stuff, but seems to be safe in general.";
 
-(echo "y") | LANG=C sudo pacman -S --needed base-devel;
+(echo "y") | LANG=C sudo pacman -S --needed base-devel git;
 git clone https://aur.archlinux.org/yay.git;
 cd yay;
 (echo "y") | LANG=C makepkg -s --clean;
@@ -175,10 +175,6 @@ packages+=("virtualbox virtualbox-host-dkms")
 # NITROGEN
 # A simple software to change the wallpaper in Openbox.
 packages+=("nitrogen")
-
-# GIT
-# It is good to have this out of the box.
-packages+=("git")
 
 # PACMAN SCRIPTS
 # Install some scripts that is used in the Polybar to check updates.
