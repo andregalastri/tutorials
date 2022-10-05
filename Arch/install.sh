@@ -340,7 +340,7 @@ packages+=("networkmanager-dmenu-git");
 # More fonts from AUR.
 packages+=("ttf-roboto-mono ttf-roboto ttf-century-gothic nerd-fonts-noto");
 
-(echo "y"; echo "y") | LANG=C yay --noprovides --answerdiff None --answerclean All --mflags --noconfirm --removemake --needed -S ${packages[*]};
+LANG=C yay --noprovides --answerdiff None --answerclean All --mflags --noconfirm --removemake --needed -S ${packages[*]};
 fc-cache -f -v;
 
 Done;
