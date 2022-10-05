@@ -10,12 +10,13 @@ function Done() {
     sleep 1;
 };
 
-funtion RunYay() {
+function RunYay() {
     yay -Syy;
     (echo "y") | LANG=C yay --noprovides --answerdiff None --answerclean All --mflags --noconfirm --needed -S ${packages[*]};
     fc-cache -f -v;
     packages=("");
 }
+
 echo "########################################";
 echo "#            Ainad Install             #";
 echo "########################################";
