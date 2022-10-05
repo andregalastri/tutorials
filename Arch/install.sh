@@ -26,7 +26,7 @@ echo "########################################";
 Command "ENABLING PARALLEL DOWNLOADS
 All it does is uncomment the ParallelDownloads parameter from pacman.conf.";
 
-echo -en "Please, inform your password to continue";
+echo -en "Please, inform your password to continue\n";
 sudo sed -i "s/#ParallelDownloads = /ParallelDownloads = /" "/etc/pacman.conf";
 
 Done;
@@ -63,6 +63,7 @@ cd yay;
 (echo "y") | LANG=C makepkg -s --clean;
 (echo "y") | LANG=C makepkg -i;
 (echo "y") | LANG=C sudo pacman -R go;
+(echo "y") | LANG=C yay -Syyu;
 
 yay --save --answerdiff None --answerclean None --removemake;
 
@@ -70,7 +71,7 @@ cd "$HOME";
 rm -rf "$HOME/.cache";
 rm -rf "$HOME/.git";
 rm -rf "$HOME/yay";
-yay -Syy;
+
 
 Done;
 
