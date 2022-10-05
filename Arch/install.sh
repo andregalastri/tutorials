@@ -49,7 +49,7 @@ Done;
 Command "INSTALLING YAY
 Yay is a helper to install applications and packages that are in the AUR (the user repository of Arch Linux). You can use it like pacman, but the range of the applications and packages available are bigger. Requires some sense about intalling obscure stuff, but seems to be safe in general.";
 
-(echo "y") | LANG=C sudo pacman -S --needed base-devel git;
+(echo "1"; echo "y") | LANG=C sudo pacman -S --needed base-devel git;
 git clone https://aur.archlinux.org/yay.git;
 cd yay;
 (echo "y") | LANG=C makepkg -s --clean;
@@ -295,8 +295,8 @@ packages+=("adobe-source-code-pro-fonts noto-fonts-cjk noto-fonts-emoji noto-fon
 packages+=("qt5-graphicaleffects qt5-quickcontrols2");
 
 # SDDM
-# Installs some fonts.
-packages+=("SDDM allows to create better visuals for login, that is why I'm using it. It also have wondeful themes made by the community.");
+# SDDM allows to create better visuals for login, that is why I'm using it. It also have wondeful themes made by the community.
+packages+=("sddm");
 
 # -----------------------------------------------
 # APPLICATIONS FROM AUR
@@ -356,11 +356,11 @@ tar -xzf "ainad.tar.gz" -C "$HOME/ainad";
 
 echo "[Config] Copying files to their respective folders.";
 sleep 1;
-cp "$HOME/ainad/home/user/*" "$HOME";
-sudo mkdir "/usr/share/ainad/home-config-defaults";
-cp "$HOME/ainad/home/user/*" "/usr/share/ainad/home-config-defaults";
-sudo cp "$HOME/ainad/etc/*" "/etc";
-sudo cp "$HOME/ainad/usr/*" "/usr";
+cp -a "$HOME/ainad/home/user/." "$HOME/";
+sudo mkdir -p "/usr/share/ainad/home-config-defaults";
+cp -a "$HOME/ainad/home/user/." "/usr/share/ainad/home-config-defaults/";
+sudo cp -a "$HOME/ainad/etc/." "/etc/";
+sudo cp -a "$HOME/ainad/usr/." "/usr/";
 
 echo "[Samba] Setting up a default netbios name.";
 sleep 1;
