@@ -399,6 +399,8 @@ gsettings set org.nemo.preferences show-show-thumbnails-toolbar false;
 gsettings set org.nemo.preferences thumbnail-limit 15728640;
 gsettings set org.nemo.preferences show-compact-view-icon-toolbar false;
 gsettings set org.nemo.preferences show-edit-icon-toolbar true;
+gsettings set org.nemo.preferences.menu-config selection-menu-open-as-root false;
+gsettings set org.nemo.preferences.menu-config background-menu-open-as-root false;
 
 Done;
 
