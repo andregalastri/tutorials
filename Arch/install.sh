@@ -55,7 +55,6 @@ git clone https://aur.archlinux.org/yay.git;
 cd yay;
 (echo "y") | LANG=C makepkg -s --clean;
 (echo "y") | LANG=C makepkg -i;
-(echo "y") | LANG=C sudo pacman -R go;
 (echo "y") | LANG=C yay -Syyu;
 
 yay --save --answerdiff None --answerclean None --removemake;
