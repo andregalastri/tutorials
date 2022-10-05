@@ -10,6 +10,12 @@ function Done() {
     sleep 1;
 };
 
+funtion RunYay() {
+    yay -Syy;
+    (echo "y") | LANG=C yay --noprovides --answerdiff None --answerclean All --mflags --noconfirm --needed -S ${packages[*]};
+    fc-cache -f -v;
+    packages=("");
+}
 echo "########################################";
 echo "#            Ainad Install             #";
 echo "########################################";
@@ -302,6 +308,7 @@ packages+=("qt5-graphicaleffects qt5-quickcontrols2");
 # SDDM allows to create better visuals for login, that is why I'm using it. It also have wondeful themes made by the community.
 packages+=("sddm");
 
+RunYay;
 # -----------------------------------------------
 # APPLICATIONS FROM AUR
 # -----------------------------------------------
@@ -342,8 +349,7 @@ packages+=("networkmanager-dmenu-git");
 # More fonts from AUR.
 packages+=("ttf-roboto-mono ttf-roboto ttf-century-gothic nerd-fonts-noto");
 
-(echo "y") | LANG=C yay --noprovides --answerdiff None --answerclean All --mflags --noconfirm --needed -S ${packages[*]};
-fc-cache -f -v;
+RunYay;
 
 Done;
 
