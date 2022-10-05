@@ -10,12 +10,6 @@ function Done() {
     sleep 1;
 };
 
-function RunYay() {
-    LANG=C yay --noprovides --answerdiff None --answerclean All --mflags --noconfirm --needed -S ${packages[*]};
-    fc-cache -f -v;
-    packages=("");
-}
-
 echo "########################################";
 echo "#            Ainad Install             #";
 echo "########################################";
@@ -347,9 +341,8 @@ packages+=("networkmanager-dmenu-git");
 # More fonts from AUR.
 packages+=("ttf-roboto-mono ttf-roboto ttf-century-gothic nerd-fonts-noto");
 
-echo ${packages[*]};
-read;
-RunYay;
+(echo "y") | LANG=C yay --noprovides --answerdiff None --answerclean All --mflags --noconfirm --needed -S ${packages[*]};
+fc-cache -f -v;
 
 Done;
 
