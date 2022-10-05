@@ -273,6 +273,8 @@ packages+=("picom");
 # Installs some fonts.
 packages+=("adobe-source-code-pro-fonts noto-fonts-cjk noto-fonts-emoji");
 
+(echo "y") | LANG=C sudo pacman -S --needed ${packages[*]};
+
 Done;
 
 #---------------
