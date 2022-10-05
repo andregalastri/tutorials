@@ -19,6 +19,7 @@ echo "########################################";
 Command "ENABLING PARALLEL DOWNLOADS
 All it does is uncomment the ParallelDownloads parameter from pacman.conf.";
 
+echo -en "Please, inform your password to continue";
 sudo sed -i "s/#ParallelDownloads = /ParallelDownloads = /" "/etc/pacman.conf";
 
 Done;
