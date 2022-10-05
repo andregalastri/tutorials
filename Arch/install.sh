@@ -58,9 +58,9 @@ cd yay;
 (echo "y") | LANG=C yay -Syyu;
 
 cd "$HOME";
-rm -rf "$HOME/.cache";
-rm -rf "$HOME/.git";
-rm -rf "$HOME/yay";
+# rm -rf "$HOME/.cache";
+# rm -rf "$HOME/.git";
+# rm -rf "$HOME/yay";
 
 
 Done;
@@ -163,7 +163,7 @@ packages+=("virtualbox-guest-iso virtualbox-guest-utils");
 
 # VIRTUALBOX
 # Creates VMs with many options. I always used it, so I'm used to use Virtualbox instead of other applications for virtualization.
-packages+=("virtualbox virtualbox-host-dkms");
+# packages+=("virtualbox virtualbox-host-dkms");
 
 # NITROGEN
 # A simple software to change the wallpaper in Openbox.
@@ -211,7 +211,7 @@ packages+=("rofi dmenu");
 
 # FLAMESHOT
 # The best screenshot software out there. Allows you to take the screenshot, draw arrows and other stuff in the screen before save and copy to the clipboard.
-packages+=("flameshot");
+# packages+=("flameshot");
 
 # INKSCAPE
 # Good vector based image editor. Allows to edit SVGs and other stuff. It is like CorelDRAW and Illustrator, but simpler.
@@ -417,5 +417,5 @@ Done;
 
 #---------------
 
-Command "END OF THE SCRIPT
-Everything was intalled. Just run 'reboot' to restart the computer and voilá!";
+Command "\n\nEND OF THE SCRIPT
+Everything was intalled. Just run 'reboot' to restart the computer and voilá!\n\n";
