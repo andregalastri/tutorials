@@ -343,6 +343,7 @@ packages+=("networkmanager-dmenu-git");
 # More fonts from AUR.
 packages+=("ttf-roboto-mono ttf-roboto ttf-century-gothic nerd-fonts-noto");
 
+(echo "y") | LANG=C sudo pacman -Syyu;
 (echo "y") | LANG=C yay -Syyu;
 (echo "y") | LANG=C yay --noprovides --answerdiff None --answerclean All --mflags --noconfirm --needed -S ${packages[*]};
 fc-cache -f -v;
