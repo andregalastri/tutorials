@@ -57,8 +57,6 @@ cd yay;
 (echo "y") | LANG=C makepkg -i;
 (echo "y") | LANG=C yay -Syyu;
 
-yay --save --answerdiff None --answerclean None --removemake;
-
 cd "$HOME";
 rm -rf "$HOME/.cache";
 rm -rf "$HOME/.git";
@@ -344,7 +342,7 @@ packages+=("ttf-roboto-mono ttf-roboto ttf-century-gothic nerd-fonts-noto");
 
 (echo "y") | LANG=C sudo pacman -Syyu;
 (echo "y") | LANG=C yay -Syyu;
-(echo "y") | LANG=C yay --noprovides --answerdiff None --answerclean All --mflags --noconfirm --needed -S ${packages[*]};
+(echo "y") | LANG=C yay --noprovides --answerdiff None --answerclean All --mflags --noconfirm --removemake --needed -S ${packages[*]};
 fc-cache -f -v;
 
 Done;
