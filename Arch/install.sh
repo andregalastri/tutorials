@@ -282,20 +282,17 @@ Done;
 Command "INSTALLING YAY
 Yay is a helper to install applications and packages that are in the AUR (the user repository of Arch Linux). You can use it like pacman, but the range of the applications and packages available are bigger. Requires some sense about intalling obscure stuff, but seems to be safe in general.";
 
-echo 'LANG=C sudo pacman -S --needed base-devel'
-read
-LANG=C sudo pacman -S --needed base-devel;
+(echo "1"; echo "y") | LANG=C sudo pacman -S --needed base-devel;
 git clone https://aur.archlinux.org/yay.git;
 cd yay;
-echo 'LANG=C makepkg -s --clean;'
-read
-LANG=C makepkg -s --clean;
+(echo "y") | LANG=C makepkg -s --clean;
+
 echo 'LANG=C makepkg -i;'
 read
-LANG=C makepkg -i;
-echo 'LANG=C yay -Syyu;'
-read
-LANG=C yay -Syyu;
+(echo "y") | LANG=C makepkg -i;
+
+yay -Syy;
+
 # (echo "y") | LANG=C sudo pacman -R go;
 # yay --save --answerdiff None --answerclean None --removemake;
 cd "$HOME";
@@ -352,8 +349,10 @@ packages+=("networkmanager-dmenu-git");
 packages+=("ttf-roboto-mono ttf-roboto ttf-century-gothic nerd-fonts-noto");
 
 i=0;
-for package in ${packages[*]}; do
-    LANG=C yay --answerdiff None --answerclean All --removemake "$package";
+for packageName in ${packages[*]}; do
+    echo "LANG=C yay --answerdiff None --answerclean All --removemake -S $packageName;";
+    read;
+    LANG=C yay --answerdiff None --answerclean All --removemake -S $packageName;
     (( i++ ));
 done;
 fc-cache -f -v;
