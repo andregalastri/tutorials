@@ -30,7 +30,7 @@ Initiates, populates and installs keying to resolve issues with PGP key validati
 
 sudo pacman-key --init;
 sudo pacman-key --populate;
-LANG=C sudo pacman -Sy --needed archlinux-keyring;
+(echo "y") | LANG=C sudo pacman -Sy --needed archlinux-keyring;
 
 Done;
 
@@ -39,7 +39,7 @@ Done;
 Command "UPDATING THE WHOLE SYSTEM
 Updates all installed packages.";
 
-LANG=C sudo pacman -Syyu;
+(echo "y") | LANG=C sudo pacman -Syyu;
 
 Done;
 
@@ -273,7 +273,7 @@ packages+=("picom");
 # Installs some fonts.
 packages+=("adobe-source-code-pro-fonts noto-fonts-cjk noto-fonts-emoji");
 
-LANG=C sudo pacman -S --needed ${packages[*]};
+(echo "y";) | LANG=C sudo pacman -S --needed ${packages[*]};
 
 Done;
 
@@ -282,11 +282,19 @@ Done;
 Command "INSTALLING YAY
 Yay is a helper to install applications and packages that are in the AUR (the user repository of Arch Linux). You can use it like pacman, but the range of the applications and packages available are bigger. Requires some sense about intalling obscure stuff, but seems to be safe in general.";
 
+echo 'LANG=C sudo pacman -S --needed base-devel'
+read
 LANG=C sudo pacman -S --needed base-devel;
 git clone https://aur.archlinux.org/yay.git;
 cd yay;
+echo 'LANG=C makepkg -s --clean;'
+read
 LANG=C makepkg -s --clean;
+echo 'LANG=C makepkg -i;'
+read
 LANG=C makepkg -i;
+echo 'LANG=C yay -Syyu;'
+read
 LANG=C yay -Syyu;
 # (echo "y") | LANG=C sudo pacman -R go;
 # yay --save --answerdiff None --answerclean None --removemake;
