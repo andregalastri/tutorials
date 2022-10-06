@@ -1,23 +1,95 @@
 #!/bin/sh
 
-function Command() {
-    echo -en ">> $1\n\n";
-    sleep 1;
+function ShowTitleScreen() {
+    WriteText "\n\n";
+    WriteText "                  █████  ██ ███    ██  █████  ██████\n";
+    WriteText "                 ██   ██ ██ ████   ██ ██   ██ ██   ██\n";
+    WriteText "                 ███████ ██ ██ ██  ██ ███████ ██   ██\n";
+    WriteText "                 ██   ██ ██ ██  ██ ██ ██   ██ ██   ██\n";
+    WriteText "                 ██   ██ ██ ██   ████ ██   ██ ██████ \n";
+    WriteText "---------------------------------------------------------------------\n";
+    WriteText "                     AINAD  IS  NOT  A  DISTRO\n";
+    WriteText "\n\n\n\n";
+}
+
+function WriteText() {
+    escapeChar="";
+    local text="$1";
+
+    for (( i=0; i<${#text}; i++ )); do
+        if [[ "${text:$i:1}" = '\' ]]; then
+            escapeChar='\';
+            continue;
+        fi;
+
+        local char="$escapeChar${text:$i:1}";
+
+        echo -en "$char";
+
+        if [[ "$escapeChar" = '\' ]]; then
+            escapeChar='';
+        fi
+        (( currentCharQty++ ));
+        sleep $textSpeed;
+    done;
+};
+
+function WritePhrase() {
+    escapeChar="";
+    local text="$1";
+    local numCharPerLine=68;
+    local currentCharQty=0;
+    local phraseComposing="";
+    local phrase="";
+    readarray -d " " -t wordsArray <<<"$text";
+
+    for word in ${wordsArray[*]}; do
+        composingTest="$phraseComposing$word ";
+        if (( ${#composingTest} <= numCharPerLine )); then
+            phraseComposing="$composingTest";
+        else
+            phrase+="$phraseComposing\n";
+            phraseComposing="$word ";
+        fi;
+    done;
+    
+    WriteText "$phrase$phraseComposing\n";
+
+    if [[ "$2" = "" ]]; then
+        delay=1;
+    else
+        delay=$2;
+    fi;
+    sleep $delay;
 };
 
 function Done() {
-    echo -en "\n\n>> DONE!\n";
-    sleep 1;
+    WritePhrase "\n\n>> DONE!\n\nPlease, wait...\n\n\n" 3;
 };
-
-echo "########################################";
-echo "#             Ainad Script             #";
-echo "########################################";
 
 #---------------
 
-Command "ENABLING PARALLEL DOWNLOADS
-All it does is uncomment the ParallelDownloads parameter from pacman.conf.";
+clear;
+textSpeed=0.005;
+ShowTitleScreen;
+textSpeed=0.02;
+
+WritePhrase "Welcome to the AINAD install script.\n\n" 2;
+WritePhrase "To proceed with the installation, you need to inform your ROOT/SUDO password.\n\n" 0;
+sudo echo "";
+
+if [[ "$?" != "0" ]]; then
+    WritePhrase "\n\nWithout SUDO/ROOT permissions, AINAD cannot start the installation.\n\n";
+    exit;
+fi
+
+WritePhrase "Thanks. Now lets start the things up.\n\n" 1;
+WritePhrase "Please, wait...\n\n" 4;
+
+#---------------
+
+WritePhrase "ENABLING PARALLEL DOWNLOADS";
+WritePhrase "AINAD is setting our package manager Pacman to allow multiple package downloads. It makes the installation a bit faster. \n\n";
 
 sudo sed -i "s/#ParallelDownloads = /ParallelDownloads = /" "/etc/pacman.conf";
 
@@ -25,8 +97,8 @@ Done;
 
 #---------------
 
-Command "PREPARING PACMAN-KEY
-Initiates, populates and installs keying to resolve issues with PGP key validations while using Pacman.";
+WritePhrase "PREPARING PACMAN-KEY";
+WritePhrase "Initiates, populates and installs keying stuff to prevent problems with PGP key validations. \n\n";
 
 sudo pacman-key --init;
 sudo pacman-key --populate;
@@ -36,8 +108,8 @@ Done;
 
 #---------------
 
-Command "UPDATING THE WHOLE SYSTEM
-Updates all installed packages.";
+WritePhrase "UPDATING THE SYSTEM";
+WritePhrase "Before proceeding with new installations, AINAD will update the system. \n\n";
 
 (echo "y") | LANG=C sudo pacman -Syyu;
 
@@ -45,8 +117,10 @@ Done;
 
 #---------------
 
-Command "INSTALLING APPLICATIONS
-Installs everything that is needed to make this computer really useful.";
+WritePhrase "INSTALLING NEW APPLICATIONS";
+WritePhrase "Now, lets download and install everything that is needed to create a graphical environment. \n\n";
+WritePhrase "It may take some time, depending on your internet speed. Please, be patient. \n\n" 4;
+
 
 # SDDM
 # SDDM allows to create better visuals for login, that is why I'm using it. It also have wondeful themes made by the community. The 'noto-fonts', 'qt5-graphicaleffects' and 'qt5-quickcontrols2' are dependencies for Sugar Dark SDDM Login Theme.
@@ -116,11 +190,11 @@ packages+=("gvfs gvfs-nfs gvfs-mtp gvfs-gphoto2 gvfs-google gvfs-goa gvfs-afc nt
 
 # GNOME DISKS
 # I didn't find any other application that do the things Gnome Disks does. Unfortunately, its visuals are inconsistent with the rest of the other applications, but, oh boy!
-packages+=("gnome-disk-utility");
+# packages+=("gnome-disk-utility");
 
 # GPARTED
 # Good application to manage partitions. Gnome Disks doesn't have many options regarding this. I think that Gnome Disks is better for benchmark, change the mount and dismount configuration of drives and other stuff, but what regards partition manage and formatting, I think that Gparted is better.
-packages+=("gparted");
+# packages+=("gparted");
 
 # SAMBA
 # Allows sharing directories to the network and also access to shares from Windows systems.
@@ -145,14 +219,14 @@ packages+=("virtualbox-guest-iso virtualbox-guest-utils");
 
 # VIRTUALBOX
 # Creates VMs with many options. I always used it, so I'm used to use Virtualbox instead of other applications for virtualization.
-packages+=("virtualbox virtualbox-host-dkms");
+# packages+=("virtualbox virtualbox-host-dkms");
 
 # NITROGEN
 # A simple software to change the wallpaper in Openbox.
 packages+=("nitrogen");
 
 # GIT
-# It is good to have this out of the box.
+# Need it to install Yay.
 packages+=("git");
 
 # PACMAN SCRIPTS
@@ -165,7 +239,7 @@ packages+=("pacman-contrib");
 
 # GTK2FONTSEL
 # Software to browse installed fonts. It is pretty simple and lightweight. I also tried gnome-font-viewer, but it uses libadwaita which breaks the design consistency.
-#packages+=("gtk2fontsel");
+packages+=("gtk2fontsel");
 
 # DUNST
 # A simple and customizable notification daemon.
@@ -189,7 +263,7 @@ packages+=("rofi dmenu");
 
 # VLC
 # The best video player, there is no other like this.
-packages+=("vlc");
+# packages+=("vlc");
 
 # FILEZILLA
 # A FTP client to connect to FTP servers.
@@ -197,7 +271,7 @@ packages+=("vlc");
 
 # FLAMESHOT
 # The best screenshot software out there. Allows you to take the screenshot, draw arrows and other stuff in the screen before save and copy to the clipboard.
-#packages+=("flameshot");
+packages+=("flameshot");
 
 # INKSCAPE
 # Good vector based image editor. Allows to edit SVGs and other stuff. It is like CorelDRAW and Illustrator, but simpler.
@@ -205,7 +279,7 @@ packages+=("vlc");
 
 # GIMP
 # Image manipulator, like Photoshop.
-packages+=("gimp");
+# packages+=("gimp");
 
 # KRITA
 # Good software for drawing. It can act like an image manipulator, but has less features than Gimp regarding this aspect.
@@ -249,10 +323,6 @@ packages+=("pavucontrol");
 # GUI application to change icon, widget, mouse cursor and window decoration themes. It has a GTK3 version, but it has bugs with the obconf plugin.
 packages+=("lxappearance lxappearance-obconf");
 
-# ARC THEME
-# Installs the Arc Theme, updated for GTK 4.
-# packages+=("arc-gtk-theme");
-
 # KVANTUM
 # Allows to apply some themes to QT applications globally AND per-application, which helps to workaround inconsistent apps, like OBS Studio.
 packages+=("kvantum");
@@ -273,139 +343,125 @@ packages+=("picom");
 # Installs some fonts.
 packages+=("adobe-source-code-pro-fonts noto-fonts-cjk noto-fonts-emoji");
 
-(echo "y";) | LANG=C sudo pacman -S --needed ${packages[*]};
+(echo "y") | LANG=C sudo pacman -S --needed ${packages[*]};
 
 Done;
 
 #---------------
 
-Command "INSTALLING YAY
-Yay is a helper to install applications and packages that are in the AUR (the user repository of Arch Linux). You can use it like pacman, but the range of the applications and packages available are bigger. Requires some sense about intalling obscure stuff, but seems to be safe in general.";
+WritePhrase "INSTALLING YAY";
+WritePhrase "Yay is a helper to install applications and packages that are in the AUR (the user repository of Arch Linux).";
+WritePhrase "It is like Pacman, but the range of the applications and packages available is bigger. \n\n" 4;
 
 (echo "1"; echo "y") | LANG=C sudo pacman -S --needed base-devel;
 git clone https://aur.archlinux.org/yay.git;
 cd yay;
 (echo "y") | LANG=C makepkg -s --clean;
-
-echo 'LANG=C makepkg -i;'
-read
 (echo "y") | LANG=C makepkg -i;
 
 yay -Syy;
 
-# (echo "y") | LANG=C sudo pacman -R go;
-# yay --save --answerdiff None --answerclean None --removemake;
+(echo "y") | LANG=C sudo pacman -R go;
+
 cd "$HOME";
-# rm -rf "$HOME/.cache";
-# rm -rf "$HOME/.git";
-# rm -rf "$HOME/yay";
+rm -rf "$HOME/.cache";
+rm -rf "$HOME/.git";
+rm -rf "$HOME/yay";
 
 Done;
 
 #---------------
 
-Command "INSTALLING ADDITIONAL APPLICATIONS
-Installs more applications from AUR.";
+WritePhrase "INSTALLING ADDITIONAL APPLICATIONS";
+WritePhrase "Installs more applications from AUR. \n\n";
 
 # RAR
 # Allows you to extract and compress RAR files. It automatically integrates with Xarchive.
-# LANG=C yay --answerdiff None --answerclean All --removemake -S rar;
-packages=("rar");
+LANG=C yay --answerdiff None --answerclean All --removemake -S rar;
 
 # GOOGLE CHROME
 # Say what you want, but I like Google Chrome because it is compatible with everything and has the best Adblocks around the internet. As a user, I like that some things just work. I also tried some minimal browsers. The only one I really enjoyed was Qutebrowser, but it lacks a functional Adblock.
-# LANG=C yay --answerdiff None --answerclean All --removemake -S google-chrome;
-packages+=("google-chrome");
+(echo "y") | LANG=C yay --answerdiff None --answerclean All --removemake -S google-chrome;
 
 # VISUAL STUDIO CODE
 # Code editor that I use for programming.
-# packages+=("visual-studio-code-bin");
+# LANG=C yay --answerdiff None --answerclean All --removemake -S visual-studio-code-bin;
 
 # TELEGRAM
 # Desktop version of Telegram messenger
-# packages+=("telegram-desktop-bin");
+# LANG=C yay --answerdiff None --answerclean All --removemake -S telegram-desktop-bin;
 
 # WARSAW
 # Needed if you access Internet Banking websites
-# packages+=("warsaw-bin");
+# LANG=C yay --answerdiff None --answerclean All --removemake -S warsaw-bin;
 
 # FREE FILE SYNC
 # Application that I use to syncronize my files with my external hard drive. Good to create backups.
-# packages+=("freefilesync-bin");
+# LANG=C yay --answerdiff None --answerclean All --removemake -S freefilesync-bin;
 
 # PARCELLITE CLIPBOARD MANAGER
 # Without a clipboard manager, you copy/paste isn't persistent.
-# LANG=C yay --answerdiff None --answerclean All --removemake -S ;
-packages+=("parcellite");
+(echo "y") | LANG=C yay --answerdiff None --answerclean All --removemake -S parcellite;
 
 # DMENU FOR NETWORK MANAGER
 # Allows launch Network Manager with Dmenu
-# LANG=C yay --answerdiff None --answerclean All --removemake -S networkmanager-dmenu-git;
-packages+=("networkmanager-dmenu-git");
+LANG=C yay --answerdiff None --answerclean All --removemake -S networkmanager-dmenu-git;
 
 # FONTS
 # More fonts from AUR.
-# LANG=C yay --answerdiff None --answerclean All --removemake -S ttf-roboto-mono ttf-roboto ttf-century-gothic nerd-fonts-noto;
-packages+=("ttf-roboto-mono ttf-roboto ttf-century-gothic nerd-fonts-noto");
-
-i=0;
-for packageName in ${packages[*]}; do
-    echo "LANG=C yay --answerdiff None --answerclean All --removemake -S $packageName;";
-    read;
-    LANG=C yay --answerdiff None --answerclean All --removemake -S $packageName;
-    (( i++ ));
-done;
+(echo "y") | LANG=C yay --answerdiff None --answerclean All --removemake -S ttf-roboto-mono ttf-roboto ttf-century-gothic nerd-fonts-noto;
 fc-cache -f -v;
 
 Done;
 
 #---------------
 
-Command "SETTING UP SOME DEFAULT CONFIGURATIONS
-Just some copy/paste for default config of the Openbox and Picom.";
+WritePhrase "SETTING UP DEFAULT CONFIGURATIONS";
+WritePhrase "Default configurations of AINAD. \n\n" 2;
 
 #---------------
 
-echo "[Config] Downloading configuration files.";
-sleep 1;
+WritePhrase "[Config] Downloading configuration files.";
+
 mkdir "$HOME/ainad";
 curl "https://raw.githubusercontent.com/andregalastri/tutorials/main/Arch/ainad.tar.gz" -o "$HOME/ainad.tar.gz";
 tar -xzf "ainad.tar.gz" -C "$HOME/ainad";
 
 #---------------
 
-echo "[Config] Copying files to their respective folders.";
-sleep 1;
+WritePhrase "[Config] Copying configuration files into their respective folders.";
+
 cp -a "$HOME/ainad/home/user/." "$HOME/";
 sudo mkdir -p "/usr/share/ainad/home-defaults";
 sudo cp -a "$HOME/ainad/home/user/." "/usr/share/ainad/home-defaults/";
+sudo touch "/usr/share/ainad/home-defaults/Note: Files here are hidden";
 sudo cp -a "$HOME/ainad/etc/." "/etc/";
 sudo cp -a "$HOME/ainad/usr/." "/usr/";
 
 #---------------
 
-echo "[Config] Configuring NetworkManager Dmenu.";
-sleep 1;
+WritePhrase "[Config] Configuring NetworkManager Dmenu.";
+
 sudo "$HOME/ainad/networkmanager_dmenu_languages.sh";
 sudo ln -s "/usr/share/ainad/rofi/widgets/networkmanager-dmenu" "$HOME/.config/networkmanager-dmenu";
 
 #---------------
 
-echo "[Samba] Setting up a default netbios name.";
-sleep 1;
+WritePhrase "[Samba] Setting up a default netbios name in Samba.";
+
 sudo sed -i "s/netbios name = <user-name>/netbios name = $HOSTNAME/" "/etc/samba/smb.conf";
 
 #---------------
 
-echo "[Dconf] Setting XFCE Terminal as default terminal emulator for Nemo.";
-sleep 1;
+WritePhrase "[Dconf] Setting XFCE Terminal as default terminal emulator for Nemo.";
+
 gsettings set org.cinnamon.desktop.default-applications.terminal exec xfce4-terminal;
 sudo dbus-launch gsettings set org.cinnamon.desktop.default-applications.terminal exec xfce4-terminal;
 
 #---------------
 
-echo "[Dconf] Settings default Nemo preferences.";
-sleep 1;
+WritePhrase "[Dconf] Settings default Nemo preferences.";
+
 gsettings set org.nemo.preferences enable-delete false;
 gsettings set org.nemo.preferences confirm-move-to-trash true;
 gsettings set org.nemo.preferences default-folder-viewer list-view;
@@ -422,20 +478,50 @@ gsettings set org.nemo.preferences.menu-config background-menu-open-as-root fals
 
 #---------------
 
-echo "[Dconf] Settings default Mousepad preferences.";
-sleep 1;
+WritePhrase "[Dconf] Settings default Mousepad preferences.";
+
 gsettings set org.xfce.mousepad.preferences.view color-scheme 'classic';
 gsettings set org.xfce.mousepad.preferences.view font-name 'Roboto Mono 10';
 gsettings set org.xfce.mousepad.preferences.view insert-spaces true;
 gsettings set org.xfce.mousepad.preferences.view show-line-numbers true;
 gsettings set org.xfce.mousepad.preferences.view tab-width 4;
 gsettings set org.xfce.mousepad.preferences.view use-default-monospace-font false;
+
+#---------------
+
+WritePhrase "[Icons] Hiding unnecessary icons from app menu.";
+
+echo "NoDisplay=true" | sudo tee -a "/usr/share/applications/avahi-discover.desktop";
+echo "NoDisplay=true" | sudo tee -a "/usr/share/applications/bssh.desktop";
+echo "NoDisplay=true" | sudo tee -a "/usr/share/applications/bvnc.desktop";
+echo "NoDisplay=true" | sudo tee -a "/usr/share/applications/fish.desktop";
+echo "NoDisplay=true" | sudo tee -a "/usr/share/applications/kvantummanager.desktop";
+echo "NoDisplay=true" | sudo tee -a "/usr/share/applications/networkmanager_dmenu.desktop";
+echo "NoDisplay=true" | sudo tee -a "/usr/share/applications/nitrogen.desktop";
+echo "NoDisplay=true" | sudo tee -a "/usr/share/applications/org.xfce.mousepad-settings.desktop";
+echo "NoDisplay=true" | sudo tee -a "/usr/share/applications/picom.desktop";
+echo "NoDisplay=true" | sudo tee -a "/usr/share/applications/qt5ct.desktop";
+echo "NoDisplay=true" | sudo tee -a "/usr/share/applications/qv4l2.desktop";
+echo "NoDisplay=true" | sudo tee -a "/usr/share/applications/qvidcap.desktop";
+echo "NoDisplay=true" | sudo tee -a "/usr/share/applications/ranger.desktop";
+echo "NoDisplay=true" | sudo tee -a "/usr/share/applications/rofi-theme-selector.desktop";
+echo "NoDisplay=true" | sudo tee -a "/usr/share/applications/rofi.desktop";
+echo "NoDisplay=true" | sudo tee -a "/usr/share/applications/xfce4-terminal-settings.desktop";
+
+#---------------
+
+WritePhrase "[Icons] Configuring icons from app menu.";
+
+echo -e "Keywords=Calculator;
+Keywords[pt_BR]=Calculadora;" | sudo tee -a "/usr/share/applications/galculator.desktop";
+#---------------
+
 Done;
 
 #---------------
 
-Command "ENABLING SERVICES
-Enabling services to run at startup.";
+WritePhrase "ENABLING SERVICES";
+WritePhrase "Enabling services that needs to run at startup. \n\n" 2;
 
 sudo systemctl enable sddm smb nmb avahi-daemon NetworkManager systemd-homed;
 
@@ -443,5 +529,5 @@ Done;
 
 #---------------
 
-Command "END OF THE SCRIPT
-Everything was intalled. Just run 'reboot' to restart the computer and voilá!\n\n";
+WritePhrase "END OF THE SCRIPT";
+WritePhrase "Everything was intalled. Just run the 'reboot' command to restart the computer and we are done! \n\n";
