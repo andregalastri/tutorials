@@ -30,7 +30,7 @@ Initiates, populates and installs keying to resolve issues with PGP key validati
 
 sudo pacman-key --init;
 sudo pacman-key --populate;
-(echo "y") | LANG=C sudo pacman -Sy --needed archlinux-keyring;
+LANG=C sudo pacman -Sy --needed archlinux-keyring;
 
 Done;
 
@@ -39,7 +39,7 @@ Done;
 Command "UPDATING THE WHOLE SYSTEM
 Updates all installed packages.";
 
-(echo "y") | LANG=C sudo pacman -Syyu;
+LANG=C sudo pacman -Syyu;
 
 Done;
 
@@ -273,7 +273,7 @@ packages+=("picom");
 # Installs some fonts.
 packages+=("adobe-source-code-pro-fonts noto-fonts-cjk noto-fonts-emoji");
 
-(echo "y") | LANG=C sudo pacman -S --needed ${packages[*]};
+LANG=C sudo pacman -S --needed ${packages[*]};
 
 Done;
 
@@ -282,12 +282,12 @@ Done;
 Command "INSTALLING YAY
 Yay is a helper to install applications and packages that are in the AUR (the user repository of Arch Linux). You can use it like pacman, but the range of the applications and packages available are bigger. Requires some sense about intalling obscure stuff, but seems to be safe in general.";
 
-(echo "y") | LANG=C sudo pacman -S --needed base-devel;
+LANG=C sudo pacman -S --needed base-devel;
 git clone https://aur.archlinux.org/yay.git;
 cd yay;
-(echo "y") | LANG=C makepkg -s --clean;
-(echo "y") | LANG=C makepkg -i;
-(echo "y") | LANG=C yay -Syyu;
+LANG=C makepkg -s --clean;
+LANG=C makepkg -i;
+LANG=C yay -Syyu;
 # (echo "y") | LANG=C sudo pacman -R go;
 # yay --save --answerdiff None --answerclean None --removemake;
 cd "$HOME";
@@ -304,11 +304,13 @@ Installs more applications from AUR.";
 
 # RAR
 # Allows you to extract and compress RAR files. It automatically integrates with Xarchive.
-LANG=C yay --answerdiff None --answerclean All --removemake -S rar;
+# LANG=C yay --answerdiff None --answerclean All --removemake -S rar;
+packages=("rar");
 
 # GOOGLE CHROME
 # Say what you want, but I like Google Chrome because it is compatible with everything and has the best Adblocks around the internet. As a user, I like that some things just work. I also tried some minimal browsers. The only one I really enjoyed was Qutebrowser, but it lacks a functional Adblock.
-LANG=C yay --answerdiff None --answerclean All --removemake -S google-chrome;
+# LANG=C yay --answerdiff None --answerclean All --removemake -S google-chrome;
+packages+=("google-chrome");
 
 # VISUAL STUDIO CODE
 # Code editor that I use for programming.
@@ -328,16 +330,24 @@ LANG=C yay --answerdiff None --answerclean All --removemake -S google-chrome;
 
 # PARCELLITE CLIPBOARD MANAGER
 # Without a clipboard manager, you copy/paste isn't persistent.
- LANG=C yay --answerdiff None --answerclean All --removemake -S parcellite;
+# LANG=C yay --answerdiff None --answerclean All --removemake -S ;
+packages+=("parcellite");
 
 # DMENU FOR NETWORK MANAGER
 # Allows launch Network Manager with Dmenu
-LANG=C yay --answerdiff None --answerclean All --removemake -S networkmanager-dmenu-git;
+# LANG=C yay --answerdiff None --answerclean All --removemake -S networkmanager-dmenu-git;
+packages+=("networkmanager-dmenu-git");
 
 # FONTS
 # More fonts from AUR.
-LANG=C yay --answerdiff None --answerclean All --removemake -S ttf-roboto-mono ttf-roboto ttf-century-gothic nerd-fonts-noto;
+# LANG=C yay --answerdiff None --answerclean All --removemake -S ttf-roboto-mono ttf-roboto ttf-century-gothic nerd-fonts-noto;
+packages+=("ttf-roboto-mono ttf-roboto ttf-century-gothic nerd-fonts-noto");
 
+i=0;
+for package in ${packages[*]}; do
+    LANG=C yay --answerdiff None --answerclean All --removemake "$package";
+    (( i++ ));
+done;
 fc-cache -f -v;
 
 Done;
