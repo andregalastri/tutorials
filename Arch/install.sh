@@ -304,11 +304,11 @@ Installs more applications from AUR.";
 
 # RAR
 # Allows you to extract and compress RAR files. It automatically integrates with Xarchive.
-# packages+=("rar");
+packages+=("rar");
 
 # GOOGLE CHROME
 # Say what you want, but I like Google Chrome because it is compatible with everything and has the best Adblocks around the internet. As a user, I like that some things just work. I also tried some minimal browsers. The only one I really enjoyed was Qutebrowser, but it lacks a functional Adblock.
-# packages+=("google-chrome");
+packages+=("google-chrome");
 
 # VISUAL STUDIO CODE
 # Code editor that I use for programming.
@@ -338,7 +338,7 @@ packages+=("networkmanager-dmenu-git");
 # More fonts from AUR.
 packages+=("ttf-roboto-mono ttf-roboto ttf-century-gothic nerd-fonts-noto");
 
-(echo "y") | LANG=C yay --answerdiff None --answerclean All --noconfirm --removemake --needed -S ${packages[*]};
+(echo "y") | LANG=C yay --answerdiff None --answerclean All --removemake --needed -S ${packages[*]};
 fc-cache -f -v;
 
 Done;
