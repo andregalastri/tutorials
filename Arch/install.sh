@@ -304,11 +304,11 @@ Installs more applications from AUR.";
 
 # RAR
 # Allows you to extract and compress RAR files. It automatically integrates with Xarchive.
-packages+=("rar");
+LANG=C yay --answerdiff None --answerclean All --removemake -S rar;
 
 # GOOGLE CHROME
 # Say what you want, but I like Google Chrome because it is compatible with everything and has the best Adblocks around the internet. As a user, I like that some things just work. I also tried some minimal browsers. The only one I really enjoyed was Qutebrowser, but it lacks a functional Adblock.
-packages+=("google-chrome");
+LANG=C yay --answerdiff None --answerclean All --removemake -S google-chrome;
 
 # VISUAL STUDIO CODE
 # Code editor that I use for programming.
@@ -328,17 +328,16 @@ packages+=("google-chrome");
 
 # PARCELLITE CLIPBOARD MANAGER
 # Without a clipboard manager, you copy/paste isn't persistent.
-packages+=("parcellite");
+ LANG=C yay --answerdiff None --answerclean All --removemake -S parcellite;
 
 # DMENU FOR NETWORK MANAGER
 # Allows launch Network Manager with Dmenu
-packages+=("networkmanager-dmenu-git");
+LANG=C yay --answerdiff None --answerclean All --removemake -S networkmanager-dmenu-git;
 
 # FONTS
 # More fonts from AUR.
-packages+=("ttf-roboto-mono ttf-roboto ttf-century-gothic nerd-fonts-noto");
+LANG=C yay --answerdiff None --answerclean All --removemake -S ttf-roboto-mono ttf-roboto ttf-century-gothic nerd-fonts-noto;
 
-(echo "y") | LANG=C yay --answerdiff None --answerclean All --removemake --needed -S ${packages[*]};
 fc-cache -f -v;
 
 Done;
