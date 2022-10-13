@@ -1,33 +1,78 @@
-# UNOFFICIAL TROUBLESHOOTING
-<br>
-
-## BLACK SCREEN WITH ONLY THE CURSOR SHOWING UP
-You probably uninstalled **zsh** and you need to reinstall it.
-
-*  Turn on your computer. At the GRUB screen, choose *Advanced options for Archcraft*
-   ![image](https://user-images.githubusercontent.com/49572917/185158203-9d7ce680-8e81-4687-b659-248a609c4907.png)
-   <br>
-*  Then, select the option that shows the text *recovery mode*
-*  Inform your root password
-*  Run the command `dhclient` to connect to the internet
-*  Reinstall zsh
-   ```bash
-   sudo pacman -S zsh
-   ```
-*  Reboot the computer using `reboot` command
-*  It should work normally now.
-
+# COMMANDS
+Here are some commands that differs from APT and Ubuntu-based distros.
 
 <br>
 
-## INVALID OR CORRUPTED PACKAGE (PGP SIGNATURE)
+## UPDATE REPOSITORIES AND UPGRADE
 
-Run the following commands in terminal
 ```bash
-sudo pacman-key --populate archlinux
-sudo pacman -Sy archlinux-keyring
+sudo pacman -Syyu
 ```
 
+<br>
+
+
+## CLEAR PACMAN CACHE
+
+```bash
+sudo pacman -Scc
+```
+
+<br>
+
+## CHECK THE MIME TYPE
+
+Run the following command in terminal
+```bash
+xdg-mime query filetype <file-path>
+```
+
+<br>
+
+## UPDATE GRUB
+
+Run the following command in terminal
+```bash
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+<br>
+
+## RUN APPLICATION AS ROOT (OR OTHER USER) USING POLKIT DIALOG TO ASK FOR PASSWORD
+
+Run the following command in terminal
+```bash
+pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY <application-name>
+```
+
+<br>
+
+## DISABLE YAY FROM ASKING ON INSTALLATION
+
+Run the following command in terminal
+```bash
+yay --answerdiff None --answerclean All --removemake -S <package-name>
+```
+
+## MOUNT VIA TERMINAL
+
+Check which device you want to mount
+```bash
+blkid
+```
+
+Mount it
+```bash
+mount /dev/<id> /mnt
+```
+<br>
+
+## LAUNCH HEADLESS VIRTUALBOX VM AND REMOVE THE HEADLESS LOGS
+
+```bash
+exec vboxmanage startvm "<vm-name>" --type=headless &
+find . -maxdepth 1 -name "*VBoxHeadless*" -delete &
+```
 <br>
 
 ## ACTIVATING NUMLOCK ON BOOTUP
@@ -51,8 +96,6 @@ sudo pacman -Sy archlinux-keyring
   </channel>
   ```
 * Save and close and reboot.
-
-<br>
 
 ## FLICKERING ISSUES
 
@@ -78,7 +121,6 @@ sudo pacman -Sy archlinux-keyring
 * Save and close.
 
 <br>
-
 
 ## VSCODE SYNC RETURNING ERROR
 
@@ -119,15 +161,6 @@ After login on Github with VSCode to sync settings, VSCode returns the following
 * Save, close and reopen Discord
 
 > **NOTE:** When an update are available, this file will also be updated, so don't worry.
-
-<br>
-
-## REMOVING PLANK ICON FROM DOCK
-
-Run the following command in terminal
-```bash
-gsettings set net.launchpad.plank.dock.settings:/net/launchpad/plank/docks/dock1/ show-dock-item false
-```
 
 <br>
 
@@ -200,99 +233,3 @@ sudo usermod -aG vboxsf $USER
 Reboot the guest side
 
 <br>
-
-## REMOVING ALACRITTY
-<br>
-
-> **ATTENTION: Some submenus or items from Openbox may not work properly**
-
-<br>
-
-Run the following command in terminal
-```bash
-sudo mkdir -p /usr/share/archcraft_bak
-sudo cp -rfp /usr/share/archcraft/* /usr/share/archcraft_bak
-sudo pacman -R alacritty archcraft-bspwm archcraft-openbox
-sudo cp -rfp /usr/share/archcraft_bak/* /usr/share/archcraft
-sudo rm -rf /usr/share/archcraft_bak
-```
-
-<br>
-
-## REMOVING GEANY
-<br>
-
-> **ATTENTION: Some submenus or items from Openbox may not work properly**
-
-<br>
-
-Run the following command in terminal
-```bash
-sudo mkdir -p /usr/share/archcraft_bak
-sudo cp -rfp /usr/share/archcraft/* /usr/share/archcraft_bak
-sudo pacman -R geany geany-plugins archcraft-bspwm archcraft-openbox
-sudo cp -rfp /usr/share/archcraft_bak/* /usr/share/archcraft
-sudo rm -rf /usr/share/archcraft_bak
-```
-
-<br>
-
-## REMOVING ALL ARCHCRAFT REPOSITORIES (DANGEROUS)
-<br>
-
-> **ATTENTION: It may break your system. Only do this if you understand the risks of doing so.**
-
-<br>
-
-Run the following command in terminal
-```bash
-sudo mkdir -p /usr/share/archcraft_bak
-sudo mkdir -p /usr/share/backgrounds_bak
-sudo mkdir -p /usr/share/fonts_bak
-sudo mkdir -p /usr/share/icons_bak
-sudo mkdir -p /usr/share/themes_bak
-sudo mkdir -p /etc/grub.d_bak
-sudo mkdir -p /usr/share/sddm/themes_bak
-
-sudo cp -rfp  /usr/share/archcraft/* /usr/share/archcraft_bak
-sudo cp -rfp  /usr/share/backgrounds/* /usr/share/backgrounds_bak
-sudo cp -rfp  /usr/share/fonts/* /usr/share/fonts_bak
-sudo cp -rfp  /usr/share/icons/* /usr/share/icons_bak
-sudo cp -rfp  /usr/share/themes/* /usr/share/themes_bak
-sudo cp -rfp  /etc/grub.d/* /etc/grub.d_bak
-sudo cp -rfp  /usr/share/sddm/themes/* /usr/share/sddm/themes_bak
-
-sudo pacman -R $(pacman -Q | grep -E '^archcraft' | awk '{print $1}')
-
-sudo mkdir -p /usr/share/archcraft
-sudo mkdir -p /usr/share/backgrounds
-sudo mkdir -p /usr/share/fonts
-sudo mkdir -p /usr/share/icons
-sudo mkdir -p /usr/share/themes
-sudo mkdir -p /etc/grub.d
-sudo mkdir -p /usr/share/sddm/themes
-
-sudo cp -rfp  /usr/share/archcraft_bak/* /usr/share/archcraft
-sudo cp -rfp  /usr/share/backgrounds_bak/* /usr/share/backgrounds
-sudo cp -rfp  /usr/share/fonts_bak/* /usr/share/fonts
-sudo cp -rfp  /usr/share/icons_bak/* /usr/share/icons
-sudo cp -rfp  /usr/share/themes_bak/* /usr/share/themes
-sudo cp -rfp  /etc/grub.d_bak/* /etc/grub.d
-sudo cp -rfp  /usr/share/sddm/themes_bak/* /usr/share/sddm/themes
-
-sudo rm -rf /usr/share/archcraft_bak
-sudo rm -rf /usr/share/backgrounds_bak
-sudo rm -rf /usr/share/fonts_bak
-sudo rm -rf /usr/share/icons_bak
-sudo rm -rf /usr/share/themes_bak
-sudo rm -rf /etc/grub.d_bak
-sudo rm -rf /usr/share/sddm/themes_bak
-```
-
-Then, open the following file and remove Archcraft repository from there.
-```bash
-sudo nano /etc/pacman.conf
-```
-
-
-
