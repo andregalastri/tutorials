@@ -11,6 +11,13 @@ sudo pacman -Syyu
 
 <br>
 
+## CLEAR PACMAN CACHE
+
+```bash
+sudo pacman -Scc
+```
+
+<br>
 
 ## CLEAR PACMAN CACHE
 
@@ -233,3 +240,58 @@ sudo usermod -aG vboxsf $USER
 Reboot the guest side
 
 <br>
+
+## CHANGING THE DEFAULT SHELL
+
+1. Check the available shells run:
+    ```bash
+    cat /etc/shells
+    ```
+
+1. It will return the available shell binaries, like this:
+
+    ```
+    # Pathnames of valid login shells.
+    # See shells(5) for details.
+
+    /bin/sh
+    /bin/bash
+    /usr/bin/git-shell
+    /usr/bin/fish
+    /bin/fish
+    ```
+
+1. Run the following command, informing the shell you want as default.
+    ```bash
+    chsh -s <shell> $USER
+
+    # Example
+    # chsh -s /bin/fish $USER
+    ```
+
+1. Inform you password.<br />
+    The change will affect the current user only.
+
+<br>
+
+## TROUBLE WITH SYSTEM NOT BOOTING UP ON VIRTUAL BOX
+
+If it shows the UEFI Shell instead of GRUB, it can be a problem with BOOT ORDER from BIOS of the VM.
+
+![UEFI Shell](Images/Uefi-Shell-Issue-1.png "UEFI Shell")
+
+---
+
+1. Run the VM and press F2 to enter the BIOS. You need to be really fast. A tip is to press Host()Left Ctrl)+R while hitting F2 multiple times.<br /><br />
+    You will see an screen like this:<br />
+    ![Bios](Images/Uefi-Shell-Issue-2.png "Bios")
+
+1. Now, choose **Boot Maintenance Manager > Boot Options > Change Boot Order**.<br /><br />
+    You will see an screen like this.<br />
+    ![Bios](Images/Uefi-Shell-Issue-3.png "Bios")
+
+1. Press ENTER and use the `+` or `-` keys to change the boot order. You need to set the hard drive that have the UFI partition.<br /><br />
+    ![Bios](Images/Uefi-Shell-Issue-4.png "Bios")
+
+1. Press ENTER and F10 to save the changes.
+1. Press ESC until you reach the first screen and choose **Reset** to reboot the VM.

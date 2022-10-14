@@ -1,9 +1,8 @@
 # Script de instalação
 * O jeito mais rápido de baixar e rodar o script de instalação é o seguinte:
   ```
-  source <(curl -s https://raw.githubusercontent.com/andregalastri/tutorials/main/Arch/install.sh)
+  (source <(curl -s <url>))
   ```
-* Teria que ter um endereço de internet menor, pra facilitar
 
 <br>
 
