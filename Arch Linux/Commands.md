@@ -325,4 +325,4 @@ If it shows the UEFI Shell instead of GRUB:
     ```
 <br />
 
-<small>Source and more possible fixes: [https://unix.stackexchange.com/a/326957](https://unix.stackexchange.com/a/326957)</small>
+Source and more possible fixes: [https://unix.stackexchange.com/a/326957](https://unix.stackexchange.com/a/326957)
