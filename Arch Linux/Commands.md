@@ -276,11 +276,14 @@ Reboot the guest side
 
 ## TROUBLE WITH SYSTEM NOT BOOTING UP ON VIRTUAL BOX
 
-If it shows the UEFI Shell instead of GRUB, it can be a problem with BOOT ORDER from BIOS of the VM.
+If it shows the UEFI Shell instead of GRUB:
 
 ![UEFI Shell](Images/Uefi-Shell-Issue-1.png "UEFI Shell")
 
 ---
+<br />
+
+### First possible fix:
 
 1. Run the VM and press F2 to enter the BIOS. You need to be really fast. A tip is to press Host()Left Ctrl)+R while hitting F2 multiple times.<br /><br />
     You will see an screen like this:<br />
@@ -295,3 +298,31 @@ If it shows the UEFI Shell instead of GRUB, it can be a problem with BOOT ORDER 
 
 1. Press ENTER and F10 to save the changes.
 1. Press ESC until you reach the first screen and choose **Reset** to reboot the VM.
+
+---
+<br />
+
+### Second possible fix:
+
+1. In UEFI Interactive Shell, enter the file system:
+    ```
+    fs0:
+    ```
+1. Following up with creating this file:
+    ```
+    edit startup.nsh
+    ```
+1. Enter this or similar line to it:
+    ```
+    \EFI\debian\grubx64.efi
+    ```
+1. Press **`CTRL+S`** to save the file.
+1. Press **`ENTER`** to confirm the file name.
+1. Press **`CTRL+Q`** to exit the editor.
+1. Restart the VM running:
+    ```
+    reset
+    ```
+<br />
+
+<small>Source and more possible fixes: [https://unix.stackexchange.com/a/326957](https://unix.stackexchange.com/a/326957)</small>
