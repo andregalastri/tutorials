@@ -84,25 +84,30 @@ find . -maxdepth 1 -name "*VBoxHeadless*" -delete &
 
 ## ACTIVATING NUMLOCK ON BOOTUP
 
-* Open the file `~/.config/xfce4/xfconf/xfce-perchannel-xml/keyboards.xml`
-* Add the following properties to the `keyboars` channel
-  ```xml
-  <property name="Numlock" type="bool" value="true"/>
-  <property name="RestoreNumlock" type="bool" value="true"/>
-  ```
-  
-  **Like this**
-  ```xml
-  <?xml version="1.0" encoding="UTF-8"?>
-
-  <channel name="keyboards" version="1.0">
-    <property name="Default" type="empty">
-      <property name="Numlock" type="bool" value="true"/>
-      <property name="RestoreNumlock" type="bool" value="true"/>
-    </property>
-  </channel>
-  ```
-* Save and close and reboot.
+* Open the following file as **`ROOT`**;
+    ```bash
+    sudo nano /etc/mkinitcpio.conf
+    ```
+* Add the hook `numlock` at the end of **`HOOKS`** array, like this:
+    ```bash
+    HOOKS=(base udev autodetect keyboard keymap modconf block filesystems fsck numlock)
+    ```
+* Save and close;
+* Open the following file as **`ROOT`**;
+    ```bash
+    sudo nano /etc/sddm.conf.d/sddm.conf
+    ```
+* Remove the `#` from the `Numlock` parameter, like this:
+    ```apache
+    [General]
+    Numlock = on
+    ```
+* Save and close;
+* Now install the `numlock` module for `mkinitcpio` from **AUR**;
+    ```bash
+    yay -S mkinitcpio-numlock
+    ```
+* Reboot.
 
 ## FLICKERING ISSUES
 
