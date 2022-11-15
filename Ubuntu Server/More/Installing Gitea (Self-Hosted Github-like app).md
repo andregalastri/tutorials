@@ -5,8 +5,8 @@ Installing and configuring Gitea.
 * Execute the following commands
   
   ```bash
-  wget -O gitea https://dl.gitea.io/gitea/1.16.3/gitea-1.16.3-linux-amd64
-  chmod +x gitea
+  wget -O gitea https://dl.gitea.io/gitea/1.17.3/gitea-1.17.3-linux-amd64;
+  chmod +x gitea;
   ```
 
 <br>
@@ -22,24 +22,25 @@ Installing and configuring Gitea.
      --group \
      --disabled-password \
      --home /home/gitea \
-     gitea
+     gitea;
    ```
 
 2. Create the following directories
 
    ```bash
-   sudo mkdir -p /var/lib/gitea/{custom,data,log}
-   sudo chown -R gitea:gitea /var/lib/gitea/
-   sudo chmod -R 750 /var/lib/gitea/
-   sudo mkdir /etc/gitea
-   sudo chown root:gitea /etc/gitea
-   sudo chmod 770 /etc/gitea
+   sudo mkdir -p /var/lib/gitea/{custom,data,log};
+   sudo chown -R gitea:gitea /var/lib/gitea/;
+   sudo chmod -R 770 /var/lib/gitea/;
+   sudo mkdir /etc/gitea;
+   sudo chown root:gitea /etc/gitea;
+   sudo chmod 770 /etc/gitea;
+   sudo usermod -aG gitea $USER;
    ```
    
 3. Move the `gitea` binary to the proper folder
 
    ```bash
-   sudo mv gitea /usr/local/bin/gitea
+   sudo mv gitea /usr/local/bin/gitea;
    ```
 
 ### Creating a service to run Gitea
@@ -47,7 +48,7 @@ Installing and configuring Gitea.
 1. We need to create a service file. Execute the following command:
 
    ```bash
-   sudo nano /etc/systemd/system/gitea.service
+   sudo nano /etc/systemd/system/gitea.service;
    ```
 
 2. Nano Editor will be opened to create our `gitea.server` file. Paste the following content into the editor
@@ -76,8 +77,8 @@ Installing and configuring Gitea.
  4. Run the Gitea as a service
  
     ```bash
-    sudo systemctl enable gitea
-    sudo systemctl start gitea
+    sudo systemctl enable gitea;
+    sudo systemctl start gitea;
     ```
 
 <br>
@@ -110,7 +111,7 @@ We need to open the `app.ini`, which is the configuration file of Gitea.
 1. Run the following command:
 
    ```bash
-   sudo nano /etc/gitea/app.ini
+   sudo nano /etc/gitea/app.ini;
    ```
 
 2. If it asks if you want to edit the file using ROOT, choose **Yes**
@@ -130,7 +131,7 @@ We need to open the `app.ini`, which is the configuration file of Gitea.
 6. Restart the Gitea service
 
    ```bash
-   sudo systemctl restart gitea
+   sudo systemctl restart gitea;
    ```
 <br>
 
@@ -139,14 +140,14 @@ We need to open the `app.ini`, which is the configuration file of Gitea.
 1. Enable the proxy modules from Apache
 
    ```bash
-   sudo a2enmod proxy
-   sudo a2enmod proxy_http
+   sudo a2enmod proxy;
+   sudo a2enmod proxy_http;
    ```
    
 3. Run the following command
 
    ```bash
-   sudo nano /etc/apache2/sites-available/gitea.conf
+   sudo nano /etc/apache2/sites-available/gitea.conf;
    ```
 
 1. Copy and paste the content below
@@ -169,8 +170,8 @@ We need to open the `app.ini`, which is the configuration file of Gitea.
 1. Run the following commands
 
    ```bash
-   sudo a2ensite gitea
-   sudo service apache2 restart
+   sudo a2ensite gitea;
+   sudo service apache2 restart;
    ```
 
 ### Adding the domain or subdomain in the `hosts` file
@@ -178,7 +179,7 @@ We need to open the `app.ini`, which is the configuration file of Gitea.
 1. Open your `hosts` file
 
    ```bash
-   sudo nano /etc/hosts
+   sudo nano /etc/hosts;
    ```
 
 1. Open your `hosts` file
@@ -189,3 +190,60 @@ We need to open the `app.ini`, which is the configuration file of Gitea.
    <br>
    
    > **IMPORTANT**: Change the `your_gitea_domain.com` part to the domain of yours.
+
+<br>
+
+# MIGRATING TO ANOTHER SERVER
+**IMPORTANT:**\
+This will only work between Giteas that share the same version.
+
+<br>
+
+### Backup your current Gitea installation
+**Before proceed, make sure no one is using Gitea because we will stop the service.**
+
+1. Run the following commands:
+  ```bash
+  sudo systemctl stop gitea;
+  sudo mkdir -p $HOME/gitea/var/lib/gitea;
+  sudo mkdir -p $HOME/gitea/etc/gitea;
+  sudo cp -R /var/lib/gitea/* $HOME/gitea/var/lib/gitea/;
+  sudo cp -R /etc/gitea/* $HOME/gitea/etc/gitea/;
+  cd $HOME/;
+  sudo tar -czf $HOME/gitea-backup.tar.gz gitea;
+  sudo rm -R gitea;
+  ```
+1. Move the `gitea-backup.tar.gz` file to the new server.
+
+<br>
+
+### Restore your current Gitea installation in the new server
+1. At the new server, place the `gitea-backup.tar.gz` in the home folder of your user.
+1. Run the following commands:
+  ```bash
+  sudo systemctl stop gitea;
+  
+  cd $HOME;
+  sudo tar -xf gitea-backup.tar.gz;
+  
+  sudo mv /var/lib/gitea /var/lib/gitea_OLD;
+  sudo mv /etc/gitea /etc/gitea_OLD;
+  
+  sudo cp -R $HOME/gitea/var/lib/gitea/ /var/lib/gitea/;
+  sudo cp -R $HOME/gitea/etc/gitea/ /etc/gitea/;
+  
+  sudo chown -R gitea:gitea /var/lib/gitea/;
+  sudo chmod -R 770 /var/lib/gitea/;
+  sudo chown root:gitea /etc/gitea;
+  sudo chmod 770 /etc/gitea;
+  
+  sudo systemctl start gitea;
+  ```
+
+Test if everything is working. If so, you can run the following commands to remove unnecessary folders:
+
+```bash
+sudo rm -R $HOME/gitea/;
+sudo rm -R /var/lib/gitea_OLD/;
+sudo rm -R /etc/gitea_OLD/;
+```
