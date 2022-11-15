@@ -12,7 +12,7 @@ Installing and configuring Gitea.
 <br>
 
 ## INSTALLING
-1. We will use the binary as a service in Linux. First, we need to add a new user and a group called `gitea`.
+1. We will use the binary as a service in Linux. First, we need to add a new user and a group called `gitea`. The current user will be part of this group as well
 
    ```bash
    sudo adduser \
@@ -23,6 +23,8 @@ Installing and configuring Gitea.
      --disabled-password \
      --home /home/gitea \
      gitea;
+
+   sudo usermod -aG gitea $USER;
    ```
 
 2. Create the following directories
@@ -30,11 +32,10 @@ Installing and configuring Gitea.
    ```bash
    sudo mkdir -p /var/lib/gitea/{custom,data,log};
    sudo chown -R gitea:gitea /var/lib/gitea/;
-   sudo chmod -R 770 /var/lib/gitea/;
+   sudo chmod -R 750 /var/lib/gitea/;
    sudo mkdir /etc/gitea;
    sudo chown root:gitea /etc/gitea;
    sudo chmod 770 /etc/gitea;
-   sudo usermod -aG gitea $USER;
    ```
    
 3. Move the `gitea` binary to the proper folder
