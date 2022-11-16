@@ -69,9 +69,11 @@ cd $HOME;
 sudo cp -rp "/var/run/mysqld" "/var/run/mysqld.bak";
 sudo service mysql stop;
 sudo mv "/var/run/mysqld.bak" "/var/run/mysqld";
-sudo mysqld_safe --skip-grant-tables --skip-networking & 1>/dev/null;
+sudo mysqld_safe --skip-grant-tables --skip-networking;
 
-mysql -p -u root -e "USE mysql; FLUSH PRIVILEGES; ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root'; FLUSH PRIVILEGES; GRANT ALL PRIVILEGES ON *.* TO 'phpmyadmin'@'localhost' WITH GRANT OPTION; FLUSH PRIVILEGES;";
+echo "Create a password for MySQL root user:\n"
+read $rootPassword;
+mysql -p -u root -e "USE mysql; FLUSH PRIVILEGES; ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$rootPassword'; FLUSH PRIVILEGES; GRANT ALL PRIVILEGES ON *.* TO 'phpmyadmin'@'localhost' WITH GRANT OPTION; FLUSH PRIVILEGES;";
 
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');";
 HASH="$(wget -q -O - https://composer.github.io/installer.sig)";
