@@ -234,7 +234,7 @@ This will only work between Giteas that share the same version.
   sudo cp -R $HOME/gitea/etc/gitea/ /etc/gitea/;
   
   sudo chown -R gitea:gitea /var/lib/gitea/;
-  sudo chmod -R 770 /var/lib/gitea/;
+  sudo chmod -R 750 /var/lib/gitea/;
   sudo chown root:gitea /etc/gitea;
   sudo chmod 770 /etc/gitea;
   
