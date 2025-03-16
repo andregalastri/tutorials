@@ -33,7 +33,7 @@ NOTA: O mkcert já adiciona a CA gerada ao sistema, então os certificados serã
 
 <br>
 
-## 2. CONFIGURANDO NO APACHE2
+## 3. CONFIGURANDO NO APACHE2
 - Copie os arquivos para a pasta SSL do Apache (caso ainda não tenha movido)
   ```
   sudo mkdir -p /etc/apache2/ssl
