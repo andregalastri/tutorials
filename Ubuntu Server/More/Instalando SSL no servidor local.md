@@ -18,7 +18,7 @@ mkcert -install
 ## 2. GERANDO UM CERTIFICADO SSL
 - Abra um terminal e crie um arquivo:
 ```
-mkcert intranet.local server.intranet
+mkcert intranet.local
 ```
 
 <br>
