@@ -16,7 +16,7 @@ mkcert -install
 <br>
 
 ## 2. GERANDO UM CERTIFICADO SSL
-- Abra um terminal e crie um arquivo:
+Se você quer gerar **apenas para um domínio ou subdomínio específico**, então Execute o comando abaixo, substituindo pelo seu endereço local.
 ```
 mkcert intranet.local
 ```
@@ -27,17 +27,33 @@ Isso cria:
 * intranet.local.pem (Certificado)
 * intranet.local-key.pem (Chave privada)
 
-Substitua pelo endereço na intranet que você quer. Caso haja subdomínios é necessário criar um certificado para cada.
+---
 
-NOTA: O mkcert já adiciona a CA gerada ao sistema, então os certificados serão confiáveis automaticamente.
+PORÉM, caso deseje incluir **tanto o domínio quanto seus subdomínios**, o comando deve conter o domínio precedido por *
+```
+mkcert *.intranet.local
+```
+
+<br>
+
+Isso cria:
+* _wildcard.intranet.local.pem (Certificado)
+* _wildcard.intranet.local-key.pem (Chave privada)
 
 <br>
 
 ## 3. CONFIGURANDO NO APACHE2
-- Copie os arquivos para a pasta SSL do Apache (caso ainda não tenha movido)
+- Copie os arquivos para a pasta SSL do Apache.
+
+  <br>
+  
+  > **IMPORTANTE: caso tenha criado certificados que incluem subdomínios, o processo é o mesmo, mas informando os arquivos `_wildcard.intranet.local.pem` e `_wildcard.intranet.local-key.pem`**.
+
+  <br>
+  
   ```
   sudo mkdir -p /etc/apache2/ssl
-  sudo cp intranet.local.pem intranet.local-key.pem /etc/apache2/ssl/
+  sudo mv intranet.local.pem intranet.local-key.pem /etc/apache2/ssl/
   ```
 
 - Ajuste as permissões para segurança:
