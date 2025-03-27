@@ -10,7 +10,7 @@ Desta forma, é recomendado ter duas partições (ou possuir dois drives), sendo
 
 <br>
 
-## INSTALANDO E CONFIGURANDO O SAMBA
+# INSTALANDO E CONFIGURANDO O SAMBA
 Instale o Samba
 
 ```
@@ -49,7 +49,7 @@ sudo smbpasswd -e <nome_do_usuário>
 
 <br>
 
-## FORMATAÇÃO E PREPARAÇÃO DO SISTEMA XFS
+# FORMATAÇÃO E PREPARAÇÃO DO SISTEMA XFS
 Descubra qual o dispositivo de armazenamento que será formatado executndo o comando a seguir:
 
 ```bash
@@ -129,7 +129,7 @@ Adicione o seguinte ao final do arquivo:
 
 <br>
 
-## CRIANDO AS PASTAS COMPARTILHADAS
+# CRIANDO AS PASTAS COMPARTILHADAS
 Crie as pastas que serão compartilhadas
 
 ```
@@ -204,3 +204,59 @@ Project ID   Project name      Used    Soft    Hard
 2            pasta-publica     0       0       26214400
 ```
 **Nota: 26214400 blocos de 1K = exatamente 25 GB**
+
+# DEFININDO PERMISSÕES DE ACESSO
+Com as pastas e cotas criadas e definidas, agora é hora de dar permissões de acesso às pastas.
+
+A `pasta-privada` será exclusiva para uso de um usuário específico, enquanto a `pasta-publica` será acessível por todos os usuários, mas ainda exigindo autenticação (ou seja, sem acesso anônimo).
+
+Supondo que o usuário seja `usuario`, execute:
+
+```
+sudo chown usuario:usuario /fileserver/pasta-privada
+sudo chmod 700 /fileserver/pasta-privada
+```
+
+Altere o `usuario` pelo usuário real.
+
+Agora vamos criar um grupo que irá compartilhar da mesma pasta pública:
+
+```
+sudo groupadd fileserverusers
+sudo chown root:fileserverusers /fileserver/pasta-publica
+sudo chmod 770 /fileserver/pasta-publica
+
+sudo usermod -aG fileserverusers usuario
+```
+
+## CONFIGURANDA O SAMBA PARA COMPARTILHAR
+Execute o comando:
+
+```
+sudo nano /etc/samba/smb.conf
+```
+
+No final do arquivo, adicione o seguinte conteúdo:
+
+```
+[Pasta privada]
+   path = /fileserver/pasta-privada
+   valid users = usuario
+   read only = no
+   browsable = no
+
+[Pasta publica]
+   path = /fileserver/pasta-publica
+   valid users = @fileserverusers
+   read only = no
+   browsable = yes
+```
+
+Salve e saia
+
+**Reinicie o serviço do Samba**
+
+```
+sudo systemctl restart smbd
+```
+
