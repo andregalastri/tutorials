@@ -287,3 +287,40 @@ UDP         138     NetBIOS datagram
 ```
 
 Essas são as portas usadas para comunicação SMB/CIFS com clientes Windows.
+
+# ACESSANDO VIA REDE WINDOWS
+Para garantir que o Windows se conecte exatamente com as credenciais desejadas, é preferivel executar o logon junto ao servidor de arquivos através do CMD.
+
+Faça o seguinte:
+
+- Abra o **CMD**
+- Execute o comando a seguir:
+  ```
+  net use \\192.168.x.x /user:<nome_do_usuario>
+  ```
+- Informe a senha definida no usuário do Samba.
+
+Isso deverá permitir o acesso aos arquivos do servidor através das credenciais do usuário informado.
+
+- Abra o **Explorador de Arquivos**
+- Na barra de endereço, digite **`\\192.168.x.x`**
+
+Você verá a **`Pasta comum`**, mas não verá a **`Pasta privada`**, pois ela foi ocultada nas configurações do Samba via `browsable = no`.
+
+Você pode acessá-la via barra de endereços **`\\192.168.x.x\Pasta privada`**, ou alterando `browsable = no` para `browsable = yes`
+
+
+## LIMPANDO CREDENCIAIS DE ACESSO
+O Windows tem grande dificuldade em lidar com acesso a certas redes de arquivos, principalmente Linux.
+
+Pode ocorrer casos em que se quer remover as credenciais de acesso, seja por mudança de senha ou usuário, seja por digitação incorreta dos dados, e isso tende a ser confuso de se lidar.
+
+Nestes casos, feche todas as janelas do Explorer e execute um dos comandos abaixo, com base na situação:
+
+| Situação | Comando | 
+| --- | --- |
+| ❗ Limpar todas as conexões SMB abertas (e cache temporário) | `net use * /delete /y` | 
+| Desconectar uma pasta de rede mapeada (ex: Z:) | `net use Z: /delete` |
+| Remover cache de uma conexão UNC ativa (sem unidade mapeada) | `net use \\192.168.x.x\compartilhamento /delete` |
+| Remover credencial salva permanentemente | `cmdkey /delete:Domain:192.168.x.x` |
+| Ver todas as credenciais salvas no sistema | `cmdkey /list` |
