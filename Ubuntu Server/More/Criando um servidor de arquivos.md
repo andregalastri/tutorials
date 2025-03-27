@@ -1,4 +1,4 @@
-# CRIANDO UM SERVIDOR DE ARQUIVOS
+# CRIANDO UM SERVIDOR DE ARQUIVOS PARA REDE WINDOWS
 Servidor de arquivos com sistema de cotas por usuário
 
 <br>
@@ -205,6 +205,8 @@ Project ID   Project name      Used    Soft    Hard
 ```
 **Nota: 26214400 blocos de 1K = exatamente 25 GB**
 
+<br>
+
 # DEFININDO PERMISSÕES DE ACESSO
 Com as pastas e cotas criadas e definidas, agora é hora de dar permissões de acesso às pastas.
 
@@ -214,7 +216,7 @@ Supondo que o usuário seja `usuario`, execute:
 
 ```
 sudo chown usuario:usuario /fileserver/pasta-privada
-sudo chmod 700 /fileserver/pasta-privada
+sudo chmod -R 700 /fileserver/pasta-privada
 ```
 
 Altere o `usuario` pelo usuário real.
@@ -224,7 +226,7 @@ Agora vamos criar um grupo que irá compartilhar da mesma pasta pública:
 ```
 sudo groupadd fileserverusers
 sudo chown root:fileserverusers /fileserver/pasta-publica
-sudo chmod 770 /fileserver/pasta-publica
+sudo chmod -R 2770 /fileserver/pasta-publica
 
 sudo usermod -aG fileserverusers usuario
 ```
@@ -249,6 +251,11 @@ No final do arquivo, adicione o seguinte conteúdo:
    path = /fileserver/pasta-publica
    valid users = @fileserverusers
    read only = no
+   force group = fileserverusers
+   create mask = 0664
+   directory mask = 2770
+   force create mode = 0664
+   force directory mode = 2770
    browsable = yes
 ```
 
@@ -260,3 +267,23 @@ Salve e saia
 sudo systemctl restart smbd
 ```
 
+<br>
+
+# LIBERANDO ACESSO NO FIREWALL
+Execute o comando:
+
+```
+sudo ufw allow 'Samba'
+```
+
+Esse comando usa o perfil pré-definido do UFW que libera as seguintes portas:
+
+```
+Protocolo   Porta   Descrição
+TCP         139	    NetBIOS session
+TCP         445     SMB direct
+UDP         137     NetBIOS name svc
+UDP         138     NetBIOS datagram
+```
+
+Essas são as portas usadas para comunicação SMB/CIFS com clientes Windows.
