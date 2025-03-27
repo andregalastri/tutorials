@@ -61,7 +61,7 @@ A partição deverá aparecer como `/sda4` ou, no caso de um drive novo, `/sdb`,
 <br>
 
 ### CRIANDO UMA NOVA PARTIÇÃO
-Execute o comando a seeguir informando a partição ou drive conforme o que foi descoberto acima:
+Execute o comando a seguir informando a partição ou drive conforme o que foi descoberto acima:
 
 ```
 sudo fdisk /dev/<sdX>
@@ -238,6 +238,14 @@ Execute o comando:
 sudo nano /etc/samba/smb.conf
 ```
 
+No começo do arquivo, logo abaixo da seção `[global]` insira o seguinte:
+
+```
+[global]
+   map to guest = never
+   security = user
+```
+
 No final do arquivo, adicione o seguinte conteúdo:
 
 ```
@@ -305,7 +313,7 @@ Isso deverá permitir o acesso aos arquivos do servidor através das credenciais
 - Abra o **Explorador de Arquivos**
 - Na barra de endereço, digite **`\\192.168.x.x`**
 
-Você verá a **`Pasta comum`**, mas não verá a **`Pasta privada`**, pois ela foi ocultada nas configurações do Samba via `browsable = no`.
+Você verá a **`Pasta pública`**, mas não verá a **`Pasta privada`**, pois ela foi ocultada nas configurações do Samba via `browsable = no`.
 
 Você pode acessá-la via barra de endereços **`\\192.168.x.x\Pasta privada`**, ou alterando `browsable = no` para `browsable = yes`
 
