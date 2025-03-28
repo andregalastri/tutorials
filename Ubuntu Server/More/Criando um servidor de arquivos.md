@@ -254,6 +254,9 @@ No final do arquivo, adicione o seguinte conteúdo:
    valid users = usuario
    read only = no
    browsable = no
+   follow symlinks = yes
+   wide links = yes
+   unix extensions = no
 
 [Pasta publica]
    path = /fileserver/pasta-publica
