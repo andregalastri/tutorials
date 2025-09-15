@@ -5,20 +5,20 @@ Quando se quer remover mensagens de navegação insegura em uma intranet.
 
 ## 1. INSTALANDO O mkcert
 - Abra um terminal e crie um arquivo:
-```
-sudo apt install libnss3-tools
-curl -L https://github.com/FiloSottile/mkcert/releases/latest/download/mkcert-v1.4.4-linux-amd64 -o mkcert
-chmod +x mkcert
-sudo mv mkcert /usr/local/bin/
-mkcert -install
+```bash
+sudo apt install libnss3-tools;
+curl -L https://github.com/FiloSottile/mkcert/releases/latest/download/mkcert-v1.4.4-linux-amd64 -o mkcert;
+chmod +x mkcert;
+sudo mv mkcert /usr/local/bin/;
+mkcert -install;
 ```
 
 <br>
 
 ## 2. GERANDO UM CERTIFICADO SSL
 Se você quer gerar **apenas para um domínio ou subdomínio específico**, então Execute o comando abaixo, substituindo pelo seu endereço local.
-```
-mkcert intranet.local
+```bash
+mkcert intranet.local;
 ```
 
 <br>
@@ -30,8 +30,8 @@ Isso cria:
 ---
 
 PORÉM, caso deseje incluir **tanto o domínio quanto seus subdomínios**, o comando deve conter o domínio precedido por *
-```
-mkcert *.intranet.local
+```bash
+mkcert *.intranet.local;
 ```
 
 <br>
@@ -51,23 +51,23 @@ Isso cria:
 
   <br>
   
-  ```
-  sudo mkdir -p /etc/apache2/ssl
-  sudo mv intranet.local.pem intranet.local-key.pem /etc/apache2/ssl/
+  ```bash
+  sudo mkdir -p /etc/apache2/ssl;
+  sudo mv intranet.local.pem intranet.local-key.pem /etc/apache2/ssl/;
   ```
 
 - Ajuste as permissões para segurança:
-  ```
-  sudo chmod 600 /etc/apache2/ssl/*
+  ```bash
+  sudo chmod 600 /etc/apache2/ssl/*;
   ```
 
 - Crie ou edite um VirtualHost SSL:
-  ```
-  sudo nano /etc/apache2/sites-available/intranet.local.conf
+  ```bash
+  sudo nano /etc/apache2/sites-available/intranet.local.conf;
   ```
 
 - Adicione o seguinte conteúdo:
-  ```
+  ```config
   # VirtualHost para HTTP (Porta 80) - Redireciona para HTTPS
   <VirtualHost *:80>
       ServerName intranet.local
