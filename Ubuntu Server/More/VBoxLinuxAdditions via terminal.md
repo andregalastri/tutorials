@@ -25,3 +25,9 @@
     ```bash
     reboot
     ```
+
+## Configure o Virtual Box
+
+- No VirtualBox Manager, vá em **Configurações da VM > Geral > Área de Transferência Compartilhada** `Bidirecional`
+
+  **Nota**: Também é possível habilitar dentro da janela da máquina virtual ativa, acessando **Dispositivos > Área de Transferência Compartilhada** e marcando `Bidirecional`.
