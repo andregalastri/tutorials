@@ -1,7 +1,7 @@
 # HABILITANDO VBoxLinuxAdditions VIA TERMINAL
 
 ## Monte o CD de Guest Additions
-1. No menu da janela do VirtualBox acesse *Dispositivos > **Inserir imagem de CD dos Adicionais para Convidado...***.
+1. Dentro da janela da máquina virtual ativa, acesse *Dispositivos > **Inserir imagem de CD dos Adicionais para Convidado...***.
 
 2. Dentro da VM, monte o CD:
     ```bash
