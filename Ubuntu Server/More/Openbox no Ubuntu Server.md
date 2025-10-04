@@ -1,5 +1,5 @@
 # OPENBOX NO UBUNTU SERVER
-Instalação do Openbox para GUI mínima para Ubuntu Server
+Permite ter uma GUI mínima para Ubuntu Server.
 
 <br>
 
