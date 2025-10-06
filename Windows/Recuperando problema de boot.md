@@ -10,7 +10,6 @@ Caso esteja ocorrendo erro de inicialização como o da imagem abaixo, faça o s
 3. Selecione "Solução de problemas" e "Prompt de comando"
 4. Digite o seguinte para abrir o gerenciador de partições:
    ```
-
    diskpart
    ```
 5. Aguarde o Diskpart iniciar e digite
