@@ -1,6 +1,7 @@
 # RECUPERANDO PROBLEMA DE BOOT
 
 Caso esteja ocorrendo erro de inicialização como o da imagem abaixo, faça o seguinte:
+![2025-09-2908 29 378431472871294239873](https://github.com/user-attachments/assets/813b1830-daa9-43a4-b617-31aeff482729)
 
 ## 1. Boot em Ambiente de Recuperação
 
@@ -9,6 +10,7 @@ Caso esteja ocorrendo erro de inicialização como o da imagem abaixo, faça o s
 3. Selecione "Solução de problemas" e "Prompt de comando"
 4. Digite o seguinte para abrir o gerenciador de partições:
    ```
+
    diskpart
    ```
 5. Aguarde o Diskpart iniciar e digite
